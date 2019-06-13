@@ -13,6 +13,6 @@ class ProductTemplate(models.Model):
             combination, parent_combination)
         if res:
             if combination.mapped('product_attribute_value_id').\
-                in_country_group_constraint():
+                with_context(self.env.context).in_country_group_constraint():
                 return False
         return res
