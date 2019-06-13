@@ -23,13 +23,14 @@ class ProductAttributeValue(models.Model):
         country_lists = self._get_allowed_countries()
         if country_lists:
             for country_list in country_lists:
-                allowed_country_list = list(set(allowed_country_list).intersection(
-                    country_list)) if allowed_country_list else country_list
+                allowed_country_list = list(set(allowed_country_list).\
+                    intersection(country_list)) if allowed_country_list \
+                        else country_list
                 # this is the conflicting case between the lists of
                 # allowed countries
                 if not allowed_country_list:
                     return True
-            partner = self.env['res.users'].browse(
+            partner = self.env['res.users'].sudo().browse(
                 self._context.get('uid', SUPERUSER_ID)
             ).partner_id.commercial_partner_id
             # we assume that country is always set for customers
