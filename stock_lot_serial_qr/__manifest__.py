@@ -7,8 +7,7 @@
     'category' : 'Warehouse',
     'website': 'https://www.quartile.co',
     'summary' : 'QR code for Lot',
-    'license': 'Other proprietary',
-    'support': 'contact@probuse.com',
+    'license': 'AGPL-3',
     'description': '''
 Generate Serial number with QR code for Lot.
     ''',
