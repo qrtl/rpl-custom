@@ -15,7 +15,8 @@ class StockMoveLine(models.Model):
         result = super(StockMoveLine, self).write(vals)
         if 'lot_id' in vals:
             for move_line in self.filtered(
-                lambda x: x.picking_id.picking_type_code == 'incoming'):
+                    lambda x: x.picking_id.picking_type_code == 'incoming' and 
+                    not x.move_id.origin_returned_move_id):
                 if move_line.qty_done and move_line.lot_id:
                     move_line.lot_id._create_stock_serial(move_line.qty_done)
         return result
