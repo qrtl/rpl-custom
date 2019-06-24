@@ -20,6 +20,7 @@ class StockSerial(models.Model):
     product_id = fields.Many2one(
         related='lot_id.product_id',
         string='Product',
+        store=True,
     )
     quantity = fields.Float(
         string='Quantity',
