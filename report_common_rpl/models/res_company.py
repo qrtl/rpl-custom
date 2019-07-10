@@ -12,3 +12,4 @@ class ResCompany(models.Model):
         attachment=True,
     )
     fax = fields.Char('Fax')
+    ceo = fields.Char('Representative Director')

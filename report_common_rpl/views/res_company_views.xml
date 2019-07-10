@@ -12,6 +12,7 @@
             <notebook position="inside">
                 <page string="Reporting" name="reporting" groups="base.group_system">
                     <group string="Common" name="common">
+                        <field name="ceo"/>
                         <field name="company_chop" widget='image' class="oe_avatar"/>
                     </group>
                 </page>
