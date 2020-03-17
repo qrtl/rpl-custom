@@ -40,7 +40,7 @@ class ProductAttributeValue(models.Model):
                 .partner_id.commercial_partner_id
             )
             # we assume that country is always set for customers
-            if partner.country_id and not partner.country_id.id in allowed_country_list:
+            if partner.country_id and partner.country_id.id not in allowed_country_list:
                 return True
         return False
 

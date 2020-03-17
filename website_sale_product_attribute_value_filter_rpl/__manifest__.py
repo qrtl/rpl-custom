@@ -9,12 +9,7 @@
     "author": "Quartile Limited",
     "license": "AGPL-3",
     "installable": True,
-    "description": """
-    Add 'Country Groups' to 'Product Attributes Value', filter out the
-    products options on e-commerce if the country of the user is not in the
-    set 'Country Groups'.
-    """,
-    "depends": ["website_sale",],
+    "depends": ["website_sale"],
     "data": [
         "views/product_attribute_value_views.xml",
         "views/sale_product_configurator_templates.xml",
