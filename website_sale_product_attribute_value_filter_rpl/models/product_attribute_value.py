@@ -1,20 +1,21 @@
 # Copyright 2019 Quartile Limited
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import fields, models, api, SUPERUSER_ID
+from odoo import SUPERUSER_ID, api, fields, models
 
 
 class ProductAttributeValue(models.Model):
     _inherit = "product.attribute.value"
 
     allowed_country_group_ids = fields.Many2many(
-        'res.country.group',
-        'res_country_group_attribute_value_rel',
-        'attribute_value_id', 'res_country_group_id',
-        string='Country Groups',
-        help='If specified, the attribute value will only be visible to '
-             'customers from the countries in the specified group(s) in '
-             'e-commerce.',
+        "res.country.group",
+        "res_country_group_attribute_value_rel",
+        "attribute_value_id",
+        "res_country_group_id",
+        string="Country Groups",
+        help="If specified, the attribute value will only be visible to "
+        "customers from the countries in the specified group(s) in "
+        "e-commerce.",
     )
 
     @api.multi
@@ -23,19 +24,23 @@ class ProductAttributeValue(models.Model):
         country_lists = self._get_allowed_countries()
         if country_lists:
             for country_list in country_lists:
-                allowed_country_list = list(set(allowed_country_list).\
-                    intersection(country_list)) if allowed_country_list \
-                        else country_list
+                allowed_country_list = (
+                    list(set(allowed_country_list).intersection(country_list))
+                    if allowed_country_list
+                    else country_list
+                )
                 # this is the conflicting case between the lists of
                 # allowed countries
                 if not allowed_country_list:
                     return True
-            partner = self.env['res.users'].sudo().browse(
-                self._context.get('uid', SUPERUSER_ID)
-            ).partner_id.commercial_partner_id
+            partner = (
+                self.env["res.users"]
+                .sudo()
+                .browse(self._context.get("uid", SUPERUSER_ID))
+                .partner_id.commercial_partner_id
+            )
             # we assume that country is always set for customers
-            if partner.country_id and not partner.country_id.id in \
-                    allowed_country_list:
+            if partner.country_id and partner.country_id.id not in allowed_country_list:
                 return True
         return False
 
