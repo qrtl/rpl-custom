@@ -1,8 +1,7 @@
 # Copyright 2019 Quartile Limited
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-import base64
-from odoo import api, fields, models
+from odoo import api, models
 
 
 class StockMoveLine(models.Model):
@@ -13,10 +12,11 @@ class StockMoveLine(models.Model):
     @api.multi
     def write(self, vals):
         result = super(StockMoveLine, self).write(vals)
-        if 'lot_id' in vals:
+        if "lot_id" in vals:
             for move_line in self.filtered(
-                    lambda x: x.picking_id.picking_type_code == 'incoming' and 
-                    not x.move_id.origin_returned_move_id):
+                lambda x: x.picking_id.picking_type_code == "incoming"
+                and not x.move_id.origin_returned_move_id
+            ):
                 if move_line.qty_done and move_line.lot_id:
                     move_line.lot_id._create_stock_serial(move_line.qty_done)
         return result
