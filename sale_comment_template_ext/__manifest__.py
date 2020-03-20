@@ -8,8 +8,5 @@
     "author": "Quartile Limited",
     "license": "AGPL-3",
     "installable": True,
-    "depends": [
-        "sale_comment_template",
-        "stock_picking_comment_template",
-    ],
+    "depends": ["sale_comment_template", "stock_picking_comment_template"],
 }
