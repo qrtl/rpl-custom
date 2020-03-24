@@ -13,13 +13,20 @@ exclude: |
   # Exclude .travis.yml
   ^\.travis\.yml$|
   # For v12.0 of before, exclude all oca modules
+  account_invoice_comment_template/|
+  auditlog/|
+  base_comment_template/|
   base_country_state_translatable/|
   base_technical_features/|
   l10n_ch_states/|
   l10n_de_country_states/|
   l10n_fr_state/|
+  l10n_jp_address_layout_website_sale/|
   l10n_jp_country_state/|
   l10n_jp_partner_title_qweb/|
+  report_py3o/|
+  sale_comment_template/|
+  stock_picking_comment_template/|
   web_environment_ribbon/|
   web_favicon/
 default_language_version:

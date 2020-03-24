@@ -9,6 +9,5 @@ class ProductProduct(models.Model):
 
     label_ref = fields.Char(
         "Label Reference",
-        help="The value set here will be used as 'REF' in product label "
-            "print.",
+        help="The value set here will be used as 'REF' in product label " "print.",
     )
