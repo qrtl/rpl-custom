@@ -1,15 +1,13 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="view_stock_quant_tree">
         <field name="name">stock.quant.tree</field>
         <field name="model">stock.quant</field>
-        <field name="inherit_id" ref="stock_quant_list_view.view_stock_quant_tree"/>
+        <field name="inherit_id" ref="stock_quant_list_view.view_stock_quant_tree" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='owner_id']" position="after">
-                <field name="removal_date"/>
+                <field name="removal_date" />
             </xpath>
         </field>
     </record>
-
 </odoo>

@@ -3,13 +3,11 @@
 
 from odoo import fields, models
 
-class ProductTemplate(models.Model):
-    _inherit = 'product.template'
 
-    base_date = fields.Integer('Base Date')
-    weekday_delta = fields.Integer(
-        'Weekday Delta',
-        help='Base weekday is Monday',
-    )
-    month_delta = fields.Integer('Month Delta')
-    day_delta = fields.Integer('Day Delta')
+class ProductTemplate(models.Model):
+    _inherit = "product.template"
+
+    base_date = fields.Integer("Base Date")
+    weekday_delta = fields.Integer("Weekday Delta", help="Base weekday is Monday",)
+    month_delta = fields.Integer("Month Delta")
+    day_delta = fields.Integer("Day Delta")
