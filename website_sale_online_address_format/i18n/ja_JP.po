@@ -18,7 +18,7 @@ msgstr ""
 #. module: website_sale_online_address_format
 #: model_terms:ir.ui.view,arch_db:website_sale_online_address_format.view_country_form
 msgid "Address format..."
-msgstr "アドレスのフォーマット..."
+msgstr "アドレスフォーマット..."
 
 #. module: website_sale_online_address_format
 #: model_terms:ir.ui.view,arch_db:website_sale_online_address_format.view_country_form
@@ -41,11 +41,11 @@ msgid "Display format to use for website address form belonging to this country.
 "%(country_code)s: the code of the country"
 msgstr "ウェブサイトでのアドレス入力フォームに使用される表示形式。\n"
 "\n"
-"アドレスフィールドがpythonスタイルの文字列パターンで使用できます（たとえば、「%(street)s」を指定したらフィールド「street」を表示します）、尚且つ\n"
-"%(state_name)s: 都道府県/州の名前\n"
-"%(state_code)s: 都道府県/州のコード\n"
-"%(country_name)s: 国の名前\n"
-"%(country_code)s: 国のコード"
+"アドレス項目にPythonスタイルの文字列パターンが使用できます（例: 「%(street)s」を指定すると項目「street」を表示）、さらに\n"
+"%(state_name)s: 都道府県/州名\n"
+"%(state_code)s: 都道府県/州コード\n"
+"%(country_name)s: 国名\n"
+"%(country_code)s: 国コード"
 
 #. module: website_sale_online_address_format
 #: model:ir.model.fields,field_description:website_sale_online_address_format.field_res_country__online_address_format
