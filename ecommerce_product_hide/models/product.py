@@ -10,8 +10,7 @@ class Post(models.Model):
     is_public = fields.Boolean(compute="_compute_is_public", store=True)
 
     @api.depends(
-        "public_categ_ids",
-        "public_categ_ids.partner_ids",
+        "public_categ_ids", "public_categ_ids.partner_ids",
     )
     def _compute_is_public(self):
         """ This Method check the does e-commerce category contains
