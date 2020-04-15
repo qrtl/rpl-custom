@@ -14,8 +14,8 @@ class Post(models.Model):
         "public_categ_ids.partner_ids",
     )
     def _compute_is_public(self):
-        """ Public/private should follow the category settings of the highest
-        node.
+        """ This Method check the does e-commerce category contains
+         the partners or not.
         """
         for product in self:
             if product.public_categ_ids.mapped("partner_ids"):
