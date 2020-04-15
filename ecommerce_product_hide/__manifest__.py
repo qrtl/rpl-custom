@@ -13,7 +13,6 @@
         "views/category_views.xml",
         "views/res_partner_views.xml",
         "views/product_views.xml",
-        # "templates/website_forum_templates.xml",
     ],
     "installable": True,
 }
