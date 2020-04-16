@@ -12,7 +12,7 @@
         />
     </record>
     <record id="product_template_rule_portal_id" model="ir.rule">
-        <field name="name">Product - Template/Portal</field>
+        <field name="name">Product Template - Portal/Public</field>
         <field ref="product.model_product_template" name="model_id" />
         <field name="domain_force">["|",("is_public","=",True),
             ("public_categ_ids","in",user.commercial_partner_id.category_ids.ids)]
