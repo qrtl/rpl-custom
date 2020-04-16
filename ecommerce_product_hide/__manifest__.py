@@ -9,6 +9,7 @@
     "license": "LGPL-3",
     "depends": ["website_sale"],
     "data": [
+        "security/security.xml",
         "views/category_views.xml",
         "views/res_partner_views.xml",
         "views/product_views.xml",
