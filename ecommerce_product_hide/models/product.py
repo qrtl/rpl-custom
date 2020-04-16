@@ -4,7 +4,7 @@
 from odoo import api, fields, models
 
 
-class Post(models.Model):
+class ProductTemplate(models.Model):
     _inherit = "product.template"
 
     is_public = fields.Boolean(compute="_compute_is_public", store=True)
