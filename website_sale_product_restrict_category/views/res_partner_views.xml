@@ -9,7 +9,7 @@
             <notebook position="inside">
                 <page string="E-Commerce Category">
                     <group>
-                        <field name="category_ids" widget="many2many_tags" />
+                        <field name="public_category_ids" widget="many2many_tags" />
                     </group>
                 </page>
             </notebook>

@@ -12,8 +12,9 @@ class Website(models.Model):
         domain = super(Website, self).sale_product_domain()
         if self.env.user.has_group('base.group_public') or \
             self.env.user.has_group('base.group_portal'):
-            category_ids = self.env.user.commercial_partner_id.category_ids
+            public_category_ids = \
+                self.env.user.commercial_partner_id.public_category_ids
             domain += ["|",
                        ("is_public", "=", True),
-                       ("public_categ_ids", "in", category_ids.ids)]
+                       ("public_categ_ids", "in", public_category_ids.ids)]
         return domain
