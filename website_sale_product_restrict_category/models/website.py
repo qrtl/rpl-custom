@@ -10,10 +10,12 @@ class Website(models.Model):
     @api.multi
     def sale_product_domain(self):
         domain = super(Website, self).sale_product_domain()
-        if self.env.user.has_group("base.group_public") or self.env.user.has_group("base.group_portal"
+        if self.env.user.has_group("base.group_public") or self.env.user.has_group(
+            "base.group_portal"
         ):
-            public_category_ids = \
+            public_category_ids = (
                 self.env.user.commercial_partner_id.public_category_ids
+            )
             domain += [
                 "|",
                 ("is_public", "=", True),
