@@ -8,7 +8,7 @@ class ProductPublicCategory(models.Model):
     _inherit = "product.public.category"
 
     partner_ids = fields.Many2many("res.partner", string="Partners to Hide From")
-    
+
     def get_offsprings(self):
         """ Returned value includes the originating category itself.
         """

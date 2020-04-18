@@ -14,9 +14,7 @@ class Website(models.Model):
         """
         res = super(Website, self).sale_product_domain()
         user = self.env.user
-        if user.has_group("base.group_public") or user.has_group(
-            "base.group_portal"
-        ):
+        if user.has_group("base.group_public") or user.has_group("base.group_portal"):
             public_categ = self.env["product.public.category"]
             restricted_categs = public_categ.browse()
             categs = user.commercial_partner_id.public_category_ids
