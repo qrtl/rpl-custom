@@ -21,6 +21,8 @@ class Website(models.Model):
                 restricted_categs += categ.get_offsprings()
             allowed_categs = public_categ.search([]) - restricted_categs
             res += [
+                "|",
                 ("public_categ_ids", "in", allowed_categs.ids),
+                ("public_categ_ids", "=", False),
             ]
         return res

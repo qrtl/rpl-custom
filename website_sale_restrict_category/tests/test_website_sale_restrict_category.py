@@ -57,17 +57,15 @@ class TestWebsiteSaleRestrictCategory(common.TransactionCase):
 
     def test_01_sale_product_domain(self):
         product = self.env["product.template"]
-        public_categ = self.env["product.public.category"]
         base_domain = [("sale_ok", "=", True)]
         # Search without any restricted category
         sale_product_domain_products = product.search(
             self.website.sudo(self.test_user_1.id).sale_product_domain()
         )
-        all_products = product.search(
-            base_domain + [("public_categ_ids", "in", public_categ.search([]).ids)]
-        )
+        all_products = product.search(base_domain)
         self.assertEqual(sale_product_domain_products, all_products)
-        # Assign test_category_4 to product and to test_user_1
+        # Assign test_category_4 to test_product and to test_user_1,
+        # test_product should be restricted from test_user_1
         self.test_product.public_categ_ids = [(6, 0, [self.test_category_4.id])]
         self.test_user_1.partner_id.public_category_ids = [
             (4, self.test_category_4.id, 0)
@@ -78,7 +76,15 @@ class TestWebsiteSaleRestrictCategory(common.TransactionCase):
         self.assertEqual(
             self.test_product.product_tmpl_id in sale_product_domain_products, False
         )
-        # Assign non-restricted category_3 to product
+        # Check if test_product is visible to test_user_2
+        sale_product_domain_products = product.search(
+            self.website.sudo(self.test_user_2.id).sale_product_domain()
+        )
+        self.assertEqual(
+            self.test_product.product_tmpl_id in sale_product_domain_products, True
+        )
+        # Assign non-restricted category_3 to test_product, test_product
+        # should be visible to test_user_1
         self.test_product.public_categ_ids = [(4, self.test_category_3.id, 0)]
         self.test_user_1.partner_id.public_category_ids = [
             (4, self.test_category_4.id, 0)
