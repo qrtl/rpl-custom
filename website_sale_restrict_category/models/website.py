@@ -17,8 +17,7 @@ class Website(models.Model):
         if user.has_group("base.group_public") or user.has_group("base.group_portal"):
             public_categ = self.env["product.public.category"]
             restricted_categs = public_categ.browse()
-            categs = user.commercial_partner_id.public_category_ids
-            for categ in categs:
+            for categ in user.commercial_partner_id.public_category_ids:
                 restricted_categs += categ.get_offsprings()
             allowed_categs = public_categ.search([]) - restricted_categs
             res += [
