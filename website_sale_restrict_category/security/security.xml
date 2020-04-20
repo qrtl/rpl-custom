@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="product_category_rule_portal" model="ir.rule">
+        <field name="name">Product Category Portal/Public</field>
+        <field ref="model_product_public_category" name="model_id" />
+        <field name="domain_force">
+            ["|",("partner_ids","=",False),("partner_ids","not in",[user.commercial_partner_id.id])]
+        </field>
+        <field
+            name="groups"
+            eval="[(4, ref('base.group_portal')), (4, ref('base.group_public'))]"
+        />
+    </record>
+</odoo>
