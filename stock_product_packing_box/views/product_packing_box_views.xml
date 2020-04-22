@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="product_packing_box_tree_view" model="ir.ui.view">
+        <field name="name">product.packing.box.tree</field>
+        <field name="model">product.packing.box</field>
+        <field name="arch" type="xml">
+            <tree string="Packing Box" editable="top">
+                <field name="name"/>
+                <field name="uom_id"/>
+                <field name="packing_coefficient"/>
+                <field name="product_packing_divison_id"/>
+                <field name="length"/>
+                <field name="width"/>
+                <field name="height"/>
+                <field name="dimension_uom_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_product_packing_box_tree_view">
+        <field name="name">Product Packing Box</field>
+        <field name="res_model">product.packing.box</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="product_packing_box_tree_view"/>
+    </record>
+
+    <menuitem parent="stock.menu_product_in_config_stock" id="menu_action_product_packing_box_tree_view" action="action_product_packing_box_tree_view" sequence="10"/>
+
+</odoo>

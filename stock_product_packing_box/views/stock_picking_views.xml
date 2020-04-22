@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_picking_form" model="ir.ui.view">
+        <field name="name">stock.picking.form</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='origin']" position="after">
+                <field name="product_packing_line_ids" />
+                <!-- <label for="number_of_package"/>
+                <div>
+                    <div>
+                        <field name="number_of_package" class="oe_inline"/> 
+                        <field name="product_packing_box_uom_id" class="oe_inline"/>
+                    </div>
+                </div> -->
+            </xpath>
+            <xpath expr="//header" position="inside">
+                <button name="compute_product_packing_line_ids" string="Compute Box" type="object" class="oe_highlight"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
