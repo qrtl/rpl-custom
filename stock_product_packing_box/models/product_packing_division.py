@@ -7,6 +7,4 @@ from odoo import fields, models
 class ProductPackingDivision(models.Model):
     _name = "product.packing.division"
 
-    name = fields.Char(
-        "Division Name"
-    )
+    name = fields.Char("Division Name")
