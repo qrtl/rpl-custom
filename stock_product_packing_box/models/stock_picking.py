@@ -24,27 +24,30 @@ class StockPicking(models.Model):
                 picking.mapped("move_lines")
                 .mapped("product_id")
                 .mapped("product_packing_divison_id")
-            )   
+            )
             box_vals = {}
             for division in packing_divisions:
                 # Get the list of boxes in the same division
                 product_packing_box_list = self.env["product.packing.box"].search(
                     [
+                        ("product_packing_divison_id", "=", division.id,),
                         (
-                            "product_packing_divison_id",
-                            "=",
-                            division.id,
+                            "exception_product_ids",
+                            "not in",
+                            picking.mapped("move_lines").mapped("product_id").ids,
                         ),
-                        (
-                            "exception_product_ids", "not in", picking.mapped("move_lines").mapped("product_id").ids
-                        )
                     ],
                     order="packing_coefficient asc",
                 )
                 # Find the box has the smallest packing_coefficient that fits the
                 # remaining_coefficient. Use the largest box if not find, loop
                 # until the remaining coefficient smaller than 0.
-                remaining_coefficient = sum(picking.mapped("move_lines").mapped("product_id").filtered(lambda x: x.product_packing_divison_id == division).mapped("packing_coefficient"))
+                remaining_coefficient = sum(
+                    picking.mapped("move_lines")
+                    .mapped("product_id")
+                    .filtered(lambda x: x.product_packing_divison_id == division)
+                    .mapped("packing_coefficient")
+                )
                 while remaining_coefficient > 0:
                     fit_box = (
                         product_packing_box_list.filtered(
