@@ -13,7 +13,8 @@ class ProductPackingBox(models.Model):
     box_width = fields.Float("Width",)
     box_height = fields.Float("Height",)
     product_packing_divison_id = fields.Many2one(
-        "product.packing.division", string="Packing Box Division",
+        "product.packing.division", string="Packing Box Division", required=True
     )
     uom_id = fields.Many2one("uom.uom", string="Package Unit", required=True)
     dimension_uom_id = fields.Many2one("uom.uom", string="Dimension unit")
+    exception_product_ids = fields.Many2many("product.product", string="Exception Products")
