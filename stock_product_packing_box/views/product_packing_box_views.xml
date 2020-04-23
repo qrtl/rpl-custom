@@ -13,6 +13,7 @@
                 <field name="box_width" />
                 <field name="box_height" />
                 <field name="dimension_uom_id" />
+                <field name="exception_product_ids" widget="many2many_tags" />
             </tree>
         </field>
     </record>
