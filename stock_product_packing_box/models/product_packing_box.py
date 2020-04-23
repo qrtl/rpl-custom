@@ -17,4 +17,6 @@ class ProductPackingBox(models.Model):
     )
     uom_id = fields.Many2one("uom.uom", string="Package Unit", required=True)
     dimension_uom_id = fields.Many2one("uom.uom", string="Dimension unit")
-    exception_product_ids = fields.Many2many("product.product", string="Exception Products")
+    exception_product_ids = fields.Many2many(
+        "product.product", string="Exception Products"
+    )
