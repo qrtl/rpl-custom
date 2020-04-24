@@ -18,6 +18,7 @@ exclude: |
   base_comment_template/|
   base_country_state_translatable/|
   base_technical_features/|
+  base_user_role/|
   l10n_ch_states/|
   l10n_de_country_states/|
   l10n_fr_state/|
