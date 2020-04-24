@@ -1,25 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-    <record id="view_picking_withcarrier_out_form" model="ir.ui.view">
-        <field name="name">delivery.stock.picking_withcarrier.form.view</field>
-        <field name="model">stock.picking</field>
-        <field name="inherit_id" ref="delivery.view_picking_withcarrier_out_form" />
-        <field name="arch" type="xml">
-            <xpath expr="//label[@for='carrier_tracking_ref']" position="attributes">
-                <attribute name="invisible">1</attribute>
-            </xpath>
-            <xpath expr="//div[@name='tracking']" position="attributes">
-                <attribute name="invisible">1</attribute>
-            </xpath>
-        </field>
-    </record>
     <record id="view_picking_form" model="ir.ui.view">
         <field name="name">stock.picking.form</field>
         <field name="model">stock.picking</field>
         <field name="inherit_id" ref="stock.view_picking_form" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='date_done']" position="after">
-                <field name="carrier_tracking_ref" />
+                <field name="arrival_date" />
             </xpath>
         </field>
     </record>
@@ -29,7 +16,7 @@
         <field name="inherit_id" ref="stock.vpicktree" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='scheduled_date']" position="after">
-                <field name="carrier_tracking_ref" />
+                <field name="arrival_date" />
             </xpath>
         </field>
     </record>
@@ -38,8 +25,13 @@
         <field name="model">stock.picking</field>
         <field name="inherit_id" ref="stock.view_picking_internal_search" />
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='product_id']" position="after">
-                <field name="carrier_tracking_ref" />
+            <xpath expr="//group" position="inside">
+                <filter
+                    string="Arrival Date"
+                    name="arrival_date"
+                    domain="[]"
+                    context="{'group_by':'arrival_date'}"
+                />
             </xpath>
         </field>
     </record>

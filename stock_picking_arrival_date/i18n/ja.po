@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* stock_view_adj_rpl
+#	* stock_picking_arrival_date
 #
 msgid ""
 msgstr ""
@@ -15,14 +15,14 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
 
-#. module: stock_view_adj_rpl
-#: model:ir.model.fields,field_description:stock_view_adj_rpl.field_stock_picking__arrival_date
-#: model_terms:ir.ui.view,arch_db:stock_view_adj_rpl.view_picking_internal_search
+#. module: stock_picking_arrival_date
+#: model:ir.model.fields,field_description:stock_picking_arrival_date.field_stock_picking__arrival_date
+#: model_terms:ir.ui.view,arch_db:stock_picking_arrival_date.view_picking_internal_search
 msgid "Arrival Date"
 msgstr "着荷日"
 
-#. module: stock_view_adj_rpl
-#: model:ir.model,name:stock_view_adj_rpl.model_stock_picking
+#. module: stock_picking_arrival_date
+#: model:ir.model,name:stock_picking_arrival_date.model_stock_picking
 msgid "Transfer"
 msgstr "運送"
 
