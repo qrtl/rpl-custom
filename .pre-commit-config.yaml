@@ -15,6 +15,7 @@ exclude: |
   # For v12.0 of before, exclude all oca modules
   base_country_state_translatable/|
   base_technical_features/|
+  base_user_role/|
   l10n_ch_states/|
   l10n_de_country_states/|
   l10n_fr_state/|
