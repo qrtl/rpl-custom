@@ -21,6 +21,13 @@ exclude: |
   l10n_fr_state/|
   l10n_jp_country_state/|
   l10n_jp_partner_title_qweb/|
+<<<<<<< HEAD
+=======
+  report_py3o/|
+  sale_comment_template/|
+  sale_automatic_workflow/|
+  stock_picking_comment_template/|
+>>>>>>> 0ac7f34... [T957][ADD] sale_automatic_workflow (#28)
   web_environment_ribbon/|
   web_favicon/
 default_language_version:
