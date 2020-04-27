@@ -27,6 +27,7 @@ exclude: |
   l10n_jp_partner_title_qweb/|
   report_py3o/|
   sale_comment_template/|
+  sale_automatic_workflow/|
   stock_picking_comment_template/|
   web_environment_ribbon/|
   web_favicon/
