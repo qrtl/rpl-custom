@@ -16,6 +16,7 @@ exclude: |
   base_country_state_translatable/|
   base_technical_features/|
   base_user_role/|
+  dbfilter_from_header/|
   l10n_ch_states/|
   l10n_de_country_states/|
   l10n_fr_state/|
