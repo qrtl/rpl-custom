@@ -7,7 +7,7 @@
     "category": "Sales",
     "website": "https://www.quartile.co/",
     "author": "Quartile Limited",
-    "license": "AGPL-3",
+    "license": "LGPL-3",
     "installable": True,
     "depends": ["sale_stock"],
     "data": ["views/sale_order_views.xml"],
