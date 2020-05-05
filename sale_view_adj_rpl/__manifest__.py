@@ -1,7 +1,7 @@
 # Copyright 2019-2020 Quartile Limited
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 {
-    "name": "Sale View Adj RPL",
+    "name": "Sales Views Adjustments RPL",
     "summary": "",
     "version": "12.0.1.0.0",
     "category": "Sales",
