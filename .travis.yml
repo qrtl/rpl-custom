@@ -2,7 +2,7 @@ language: python
 branches:
   only:
   - 12.0
-  - /^staging.*$/
+  - /^st1.*$/
 
 cache:
   directories:
