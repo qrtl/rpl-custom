@@ -19,6 +19,8 @@ Website Sale Comment
 
 |badge1| |badge2| |badge3| 
 
+This module does the following:
+
 - Allows to leave a message on confirming an order from website.
 
 **Table of contents**
