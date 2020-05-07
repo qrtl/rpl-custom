@@ -8,7 +8,7 @@
         </xpath>
     </template>
     <template id="payment" inherit_id="website_sale.payment">
-        <xpath expr="//div[@class='js_payment mt-3']" position="before">
+        <xpath expr="//div[@id='oe_structure_website_sale_payment_1']" position="before">
             <div class="col-md-12">
                 <p style="margin-top:15px;">
                     <strong>Special Instructions</strong>
