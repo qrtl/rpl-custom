@@ -26,6 +26,7 @@ exclude: |
   report_py3o/|
   sale_comment_template/|
   sale_automatic_workflow/|
+  sequence_reset_period/|
   stock_picking_comment_template/|
 >>>>>>> 0ac7f34... [T957][ADD] sale_automatic_workflow (#28)
   web_environment_ribbon/|
