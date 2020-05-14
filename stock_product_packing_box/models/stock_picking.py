@@ -15,7 +15,10 @@ class StockPicking(models.Model):
         store=True,
     )
     packing_quantity = fields.Selection(
-        [('reserved_qty', 'Reserved Quantity'), ('initial_qty', 'Initial Demand Quantity')],
+        [
+            ("reserved_qty", "Reserved Quantity"),
+            ("initial_qty", "Initial Demand Quantity"),
+        ],
         string="Packing Box Based On",
     )
 
@@ -47,7 +50,11 @@ class StockPicking(models.Model):
                 # remaining_coefficient. Use the largest box if not find, loop
                 # until the remaining coefficient smaller than 0.
                 remaining_coefficient = sum(
-                    picking.mapped("move_lines").filtered(lambda x: x.product_id.product_packing_divison_id == division).mapped("line_packing_coefficient")
+                    picking.mapped("move_lines")
+                    .filtered(
+                        lambda x: x.product_id.product_packing_divison_id == division
+                    )
+                    .mapped("line_packing_coefficient")
                 )
                 while remaining_coefficient > 0:
                     fit_box = (
