@@ -1,25 +1,19 @@
 <odoo>
-    <template id="assets_frontend" inherit_id="website.assets_frontend">
-        <xpath expr="." position="inside">
-            <script
-                type="text/javascript"
-                src="/website_sale_comment/static/src/js/website_payment_note.js"
-            />
+    <template id="extra_info" inherit_id="website_sale.extra_info">
+        <xpath expr="//label[@for='client_order_ref']" position="attributes">
+            <attribute name="style">display: none;</attribute>
         </xpath>
-    </template>
-    <template id="payment" inherit_id="website_sale.payment">
-        <xpath expr="//div[@id='oe_structure_website_sale_payment_1']" position="before">
-            <div class="col-md-12">
-                <p style="margin-top:15px;">
-                    <strong>Special Instructions</strong>
-                </p>
-                <textarea
-                    class="form-control"
-                    id="note2"
-                    name="note2"
-                    placeholder="please type your special instructions here."
-                />
-            </div>
+        <xpath expr="//label[@for='a_document']" position="attributes">
+            <attribute name="style">display: none;</attribute>
+        </xpath>
+        <xpath expr="//label[@for='Give us your feedback']" position="replace">
+            <label class="col-form-label" for="Give us your feedback">Remarks</label>
+        </xpath>
+        <xpath expr="//input[@name='client_order_ref']" position="attributes">
+            <attribute name="type">hidden</attribute>
+        </xpath>
+        <xpath expr="//input[@name='a_document']" position="attributes">
+            <attribute name="type">hidden</attribute>
         </xpath>
     </template>
 </odoo>

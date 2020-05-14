@@ -4,12 +4,16 @@
 from odoo import http
 from odoo.http import request
 
-from odoo.addons.website_sale.controllers.main import WebsiteSale
+from odoo.addons.website_sale.controllers.main import WebsiteSaleForm
 
 
-class WebsiteSale(WebsiteSale):
-    @http.route(["/website/notes"], type="json", auth="public", website=True)
-    def order_notes(self, note2="", **post):
+class WebsiteSaleForm(WebsiteSaleForm):
+
+    @http.route('/website_form/shop.sale.order', type='http', auth="public", methods=['POST'], website=True)
+    def website_form_saleorder(self, **kwargs):
         order = request.website.sale_get_order()
-        order.sudo().write({"note2": note2})
-        return True
+        if kwargs.get('Give us your feedback') and order:
+            remarks = kwargs.get('Give us your feedback')
+            order.write({'note2': remarks})
+            kwargs.pop('Give us your feedback')
+        return super(WebsiteSaleForm, self).website_form_saleorder(**kwargs)
