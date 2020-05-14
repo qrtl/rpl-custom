@@ -20,7 +20,7 @@ class StockPicking(models.Model):
     )
 
     @api.multi
-    @api.depends("move_lines")
+    @api.depends("move_lines.line_packing_coefficient")
     def _compute_product_packing_line_ids(self):
         for picking in self:
             picking.product_packing_line_ids.unlink()
@@ -47,10 +47,7 @@ class StockPicking(models.Model):
                 # remaining_coefficient. Use the largest box if not find, loop
                 # until the remaining coefficient smaller than 0.
                 remaining_coefficient = sum(
-                    picking.mapped("move_lines")
-                    .mapped("product_id")
-                    .filtered(lambda x: x.product_packing_divison_id == division)
-                    .mapped("packing_coefficient")
+                    picking.mapped("move_lines").filtered(lambda x: x.product_id.product_packing_divison_id == division).mapped("line_packing_coefficient")
                 )
                 while remaining_coefficient > 0:
                     fit_box = (
