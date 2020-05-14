@@ -14,6 +14,10 @@ class StockPicking(models.Model):
         compute="_compute_product_packing_line_ids",
         store=True,
     )
+    packing_quantity = fields.Selection(
+        [('reserved_qty', 'Reserved Quantity'), ('initial_qty', 'Initial Demand Quantity')],
+        string="Packing Box Based On",
+    )
 
     @api.multi
     @api.depends("move_lines")
