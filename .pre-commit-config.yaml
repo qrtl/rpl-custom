@@ -30,7 +30,8 @@ exclude: |
   stock_picking_comment_template/|
 >>>>>>> 0ac7f34... [T957][ADD] sale_automatic_workflow (#28)
   web_environment_ribbon/|
-  web_favicon/
+  web_favicon/|
+  website_sale_hide_price/
 default_language_version:
   python: python3
 repos:
