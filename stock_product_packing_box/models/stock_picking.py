@@ -75,10 +75,9 @@ class StockPicking(models.Model):
                         box_vals[fit_box.id] += 1
             # Create product.packing.line based on the box_vals
             picking.product_packing_line_ids = [
-                (0, 0, {
-                    'product_packing_box_id': box,
-                    'number_of_package': number
-                }) for box, number in box_vals.items()]
+                (0, 0, {"product_packing_box_id": box, "number_of_package": number})
+                for box, number in box_vals.items()
+            ]
 
     def recompute_product_packing(self):
         self._compute_product_packing_line_ids()
