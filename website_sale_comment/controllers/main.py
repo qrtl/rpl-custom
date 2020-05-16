@@ -1,7 +1,7 @@
 # Copyright 2020 Quartile Limited
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
-from odoo import http
+from odoo import _, http
 from odoo.http import request
 
 from odoo.addons.website_sale.controllers.main import WebsiteSaleForm
@@ -19,5 +19,5 @@ class WebsiteSaleForm(WebsiteSaleForm):
         order = request.website.sale_get_order()
         if kwargs.get("Give us your feedback") and order:
             remarks = kwargs.get("Give us your feedback")
-            order.write({"note2": remarks})
+            order.write({"note2": _("Customer Remarks: ") + remarks})
         return super(WebsiteSaleForm, self).website_form_saleorder(**kwargs)
