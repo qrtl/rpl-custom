@@ -20,5 +20,4 @@ class WebsiteSaleForm(WebsiteSaleForm):
         if kwargs.get("Give us your feedback") and order:
             remarks = kwargs.get("Give us your feedback")
             order.write({"note2": remarks})
-            kwargs.pop("Give us your feedback")
         return super(WebsiteSaleForm, self).website_form_saleorder(**kwargs)
