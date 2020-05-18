@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_delivery_document_comments" inherit_id="stock_picking_comment_template.report_delivery_document_comments">
+        <xpath expr="//p[@t-if='o.note2']" position="replace"/>
+    </template>
+</odoo>
