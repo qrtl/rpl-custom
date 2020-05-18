@@ -1,6 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-    <template id="report_saleorder_document_comments" inherit_id="sale_comment_template.report_saleorder_document_comments">
-        <xpath expr="//p[@t-if='doc.note2']" position="replace"/>
+    <template
+        id="report_saleorder_document_comments"
+        inherit_id="sale_comment_template.report_saleorder_document_comments"
+    >
+        <xpath expr="//p[@t-if='doc.note2']" position="replace" />
     </template>
 </odoo>

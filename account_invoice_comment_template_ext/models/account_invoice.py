@@ -7,4 +7,4 @@ from odoo import fields, models
 class AccountInvoice(models.Model):
     _inherit = "account.invoice"
 
-    note2 = fields.Html('Staff Memo')
+    note2 = fields.Html("Staff Memo")

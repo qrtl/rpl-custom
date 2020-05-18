@@ -8,6 +8,6 @@
     "category": "Stock",
     "license": "LGPL-3",
     "depends": ["stock_picking_comment_template"],
-    "data": ['views/report_delivery_document.xml', "views/stock_picking_views.xml"],
+    "data": ["views/report_delivery_document.xml", "views/stock_picking_views.xml"],
     "installable": True,
 }

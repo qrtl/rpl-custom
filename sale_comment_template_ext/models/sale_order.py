@@ -7,4 +7,4 @@ from odoo import fields, models
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
-    note2 = fields.Html('Staff Memo')
+    note2 = fields.Html("Staff Memo")

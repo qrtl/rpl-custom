@@ -8,6 +8,6 @@
     "category": "Accounting",
     "license": "LGPL-3",
     "depends": ["account_invoice_comment_template"],
-    "data": ['views/report_invoice.xml', "views/account_invoice_views.xml"],
+    "data": ["views/report_invoice.xml", "views/account_invoice_views.xml"],
     "installable": True,
 }

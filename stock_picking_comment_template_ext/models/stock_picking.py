@@ -7,4 +7,4 @@ from odoo import fields, models
 class StockPicking(models.Model):
     _inherit = "stock.picking"
 
-    note2 = fields.Html('Staff Memo')
+    note2 = fields.Html("Staff Memo")
