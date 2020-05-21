@@ -7,10 +7,7 @@ from odoo import api, fields, models
 class StockPicking(models.Model):
     _inherit = "stock.picking"
 
-    note2 = fields.Html(
-        "Staff Memo",
-        compute="_compute_note2",
-    )
+    note2 = fields.Html("Staff Memo", compute="_compute_note2",)
 
     @api.multi
     def _compute_note2(self):
