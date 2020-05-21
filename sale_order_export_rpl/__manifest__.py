@@ -10,5 +10,11 @@
     "license": "LGPL-3",
     "installable": True,
     "depends": ["sale_stock", "report_csv"],
-    "data": ["report/sale_order_reports.xml", "views/res_config_settings_views.xml", "views/product_template_views.xml", "views/res_partner_views.xml", "views/sale_order_views.xml"],
+    "data": [
+        "report/sale_order_reports.xml",
+        "views/res_config_settings_views.xml",
+        "views/product_template_views.xml",
+        "views/res_partner_views.xml",
+        "views/sale_order_views.xml",
+    ],
 }
