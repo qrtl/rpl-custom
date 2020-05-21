@@ -11,6 +11,9 @@
             <xpath expr="//page[@name='comments']/group[2]" position="attributes">
                 <attribute name="string">Staff Memo</attribute>
             </xpath>
+            <xpath expr="//field[@name='comment_template2_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
         </field>
     </record>
 </odoo>
