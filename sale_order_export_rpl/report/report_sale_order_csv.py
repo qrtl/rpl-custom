@@ -37,7 +37,7 @@ class SaleOrderCSV(models.AbstractModel):
                     "IP address": self.env["ir.config_parameter"]
                     .sudo()
                     .get_param("sale_order_export_rpl.luxis_ip_address", default=""),
-                    "Details": order.note2,
+                    "Details": order.note2 or "",
                     "Payment information": "",
                     "Taxes": "",
                     "Coupons": "",
@@ -47,7 +47,7 @@ class SaleOrderCSV(models.AbstractModel):
                     "First name": "",
                     "Last name": "",
                     "Company": order.partner_id.parent_id
-                    and order.user_id.partner_id.parent_id.name,
+                    and order.user_id.partner_id.parent_id.name or "",
                     "Fax": "",
                     "Phone": order.partner_shipping_id.phone,
                     "Web site": "",

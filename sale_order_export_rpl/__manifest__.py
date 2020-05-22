@@ -9,7 +9,7 @@
     "author": "Quartile Limited",
     "license": "LGPL-3",
     "installable": True,
-    "depends": ["sale_stock", "report_csv"],
+    "depends": ["sale_stock", "report_csv", "delivery"],
     "data": [
         "report/sale_order_reports.xml",
         "views/res_config_settings_views.xml",
