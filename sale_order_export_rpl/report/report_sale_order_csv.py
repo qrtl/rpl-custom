@@ -47,7 +47,8 @@ class SaleOrderCSV(models.AbstractModel):
                     "First name": "",
                     "Last name": "",
                     "Company": order.partner_id.parent_id
-                    and order.user_id.partner_id.parent_id.name or "",
+                    and order.user_id.partner_id.parent_id.name
+                    or "",
                     "Fax": "",
                     "Phone": order.partner_shipping_id.phone,
                     "Web site": "",
