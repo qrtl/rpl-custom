@@ -10,9 +10,9 @@ Product Packing Box
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
-    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
-    :alt: License: AGPL-3
+.. |badge2| image:: https://img.shields.io/badge/licence-LGPL--3-blue.png
+    :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
+    :alt: License: LGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-qrtl%2Frpl--custom-lightgray.png?logo=github
     :target: https://github.com/qrtl/rpl-custom/tree/12.0/stock_product_packing_box
     :alt: qrtl/rpl-custom
@@ -21,13 +21,21 @@ Product Packing Box
 
 This module does the following:
 
-* Add product packing box model to store the packing boxes' information.
-* Propose packing boxes based on the products in the stock transfer.
+* Adds product packing box model.
+* Proposes packing boxes based on the products in the stock picking.
 
 **Table of contents**
 
 .. contents::
    :local:
+
+Configuration
+=============
+
+Do the following:
+
+* Go to *Inventory > Configuration > Products > Packing Boxes* to define boxes.
+* Define "Packing Coefficient" and other parameters such as "Has Liquid" and "Min Box" in each product.
 
 Bug Tracker
 ===========

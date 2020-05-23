@@ -1,83 +1,86 @@
 # Copyright 2020 Quartile Limited
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
-from odoo import api, fields, models
+from odoo import _, api, fields, models
+from odoo.exceptions import UserError
 
 
 class StockPicking(models.Model):
     _inherit = "stock.picking"
 
-    product_packing_line_ids = fields.One2many(
+    box_line_ids = fields.One2many(
         "product.packing.line",
         "picking_id",
-        string="Packing Box(es)",
-        compute="_compute_product_packing_line_ids",
+        string="Packing Boxes",
+        compute="_compute_box_line_ids",
         store=True,
     )
-    packing_quantity = fields.Selection(
+    box_calc_type = fields.Selection(
         [
-            ("reserved_qty", "Reserved Quantity"),
             ("initial_qty", "Initial Demand Quantity"),
+            ("reserved_qty", "Reserved Quantity"),
         ],
-        string="Packing Box Based On",
+        string="Calculation Type",
+        default="initial_qty",
     )
 
-    @api.multi
-    @api.depends("move_lines.line_packing_coefficient")
-    def _compute_product_packing_line_ids(self):
-        for picking in self:
-            picking.product_packing_line_ids.unlink()
-            packing_divisions = (
-                picking.mapped("move_lines")
-                .mapped("product_id")
-                .mapped("product_packing_divison_id")
-            )
-            box_vals = {}
-            for division in packing_divisions:
-                # Get the list of boxes in the same division
-                product_packing_box_list = self.env["product.packing.box"].search(
-                    [
-                        ("product_packing_divison_id", "=", division.id,),
-                        (
-                            "exception_product_ids",
-                            "not in",
-                            picking.mapped("move_lines").mapped("product_id").ids,
-                        ),
-                    ],
-                    order="packing_coefficient asc",
-                )
-                # Find the box has the smallest packing_coefficient that fits the
-                # remaining_coefficient. Use the largest box if not find, loop
-                # until the remaining coefficient smaller than 0.
-                remaining_coefficient = sum(
-                    picking.mapped("move_lines")
-                    .filtered(
-                        lambda x: x.product_id.product_packing_divison_id == division
-                    )
-                    .mapped("line_packing_coefficient")
-                )
-                while remaining_coefficient > 0:
-                    fit_box = (
-                        product_packing_box_list.filtered(
-                            lambda x: x.packing_coefficient >= remaining_coefficient
-                        )[0]
-                        if product_packing_box_list.filtered(
-                            lambda x: x.packing_coefficient >= remaining_coefficient
-                        )
-                        else product_packing_box_list[-1]
-                    )
-                    remaining_coefficient = (
-                        remaining_coefficient - fit_box.packing_coefficient
-                    )
-                    if fit_box.id not in box_vals:
-                        box_vals[fit_box.id] = 1
-                    else:
-                        box_vals[fit_box.id] += 1
-            # Create product.packing.line based on the box_vals
-            picking.product_packing_line_ids = [
-                (0, 0, {"product_packing_box_id": box, "number_of_package": number})
-                for box, number in box_vals.items()
-            ]
+    def _get_moves_for_box_calc(self):
+        self.ensure_one()
+        res = self.env["stock.move"].browse()
+        if self.box_calc_type == "initial_qty":
+            res = self.move_lines
+        else:  # box_calc_type == "reserved_qty"
+            res = self.move_lines.filtered(lambda x: x.reserved_availability > 0)
+        return res
+
+    def _get_min_box(self, moves):
+        self.ensure_one()
+        res = False
+        min_boxes = moves.mapped("product_id").mapped("min_box_id")
+        if min_boxes:
+            # pick the largest among "min boxes"
+            res = min_boxes.sorted("packing_coefficient", reverse=True)[0]
+        return res
+
+    def _get_packing_boxes(self, has_liquid):
+        self.ensure_one()
+        res = self.env["product.packing.box"].search(
+            [("is_for_liquid", "=", has_liquid)], order="packing_coefficient asc",
+        )
+        if not res:
+            raise UserError(_("No corresponding boxes can be found."))
+        return res
+
+    @api.depends("move_lines.product_uom_qty", "move_lines.reserved_availability")
+    def _compute_box_line_ids(self):
+        self.ensure_one()
+        self.box_line_ids.unlink()
+        moves = self._get_moves_for_box_calc()
+        min_box = self._get_min_box(moves)
+        has_liquid = any(move.product_id.has_liquid for move in moves)
+        packing_boxes = self._get_packing_boxes(has_liquid)
+        coefficient_bal = moves._get_packing_coefficient()
+        box_vals = {}
+        # Find the box that has the smallest packing_coefficient that fits
+        # coefficient_bal. Use the largest box if not found, and loop
+        # until remaining coefficient is not larger than 0.
+        while coefficient_bal > 0.0:
+            box = False
+            for packing_box in packing_boxes:
+                if packing_box.packing_coefficient >= coefficient_bal:
+                    box = packing_box
+                    break
+            box = box or packing_boxes[-1]
+            coefficient_bal -= box.packing_coefficient
+            box = box._convert_packing_box(min_box)
+            if box.id not in box_vals:
+                box_vals[box.id] = 1
+            else:
+                box_vals[box.id] += 1
+        self.box_line_ids = [
+            (0, 0, {"packing_box_id": box, "box_quantity": number})
+            for box, number in box_vals.items()
+        ]
 
     def recompute_product_packing(self):
-        self._compute_product_packing_line_ids()
+        self._compute_box_line_ids()

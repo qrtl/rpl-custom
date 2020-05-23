@@ -3,11 +3,18 @@
 
 from odoo import fields, models
 
+from odoo.addons import decimal_precision as dp
+
 
 class ProductTemplate(models.Model):
     _inherit = "product.template"
 
-    packing_coefficient = fields.Float("Packing Coefficient")
-    product_packing_divison_id = fields.Many2one(
-        "product.packing.division", string="Packing Box Division"
+    packing_coefficient = fields.Float(
+        "Packing Coefficient", digits=dp.get_precision("Product Coefficient")
+    )
+    has_liquid = fields.Boolean()
+    min_box_id = fields.Many2one(
+        "product.packing.box",
+        help="When set, box proposal in picking will be done with boxes no "
+        "smaller than the selected box.",
     )

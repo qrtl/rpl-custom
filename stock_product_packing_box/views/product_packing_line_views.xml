@@ -5,8 +5,8 @@
         <field name="model">product.packing.line</field>
         <field name="arch" type="xml">
             <tree string="Packing Box">
-                <field name="product_packing_box_id" />
-                <field name="number_of_package" />
+                <field name="packing_box_id" />
+                <field name="box_quantity" />
             </tree>
         </field>
     </record>

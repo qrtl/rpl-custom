@@ -7,10 +7,11 @@
     "category": "Product",
     "website": "https://www.quartile.co",
     "summary": "",
-    "license": "AGPL-3",
+    "license": "LGPL-3",
     "depends": ["stock"],
     "data": [
         "security/ir.model.access.csv",
+        "data/precision_data.xml",
         "views/product_template_views.xml",
         "views/product_packing_line_views.xml",
         "views/product_packing_box_views.xml",
