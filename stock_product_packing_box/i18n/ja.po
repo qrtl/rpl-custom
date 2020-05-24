@@ -1,0 +1,194 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* stock_product_packing_box
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-05-24 07:23+0000\n"
+"PO-Revision-Date: 2020-05-24 07:23+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: stock_product_packing_box
+#: model:ir.model.fields,field_description:stock_product_packing_box.field_stock_picking__box_calc_type
+msgid "Calculation Type"
+msgstr "計算タイプ"
+
+#. module: stock_product_packing_box
+#: model_terms:ir.ui.view,arch_db:stock_product_packing_box.view_picking_form
+msgid "Compute Packing Box"
+msgstr "箱を計算"
+
+#. module: stock_product_packing_box
+#: model:ir.model.fields,field_description:stock_product_packing_box.field_product_packing_box__create_uid
+#: model:ir.model.fields,field_description:stock_product_packing_box.field_product_packing_line__create_uid
+msgid "Created by"
+msgstr "作成者"
+
+#. module: stock_product_packing_box
+#: model:ir.model.fields,field_description:stock_product_packing_box.field_product_packing_box__create_date
+#: model:ir.model.fields,field_description:stock_product_packing_box.field_product_packing_line__create_date
+msgid "Created on"
+msgstr "作成日"
+
+#. module: stock_product_packing_box
+#: model:ir.model.fields,field_description:stock_product_packing_box.field_product_packing_box__display_name
+#: model:ir.model.fields,field_description:stock_product_packing_box.field_product_packing_line__display_name
+msgid "Display Name"
+msgstr "表示名"
+
+#. module: stock_product_packing_box
+#: model:ir.model.fields,field_description:stock_product_packing_box.field_product_product__has_liquid
+#: model:ir.model.fields,field_description:stock_product_packing_box.field_product_template__has_liquid
+msgid "Has Liquid"
+msgstr "液込"
+
+#. module: stock_product_packing_box
+#: model:ir.model.fields,field_description:stock_product_packing_box.field_product_packing_box__box_height
+msgid "Height"
+msgstr "高さ"
+
+#. module: stock_product_packing_box
+#: model:ir.model.fields,field_description:stock_product_packing_box.field_product_packing_box__id
+#: model:ir.model.fields,field_description:stock_product_packing_box.field_product_packing_line__id
+msgid "ID"
+msgstr ""
+
+#. module: stock_product_packing_box
+#: selection:stock.picking,box_calc_type:0
+msgid "Initial Demand Quantity"
+msgstr "初期要求数量"
+
+#. module: stock_product_packing_box
+#: model:ir.model.fields,field_description:stock_product_packing_box.field_product_packing_box__is_for_liquid
+msgid "Is For Liquid"
+msgstr "液込用"
+
+#. module: stock_product_packing_box
+#: model:ir.model.fields,field_description:stock_product_packing_box.field_product_packing_box____last_update
+#: model:ir.model.fields,field_description:stock_product_packing_box.field_product_packing_line____last_update
+msgid "Last Modified on"
+msgstr "最終更新日"
+
+#. module: stock_product_packing_box
+#: model:ir.model.fields,field_description:stock_product_packing_box.field_product_packing_box__write_uid
+#: model:ir.model.fields,field_description:stock_product_packing_box.field_product_packing_line__write_uid
+msgid "Last Updated by"
+msgstr "最終更新者"
+
+#. module: stock_product_packing_box
+#: model:ir.model.fields,field_description:stock_product_packing_box.field_product_packing_box__write_date
+#: model:ir.model.fields,field_description:stock_product_packing_box.field_product_packing_line__write_date
+msgid "Last Updated on"
+msgstr "最終更新日"
+
+#. module: stock_product_packing_box
+#: model:ir.model.fields,field_description:stock_product_packing_box.field_product_packing_box__box_length
+msgid "Length"
+msgstr "長さ"
+
+#. module: stock_product_packing_box
+#: model:ir.model.fields,field_description:stock_product_packing_box.field_product_product__min_box_id
+#: model:ir.model.fields,field_description:stock_product_packing_box.field_product_template__min_box_id
+msgid "Min Box"
+msgstr "最小箱"
+
+#. module: stock_product_packing_box
+#: model:ir.model.fields,field_description:stock_product_packing_box.field_product_packing_box__name
+msgid "Name"
+msgstr "名称"
+
+#. module: stock_product_packing_box
+#: code:addons/stock_product_packing_box/models/stock_picking.py:51
+#, python-format
+msgid "No corresponding boxes can be found."
+msgstr "対象の箱が見つかりません。"
+
+#. module: stock_product_packing_box
+#: model:ir.model.fields,field_description:stock_product_packing_box.field_product_packing_line__box_quantity
+msgid "No. of Boxes"
+msgstr "箱数"
+
+#. module: stock_product_packing_box
+#: model:ir.model.fields,field_description:stock_product_packing_box.field_product_packing_line__packing_box_id
+#: model_terms:ir.ui.view,arch_db:stock_product_packing_box.product_packing_line_tree_view
+msgid "Packing Box"
+msgstr "梱包箱"
+
+#. module: stock_product_packing_box
+#: model:ir.actions.act_window,name:stock_product_packing_box.action_product_packing_box_tree_view
+#: model:ir.model.fields,field_description:stock_product_packing_box.field_stock_picking__box_line_ids
+#: model:ir.ui.menu,name:stock_product_packing_box.menu_action_product_packing_box_tree_view
+#: model_terms:ir.ui.view,arch_db:stock_product_packing_box.product_packing_box_tree_view
+msgid "Packing Boxes"
+msgstr "梱包箱"
+
+#. module: stock_product_packing_box
+#: model:ir.model.fields,field_description:stock_product_packing_box.field_product_packing_box__packing_coefficient
+#: model:ir.model.fields,field_description:stock_product_packing_box.field_product_product__packing_coefficient
+#: model:ir.model.fields,field_description:stock_product_packing_box.field_product_template__packing_coefficient
+msgid "Packing Coefficient"
+msgstr "梱包係数"
+
+#. module: stock_product_packing_box
+#: model:ir.model,name:stock_product_packing_box.model_product_template
+msgid "Product Template"
+msgstr "プロダクトテンプレート"
+
+#. module: stock_product_packing_box
+#: selection:stock.picking,box_calc_type:0
+msgid "Reserved Quantity"
+msgstr "引当済数量"
+
+#. module: stock_product_packing_box
+#: model:ir.model,name:stock_product_packing_box.model_stock_move
+msgid "Stock Move"
+msgstr "在庫移動"
+
+#. module: stock_product_packing_box
+#: model:ir.model.fields,field_description:stock_product_packing_box.field_product_packing_line__picking_id
+msgid "Stock Picking"
+msgstr "在庫ピッキング"
+
+#. module: stock_product_packing_box
+#: model:ir.model.fields,field_description:stock_product_packing_box.field_product_packing_box__box_dest_id
+msgid "Target Box"
+msgstr "変換先箱"
+
+#. module: stock_product_packing_box
+#: model:ir.model.fields,help:stock_product_packing_box.field_product_packing_box__box_dest_id
+msgid "The box set here will be proposed instead."
+msgstr "ここに設定した箱が代わりに提案されます。"
+
+#. module: stock_product_packing_box
+#: model:ir.model,name:stock_product_packing_box.model_stock_picking
+msgid "Transfer"
+msgstr "運送"
+
+#. module: stock_product_packing_box
+#: model:ir.model.fields,help:stock_product_packing_box.field_product_product__min_box_id
+#: model:ir.model.fields,help:stock_product_packing_box.field_product_template__min_box_id
+msgid "When set, box proposal in picking will be done with boxes no smaller than the selected box."
+msgstr "設定された場合、選択された箱以上のサイズの箱が運送で提案されます。"
+
+#. module: stock_product_packing_box
+#: model:ir.model.fields,field_description:stock_product_packing_box.field_product_packing_box__box_width
+msgid "Width"
+msgstr "幅"
+
+#. module: stock_product_packing_box
+#: model:ir.model,name:stock_product_packing_box.model_product_packing_box
+msgid "product.packing.box"
+msgstr ""
+
+#. module: stock_product_packing_box
+#: model:ir.model,name:stock_product_packing_box.model_product_packing_line
+msgid "product.packing.line"
+msgstr ""
+
