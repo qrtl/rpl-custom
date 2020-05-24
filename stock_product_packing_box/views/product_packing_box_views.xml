@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="product_packing_box_tree_view" model="ir.ui.view">
+        <field name="name">product.packing.box.tree</field>
+        <field name="model">product.packing.box</field>
+        <field name="arch" type="xml">
+            <tree string="Packing Boxes" editable="top">
+                <field name="name" />
+                <field name="packing_coefficient" />
+                <field name="box_length" />
+                <field name="box_width" />
+                <field name="box_height" />
+                <field name="is_for_liquid" />
+                <field name="box_dest_id" />
+            </tree>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="action_product_packing_box_tree_view">
+        <field name="name">Packing Boxes</field>
+        <field name="res_model">product.packing.box</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="product_packing_box_tree_view" />
+    </record>
+    <menuitem
+        parent="stock.menu_product_in_config_stock"
+        id="menu_action_product_packing_box_tree_view"
+        action="action_product_packing_box_tree_view"
+        sequence="10"
+    />
+</odoo>
