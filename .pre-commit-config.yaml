@@ -13,6 +13,10 @@ exclude: |
   # Exclude .travis.yml
   ^\.travis\.yml$|
   # For v12.0 of before, exclude all oca modules
+  account_invoice_comment_template/|
+  account_payment_term_extension/|
+  auditlog/|
+  base_comment_template/|
   base_country_state_translatable/|
   base_technical_features/|
   base_user_role/|
@@ -22,14 +26,11 @@ exclude: |
   l10n_fr_state/|
   l10n_jp_country_state/|
   l10n_jp_partner_title_qweb/|
-<<<<<<< HEAD
-=======
   report_py3o/|
   sale_comment_template/|
   sale_automatic_workflow/|
   sequence_reset_period/|
   stock_picking_comment_template/|
->>>>>>> 0ac7f34... [T957][ADD] sale_automatic_workflow (#28)
   web_environment_ribbon/|
   web_favicon/|
   website_sale_hide_price/
