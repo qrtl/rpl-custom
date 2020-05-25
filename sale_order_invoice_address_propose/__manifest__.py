@@ -7,7 +7,7 @@
     "website": "https://www.quartile.co",
     "category": "Sales",
     "license": "AGPL-3",
-    "depends": ["sale_stock", "sale_view_adj_hls"],
+    "depends": ["sale_stock"],
     "data": ["views/res_partner_views.xml", "views/sale_order_views.xml"],
     "installable": True,
 }
