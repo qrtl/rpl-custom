@@ -11,6 +11,7 @@
     "installable": True,
     "depends": ["sale_stock", "report_csv", "delivery"],
     "data": [
+        "data/ir_actions_data.xml",
         "report/sale_order_reports.xml",
         "views/res_config_settings_views.xml",
         "views/product_template_views.xml",

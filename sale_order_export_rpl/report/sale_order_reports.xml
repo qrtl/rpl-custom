@@ -8,6 +8,7 @@
         name="report_csv.sale_order_csv"
         file="sale_order"
         attachment_use="False"
+        menu="False"
     />
     <report
         id="sale_order_line_csv"
@@ -17,5 +18,6 @@
         name="report_csv.sale_order_line_csv"
         file="sale_order"
         attachment_use="False"
+        menu="False"
     />
 </odoo>
