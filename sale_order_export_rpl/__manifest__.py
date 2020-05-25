@@ -1,5 +1,5 @@
 # Copyright 2020 Quartile Limited
-# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 {
     "name": "Export Sale Order Data",
     "summary": "",
@@ -7,7 +7,7 @@
     "category": "Sales",
     "website": "https://www.quartile.co/",
     "author": "Quartile Limited",
-    "license": "LGPL-3",
+    "license": "AGPL-3",
     "installable": True,
     "depends": ["sale_stock", "report_csv", "delivery"],
     "data": [
