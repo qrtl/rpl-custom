@@ -16,13 +16,13 @@ class SaleOrder(models.Model):
             order.luxis_order_id = order.name.replace("SO", "")
 
     def export_order_csv(self):
-        orders = self.env['sale.order'].search([
-            ('state', 'in', ('done', 'sale'))
-        ])
-        return self.env.ref('sale_order_export_rpl.sale_order_csv').report_action(orders.ids)
+        orders = self.env["sale.order"].search([("state", "in", ("done", "sale"))])
+        return self.env.ref("sale_order_export_rpl.sale_order_csv").report_action(
+            orders.ids
+        )
 
     def export_order_line_csv(self):
-        orders = self.env['sale.order'].search([
-            ('state', 'in', ('done', 'sale'))
-        ])
-        return self.env.ref('sale_order_export_rpl.sale_order_line_csv').report_action(orders.ids)
+        orders = self.env["sale.order"].search([("state", "in", ("done", "sale"))])
+        return self.env.ref("sale_order_export_rpl.sale_order_line_csv").report_action(
+            orders.ids
+        )
