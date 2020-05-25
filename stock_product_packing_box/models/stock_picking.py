@@ -47,8 +47,6 @@ class StockPicking(models.Model):
         res = self.env["product.packing.box"].search(
             [("is_for_liquid", "=", has_liquid)], order="packing_coefficient asc",
         )
-        if not res:
-            raise UserError(_("No corresponding boxes can be found."))
         return res
 
     @api.depends("move_lines.product_uom_qty", "move_lines.reserved_availability")
@@ -64,23 +62,24 @@ class StockPicking(models.Model):
         # Find the box that has the smallest packing_coefficient that fits
         # coefficient_bal. Use the largest box if not found, and loop
         # until remaining coefficient is not larger than 0.
-        while coefficient_bal > 0.0:
-            box = False
-            for packing_box in packing_boxes:
-                if packing_box.packing_coefficient >= coefficient_bal:
-                    box = packing_box
-                    break
-            box = box or packing_boxes[-1]
-            coefficient_bal -= box.packing_coefficient
-            box = box._convert_packing_box(min_box)
-            if box.id not in box_vals:
-                box_vals[box.id] = 1
-            else:
-                box_vals[box.id] += 1
-        self.box_line_ids = [
-            (0, 0, {"packing_box_id": box, "box_quantity": number})
-            for box, number in box_vals.items()
-        ]
+        if packing_boxes:
+            while coefficient_bal > 0.0:
+                box = False
+                for packing_box in packing_boxes:
+                    if packing_box.packing_coefficient >= coefficient_bal:
+                        box = packing_box
+                        break
+                box = box or packing_boxes[-1]
+                coefficient_bal -= box.packing_coefficient
+                box = box._convert_packing_box(min_box)
+                if box.id not in box_vals:
+                    box_vals[box.id] = 1
+                else:
+                    box_vals[box.id] += 1
+            self.box_line_ids = [
+                (0, 0, {"packing_box_id": box, "box_quantity": number})
+                for box, number in box_vals.items()
+            ]
 
     def recompute_product_packing(self):
         self._compute_box_line_ids()
