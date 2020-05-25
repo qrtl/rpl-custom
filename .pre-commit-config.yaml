@@ -14,6 +14,7 @@ exclude: |
   ^\.travis\.yml$|
   # For v12.0 of before, exclude all oca modules
   account_invoice_comment_template/|
+  account_payment_term_extension/|
   auditlog/|
   base_comment_template/|
   base_country_state_translatable/|
