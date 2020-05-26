@@ -1,0 +1,104 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* sale_order_export_rpl
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-05-25 09:57+0000\n"
+"PO-Revision-Date: 2020-05-25 09:57+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_order_export_rpl
+#: model:ir.model,name:sale_order_export_rpl.model_res_config_settings
+msgid "Config Settings"
+msgstr "出力設定"
+
+#. module: sale_order_export_rpl
+#: model:ir.model,name:sale_order_export_rpl.model_res_partner
+msgid "Contact"
+msgstr "連絡先"
+
+#. module: sale_order_export_rpl
+#: model:ir.model.fields,field_description:sale_order_export_rpl.field_report_report_csv_sale_order_csv__display_name
+#: model:ir.model.fields,field_description:sale_order_export_rpl.field_report_report_csv_sale_order_line_csv__display_name
+msgid "Display Name"
+msgstr "表示名"
+
+#. module: sale_order_export_rpl
+#: model:ir.actions.report,name:sale_order_export_rpl.sale_order_csv
+#: model:ir.actions.server,name:sale_order_export_rpl.action_sale_order_csv
+msgid "Export Order Data"
+msgstr "受注エクスポート"
+
+#. module: sale_order_export_rpl
+#: model:ir.actions.report,name:sale_order_export_rpl.sale_order_line_csv
+#: model:ir.actions.server,name:sale_order_export_rpl.action_sale_order_line_csv
+msgid "Export Order Line Data"
+msgstr "受注明細エクスポート"
+
+#. module: sale_order_export_rpl
+#: model:ir.model.fields,field_description:sale_order_export_rpl.field_product_product__luxis_item_id
+#: model:ir.model.fields,field_description:sale_order_export_rpl.field_product_template__luxis_item_id
+msgid "Item ID (luxis)"
+msgstr "Item ID (ラクシス)"
+
+#. module: sale_order_export_rpl
+#: model:ir.model.fields,field_description:sale_order_export_rpl.field_report_report_csv_sale_order_csv____last_update
+#: model:ir.model.fields,field_description:sale_order_export_rpl.field_report_report_csv_sale_order_line_csv____last_update
+msgid "Last Modified on"
+msgstr "最終更新日"
+
+#. module: sale_order_export_rpl
+#: model:ir.model.fields,field_description:sale_order_export_rpl.field_sale_order__luxis_order_id
+msgid "Order ID (luxis)"
+msgstr "Order ID (ラクシス)"
+
+#. module: sale_order_export_rpl
+#: model:ir.model.fields,field_description:sale_order_export_rpl.field_product_product__luxis_product_id
+#: model:ir.model.fields,field_description:sale_order_export_rpl.field_product_template__luxis_product_id
+msgid "Product ID (luxis)"
+msgstr "Product ID (ラクシス)"
+
+#. module: sale_order_export_rpl
+#: model:ir.model,name:sale_order_export_rpl.model_product_template
+msgid "Product Template"
+msgstr "プロダクトテンプレート"
+
+#. module: sale_order_export_rpl
+#: model:ir.model,name:sale_order_export_rpl.model_sale_order
+msgid "Sale Order"
+msgstr "販売オーダ"
+
+#. module: sale_order_export_rpl
+#: model_terms:ir.ui.view,arch_db:sale_order_export_rpl.product_template_form_view
+#: model_terms:ir.ui.view,arch_db:sale_order_export_rpl.view_order_form
+msgid "Sale Order Export"
+msgstr "受注エクスポート"
+
+#. module: sale_order_export_rpl
+#: model_terms:ir.ui.view,arch_db:sale_order_export_rpl.res_config_settings_view_form
+msgid "Sale Order Export (luxis)"
+msgstr "受注エクスポート (ラクシス)"
+
+#. module: sale_order_export_rpl
+#: model_terms:ir.ui.view,arch_db:sale_order_export_rpl.res_config_settings_view_form
+msgid "Set the values in the order export file."
+msgstr "ラクシスへの取込用CSVの出力値を設定します。"
+
+#. module: sale_order_export_rpl
+#: model:ir.model.fields,field_description:sale_order_export_rpl.field_sale_order__luxis_status
+msgid "Status (luxis)"
+msgstr "Status (ラクシス)"
+
+#. module: sale_order_export_rpl
+#: model:ir.model.fields,field_description:sale_order_export_rpl.field_res_partner__luxis_user_id
+#: model:ir.model.fields,field_description:sale_order_export_rpl.field_res_users__luxis_user_id
+msgid "User ID (luxis)"
+msgstr "User ID (ラクシス)"
