@@ -1,3 +1,3 @@
 This module does the following:
 
-* Change "Bottom Comments" to "Staff Memo"
+* Change the string "Bottom Comments" to "Staff Memo"
