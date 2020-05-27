@@ -29,10 +29,10 @@ class TestSaleOrderExportRPL(common.TransactionCase):
         rep = report.render(self.docs.ids, {})
         str_io = StringIO(rep[0])
         dict_report = list(csv.DictReader(str_io, delimiter=",", quoting=csv.QUOTE_ALL))
-        self.assertEqual(self.docs.luxis_order_id, dict(dict_report[0])["Order ID"])
+        self.assertEqual(self.docs.rakushisu_order_id, dict(dict_report[0])["Order ID"])
         self.assertEqual(self.docs.partner_id.email, dict(dict_report[0])["E-mail"])
         self.assertEqual(
-            self.docs.partner_id.luxis_user_id or "", dict(dict_report[0])["User ID"]
+            self.docs.partner_id.rakushisu_user_id or "", dict(dict_report[0])["User ID"]
         )
         self.assertEqual(str(self.docs.amount_total), dict(dict_report[0])["Total"])
         self.assertEqual(
@@ -51,10 +51,10 @@ class TestSaleOrderExportRPL(common.TransactionCase):
             dict(dict_report[0])["Date"],
         )
         self.assertEqual(
-            self.docs.luxis_status
+            self.docs.rakushisu_status
             or self.env["ir.config_parameter"]
             .sudo()
-            .get_param("sale_order_export_rpl.luxis_status", default=""),
+            .get_param("sale_order_export_rpl.rakushisu_status", default=""),
             dict(dict_report[0])["Status"],
         )
         self.assertEqual(self.docs.note, dict(dict_report[0])["Notes"])
@@ -62,14 +62,14 @@ class TestSaleOrderExportRPL(common.TransactionCase):
             str(
                 self.env["ir.config_parameter"]
                 .sudo()
-                .get_param("sale_order_export_rpl.luxis_payment_id", default=12)
+                .get_param("sale_order_export_rpl.rakushisu_payment_id", default=12)
             ),
             dict(dict_report[0])["Payment ID"],
         )
         self.assertEqual(
             self.env["ir.config_parameter"]
             .sudo()
-            .get_param("sale_order_export_rpl.luxis_ip_address", default=""),
+            .get_param("sale_order_export_rpl.rakushisu_ip_address", default=""),
             dict(dict_report[0])["IP address"],
         )
         self.assertEqual(self.docs.note2 or "", dict(dict_report[0])["Details"])
@@ -95,7 +95,7 @@ class TestSaleOrderExportRPL(common.TransactionCase):
         self.assertEqual(
             self.env["ir.config_parameter"]
             .sudo()
-            .get_param("sale_order_export_rpl.luxis_language", default=""),
+            .get_param("sale_order_export_rpl.rakushisu_language", default=""),
             dict(dict_report[0])["Language"],
         )
         self.assertEqual(
@@ -184,13 +184,13 @@ class TestSaleOrderExportRPL(common.TransactionCase):
         rep = report.render(self.docs.ids, {})
         str_io = StringIO(rep[0])
         dict_report = list(csv.DictReader(str_io, delimiter=",", quoting=csv.QUOTE_ALL))
-        self.assertEqual(self.docs.luxis_order_id, dict(dict_report[0])["Order ID"])
+        self.assertEqual(self.docs.rakushisu_order_id, dict(dict_report[0])["Order ID"])
         self.assertEqual(
-            self.docs.order_line[0].product_id.luxis_item_id or "",
+            self.docs.order_line[0].product_id.rakushisu_item_id or "",
             dict(dict_report[0])["Item ID"],
         )
         self.assertEqual(
-            self.docs.order_line[0].product_id.luxis_product_id or "",
+            self.docs.order_line[0].product_id.rakushisu_product_id or "",
             dict(dict_report[0])["Product ID"],
         )
         self.assertEqual("", dict(dict_report[0])["Product code"])

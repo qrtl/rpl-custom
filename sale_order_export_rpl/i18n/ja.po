@@ -44,9 +44,9 @@ msgid "Export Order Line Data"
 msgstr "受注明細エクスポート"
 
 #. module: sale_order_export_rpl
-#: model:ir.model.fields,field_description:sale_order_export_rpl.field_product_product__luxis_item_id
-#: model:ir.model.fields,field_description:sale_order_export_rpl.field_product_template__luxis_item_id
-msgid "Item ID (luxis)"
+#: model:ir.model.fields,field_description:sale_order_export_rpl.field_product_product__rakushisu_item_id
+#: model:ir.model.fields,field_description:sale_order_export_rpl.field_product_product__rakushisu_item_id
+msgid "Item ID (rakushisu)"
 msgstr "Item ID (ラクシス)"
 
 #. module: sale_order_export_rpl
@@ -56,20 +56,15 @@ msgid "Last Modified on"
 msgstr "最終更新日"
 
 #. module: sale_order_export_rpl
-#: model:ir.model.fields,field_description:sale_order_export_rpl.field_sale_order__luxis_order_id
-msgid "Order ID (luxis)"
+#: model:ir.model.fields,field_description:sale_order_export_rpl.field_sale_order__rakushisu_order_id
+msgid "Order ID (rakushisu)"
 msgstr "Order ID (ラクシス)"
 
 #. module: sale_order_export_rpl
-#: model:ir.model.fields,field_description:sale_order_export_rpl.field_product_product__luxis_product_id
-#: model:ir.model.fields,field_description:sale_order_export_rpl.field_product_template__luxis_product_id
-msgid "Product ID (luxis)"
+#: model:ir.model.fields,field_description:sale_order_export_rpl.field_product_product__rakushisu_product_id
+#: model:ir.model.fields,field_description:sale_order_export_rpl.field_product_product__rakushisu_product_id
+msgid "Product ID (rakushisu)"
 msgstr "Product ID (ラクシス)"
-
-#. module: sale_order_export_rpl
-#: model:ir.model,name:sale_order_export_rpl.model_product_template
-msgid "Product Template"
-msgstr "プロダクトテンプレート"
 
 #. module: sale_order_export_rpl
 #: model:ir.model,name:sale_order_export_rpl.model_sale_order
@@ -77,14 +72,14 @@ msgid "Sale Order"
 msgstr "販売オーダ"
 
 #. module: sale_order_export_rpl
-#: model_terms:ir.ui.view,arch_db:sale_order_export_rpl.product_template_form_view
+#: model_terms:ir.ui.view,arch_db:sale_order_export_rpl.product_normal_form_view
 #: model_terms:ir.ui.view,arch_db:sale_order_export_rpl.view_order_form
 msgid "Sale Order Export"
 msgstr "受注エクスポート"
 
 #. module: sale_order_export_rpl
 #: model_terms:ir.ui.view,arch_db:sale_order_export_rpl.res_config_settings_view_form
-msgid "Sale Order Export (luxis)"
+msgid "Sale Order Export (rakushisu)"
 msgstr "受注エクスポート (ラクシス)"
 
 #. module: sale_order_export_rpl
@@ -93,12 +88,12 @@ msgid "Set the values in the order export file."
 msgstr "ラクシスへの取込用CSVの出力値を設定します。"
 
 #. module: sale_order_export_rpl
-#: model:ir.model.fields,field_description:sale_order_export_rpl.field_sale_order__luxis_status
-msgid "Status (luxis)"
+#: model:ir.model.fields,field_description:sale_order_export_rpl.field_sale_order__rakushisu_status
+msgid "Status (rakushisu)"
 msgstr "Status (ラクシス)"
 
 #. module: sale_order_export_rpl
-#: model:ir.model.fields,field_description:sale_order_export_rpl.field_res_partner__luxis_user_id
-#: model:ir.model.fields,field_description:sale_order_export_rpl.field_res_users__luxis_user_id
-msgid "User ID (luxis)"
+#: model:ir.model.fields,field_description:sale_order_export_rpl.field_res_partner__rakushisu_user_id
+#: model:ir.model.fields,field_description:sale_order_export_rpl.field_res_users__rakushisu_user_id
+msgid "User ID (rakushisu)"
 msgstr "User ID (ラクシス)"
