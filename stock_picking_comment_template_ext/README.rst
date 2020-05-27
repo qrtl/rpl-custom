@@ -10,9 +10,9 @@ Picking Comments Ext
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/licence-LGPL--3-blue.png
-    :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
-    :alt: License: LGPL-3
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
+    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
+    :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-qrtl%2Frpl--custom-lightgray.png?logo=github
     :target: https://github.com/qrtl/rpl-custom/tree/12.0/stock_picking_comment_template_ext
     :alt: qrtl/rpl-custom
@@ -21,7 +21,9 @@ Picking Comments Ext
 
 This module does the following:
 
-* Change "Bottom Comments" to "Staff Memo"
+* Changes the string "Bottom Comments" to "Staff Memo".
+* Makes Staff Memo (note2) of picking a computed field, always mirroring the
+  content from the sales order.
 
 **Table of contents**
 
