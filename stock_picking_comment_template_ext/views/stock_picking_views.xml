@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="stock_picking_form_add_comment" model="ir.ui.view">
+        <field name="name">stock.picking.form.comment</field>
+        <field name="model">stock.picking</field>
+        <field
+            name="inherit_id"
+            ref="stock_picking_comment_template.stock_picking_form_add_comment"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='comments']/group[2]" position="attributes">
+                <attribute name="string">Staff Memo</attribute>
+            </xpath>
+            <xpath expr="//field[@name='comment_template2_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>
