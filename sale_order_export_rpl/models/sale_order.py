@@ -7,7 +7,9 @@ from odoo import api, fields, models
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
-    rakushisu_order_id = fields.Char("Order ID (Rakushisu)", compute="_compute_rakushisu_order_id")
+    rakushisu_order_id = fields.Char(
+        "Order ID (Rakushisu)", compute="_compute_rakushisu_order_id"
+    )
     rakushisu_status = fields.Char(string="Status (Rakushisu)")
 
     @api.multi

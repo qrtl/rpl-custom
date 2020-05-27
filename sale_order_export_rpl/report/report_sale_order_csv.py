@@ -33,10 +33,14 @@ class SaleOrderCSV(models.AbstractModel):
                     "Notes": order.note,
                     "Payment ID": self.env["ir.config_parameter"]
                     .sudo()
-                    .get_param("sale_order_export_rpl.rakushisu_payment_id", default=12),
+                    .get_param(
+                        "sale_order_export_rpl.rakushisu_payment_id", default=12
+                    ),
                     "IP address": self.env["ir.config_parameter"]
                     .sudo()
-                    .get_param("sale_order_export_rpl.rakushisu_ip_address", default=""),
+                    .get_param(
+                        "sale_order_export_rpl.rakushisu_ip_address", default=""
+                    ),
                     "Details": order.note2 or "",
                     "Payment information": "",
                     "Taxes": "",

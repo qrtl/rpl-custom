@@ -32,7 +32,8 @@ class TestSaleOrderExportRPL(common.TransactionCase):
         self.assertEqual(self.docs.rakushisu_order_id, dict(dict_report[0])["Order ID"])
         self.assertEqual(self.docs.partner_id.email, dict(dict_report[0])["E-mail"])
         self.assertEqual(
-            self.docs.partner_id.rakushisu_user_id or "", dict(dict_report[0])["User ID"]
+            self.docs.partner_id.rakushisu_user_id or "",
+            dict(dict_report[0])["User ID"],
         )
         self.assertEqual(str(self.docs.amount_total), dict(dict_report[0])["Total"])
         self.assertEqual(
