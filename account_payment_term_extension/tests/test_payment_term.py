@@ -48,7 +48,7 @@ class TestAccountPaymentTerm(TransactionCase):
                 'days': 0,
                 'weeks': 0,
                 'months': 1,
-                'payment_days': 31,
+                'day_of_the_month': 31,
                 'option': 'day_after_invoice_date'})]
             })
         res = next_month_end_date_payterm.compute(10, date_ref='2015-03-15')
