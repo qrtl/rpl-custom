@@ -179,7 +179,7 @@ class TestPacking(TransactionCase):
         )
         self.assertEqual(
             self.picking_ship.box_line_ids[0].box_quantity,
-            53,
+            210,
             "please check the No. of Boxes",
         )
 
