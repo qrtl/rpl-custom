@@ -3,8 +3,10 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from odoo.exceptions import ValidationError
 from odoo.tests.common import TransactionCase
+from odoo.tests import tagged
 
 
+@tagged("post_install", "-at_install")
 class TestAccountPaymentTerm(TransactionCase):
 
     def setUp(self):
@@ -37,6 +39,45 @@ class TestAccountPaymentTerm(TransactionCase):
             res[0][0][0],
             '2015-03-16',
             'Error in the compute of payment terms with weeks')
+    
+    def test_02_compute(self):
+        next_month_end_date_payterm = self.account_payment_term.create({
+            'name': 'Pay in End of Next Month',
+            'line_ids': [(0, 0, {
+                'value': 'balance',
+                'days': 0,
+                'weeks': 0,
+                'months': 1,
+                'day_of_the_month': 31,
+                'option': 'day_after_invoice_date'})]
+            })
+        res = next_month_end_date_payterm.compute(10, date_ref='2015-03-15')
+        self.assertEquals(
+            res[0][0][0],
+            '2015-04-30',
+            'Error in the compute of payment terms with day_after_invoice_date and specific payment day')
+
+    def test_03_compute(self):
+        next_two_month_on_10_payterm = self.account_payment_term.create({
+            'name': 'Pay on 10th after Two Months',
+            'line_ids': [(0, 0, {
+                'value': 'balance',
+                'days': 0,
+                'weeks': 0,
+                'months': 2,
+                'day_of_the_month': 10,
+                'option': 'day_after_invoice_date'})]
+            })
+        res = next_two_month_on_10_payterm.compute(10, date_ref='2015-03-12')
+        self.assertEquals(
+            res[0][0][0],
+            '2015-05-10',
+            'Error in the compute of payment terms with day_after_invoice_date and specific payment day')
+        res = next_two_month_on_10_payterm.compute(10, date_ref='2015-03-09')
+        self.assertEquals(
+            res[0][0][0],
+            '2015-05-10',
+            'Error in the compute of payment terms with day_after_invoice_date and specific payment day')
 
     def test_postpone_holiday(self):
         str_date_invoice = '2015-03-02'
