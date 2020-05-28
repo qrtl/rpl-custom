@@ -180,7 +180,8 @@ class AccountPaymentTerm(models.Model):
                                            weeks=line.weeks,
                                            months=line.months)
                 if line.day_of_the_month > 0:
-                    months_delta = (line.day_of_the_month < next_date.day) and 1 or 0
+                    months_delta = (line.months == 0) and (
+                        line.day_of_the_month < next_date.day) and 1 or 0
                     next_date += relativedelta(
                         day=line.day_of_the_month, months=months_delta)
             elif line.option == 'after_invoice_month':
