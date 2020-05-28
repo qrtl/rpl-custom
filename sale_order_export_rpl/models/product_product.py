@@ -7,5 +7,5 @@ from odoo import fields, models
 class ProductProduct(models.Model):
     _inherit = "product.product"
 
-    rakushisu_item_id = fields.Integer("Item ID (rakushisu)")
-    rakushisu_product_id = fields.Integer("Product ID (rakushisu)")
+    rakushisu_item_id = fields.Char("Item ID (rakushisu)")
+    rakushisu_product_id = fields.Char("Product ID (rakushisu)")
