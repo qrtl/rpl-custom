@@ -7,13 +7,15 @@ from odoo import api, fields, models
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
-    luxis_order_id = fields.Char("Order ID (luxis)", compute="_compute_luxis_order_id")
-    luxis_status = fields.Char(string="Status (luxis)")
+    rakushisu_order_id = fields.Char(
+        "Order ID (Rakushisu)", compute="_compute_rakushisu_order_id"
+    )
+    rakushisu_status = fields.Char(string="Status (Rakushisu)")
 
     @api.multi
-    def _compute_luxis_order_id(self):
+    def _compute_rakushisu_order_id(self):
         for order in self:
-            order.luxis_order_id = order.name.replace("SO", "")
+            order.rakushisu_order_id = order.name.replace("SO", "")
 
     def export_order_csv(self):
         orders = self.env["sale.order"].search([("state", "in", ("done", "sale"))])

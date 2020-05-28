@@ -16,9 +16,9 @@ class SaleOrderLineCSV(models.AbstractModel):
             for order_line in order.order_line:
                 writer.writerow(
                     {
-                        "Order ID": order.luxis_order_id,
-                        "Item ID": order_line.product_id.luxis_item_id or "",
-                        "Product ID": order_line.product_id.luxis_product_id or "",
+                        "Order ID": order.rakushisu_order_id,
+                        "Item ID": order_line.product_id.rakushisu_item_id or "",
+                        "Product ID": order_line.product_id.rakushisu_product_id or "",
                         "Product code": "",
                         "Price": order_line.price_unit,
                         "Quantity": order_line.product_uom_qty,

@@ -7,8 +7,8 @@
         <field name="arch" type="xml">
             <xpath expr="//group[@name='technical']" position="after">
                 <group string="Sale Order Export" name="order_export">
-                    <field name="luxis_order_id" />
-                    <field name="luxis_status" />
+                    <field name="rakushisu_order_id" />
+                    <field name="rakushisu_status" />
                 </group>
             </xpath>
         </field>

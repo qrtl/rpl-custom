@@ -15,9 +15,9 @@ class SaleOrderCSV(models.AbstractModel):
         for order in orders:
             writer.writerow(
                 {
-                    "Order ID": order.luxis_order_id,
+                    "Order ID": order.rakushisu_order_id,
                     "E-mail": order.partner_id.email,
-                    "User ID": order.partner_id.luxis_user_id or "",
+                    "User ID": order.partner_id.rakushisu_user_id or "",
                     "Total": order.amount_total,
                     "Subtotal": order.amount_total - order.delivery_price,
                     "Discount": 0,
@@ -26,17 +26,21 @@ class SaleOrderCSV(models.AbstractModel):
                     "Date": order.confirmation_date
                     and order.confirmation_date.strftime("%d/%m/%Y %H:%M")
                     or "",
-                    "Status": order.luxis_status
+                    "Status": order.rakushisu_status
                     or self.env["ir.config_parameter"]
                     .sudo()
-                    .get_param("sale_order_export_rpl.luxis_status", default=""),
+                    .get_param("sale_order_export_rpl.rakushisu_status", default=""),
                     "Notes": order.note,
                     "Payment ID": self.env["ir.config_parameter"]
                     .sudo()
-                    .get_param("sale_order_export_rpl.luxis_payment_id", default=12),
+                    .get_param(
+                        "sale_order_export_rpl.rakushisu_payment_id", default=12
+                    ),
                     "IP address": self.env["ir.config_parameter"]
                     .sudo()
-                    .get_param("sale_order_export_rpl.luxis_ip_address", default=""),
+                    .get_param(
+                        "sale_order_export_rpl.rakushisu_ip_address", default=""
+                    ),
                     "Details": order.note2 or "",
                     "Payment information": "",
                     "Taxes": "",
@@ -55,7 +59,7 @@ class SaleOrderCSV(models.AbstractModel):
                     "Tax exempt": "N",
                     "Language": self.env["ir.config_parameter"]
                     .sudo()
-                    .get_param("sale_order_export_rpl.luxis_language", default=""),
+                    .get_param("sale_order_export_rpl.rakushisu_language", default=""),
                     # 請求先情報
                     "Billing: title": order.partner_invoice_id.title
                     and order.partner_invoice_id.title.name
