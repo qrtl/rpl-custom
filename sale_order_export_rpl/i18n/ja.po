@@ -32,6 +32,12 @@ msgid "Display Name"
 msgstr "表示名"
 
 #. module: sale_order_export_rpl
+#: model_terms:ir.ui.view,arch_db:sale_order_export_rpl.view_sales_order_filter
+#: model:ir.model.fields,field_description:sale_order_export_rpl.field_sale_order__no_export
+msgid "Exclude From Export"
+msgstr "非エクスポート対象"
+
+#. module: sale_order_export_rpl
 #: model:ir.actions.report,name:sale_order_export_rpl.sale_order_csv
 #: model:ir.actions.server,name:sale_order_export_rpl.action_sale_order_csv
 msgid "Export Order Data"
@@ -42,6 +48,11 @@ msgstr "受注エクスポート"
 #: model:ir.actions.server,name:sale_order_export_rpl.action_sale_order_line_csv
 msgid "Export Order Line Data"
 msgstr "受注明細エクスポート"
+
+#. module: sale_order_export_rpl
+#: model_terms:ir.ui.view,arch_db:sale_order_export_rpl.view_sales_order_filter
+msgid "Export Targets"
+msgstr "エクスポート対象"
 
 #. module: sale_order_export_rpl
 #: model:ir.model.fields,field_description:sale_order_export_rpl.field_product_product__rakushisu_item_id
