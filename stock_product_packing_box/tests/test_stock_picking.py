@@ -23,60 +23,93 @@ class TestPacking(TransactionCase):
 
         self.packing_box_id0 = self.packing_box.create(
             {
-                "name": "Test Packing Box 1",
-                "packing_coefficient": 0.25,
-                "box_length": 10,
-                "box_height": 20,
-                "box_width": 30,
+                "name": "Test Packing DM",
+                "packing_coefficient": 211.000,
+                "is_for_liquid": True,
+                "box_length": 385.00,
+                "box_height": 335.00,
+                "box_width": 275.00,
             }
         )
         self.packing_box_id1 = self.packing_box.create(
             {
-                "name": "Test Packing Box 2",
-                "packing_coefficient": 0.50,
-                "box_length": 20,
-                "box_height": 40,
-                "box_width": 60,
+                "name": "Test Packing DSS",
+                "packing_coefficient": 57.800,
+                "is_for_liquid": True,
+                "box_length": 300.00,
+                "box_height": 210.00,
+                "box_width": 160.00,
             }
         )
         self.packing_box_id2 = self.packing_box.create(
             {
-                "name": "Test Packing Box 3",
-                "packing_coefficient": 0.75,
+                "name": "Test Packing DXL",
+                "packing_coefficient": 594.530,
+                "box_length": 640.00,
+                "box_height": 335.00,
+                "box_width": 445.00,
+            }
+        )
+        self.packing_box_id3 = self.packing_box.create(
+            {
+                "name": "Test Packing LXL",
+                "packing_coefficient": 362.235,
                 "is_for_liquid": True,
-                "box_length": 30,
-                "box_height": 60,
-                "box_width": 90,
+                "box_dest_id": self.packing_box_id2.id,
+                "box_length": 560.00,
+                "box_height": 325.00,
+                "box_width": 425.00,
+            }
+        )
+        self.packing_box_id4 = self.packing_box.create(
+            {
+                "name": "Test Packing DSS",
+                "packing_coefficient": 57.800,
+                "box_length": 300.00,
+                "box_height": 160.00,
+                "box_width": 210.00,
             }
         )
         self.productA = self.env["product.product"].create(
             {
-                "name": "Product A",
+                "name": "Vitrification Kit 101",
                 "type": "product",
-                "has_liquid": False,
-                "min_box_id": self.packing_box_id0.id,
-                "packing_coefficient": 0.15,
+                "has_liquid": True,
+                "packing_coefficient": 3.650,
             }
         )
         self.productB = self.env["product.product"].create(
             {
-                "name": "Product B",
+                "name": "Vitrification Solution Set 110",
                 "type": "product",
-                "has_liquid": False,
-                "min_box_id": self.packing_box_id1.id,
-                "packing_coefficient": 0.25,
+                "has_liquid": True,
+                "packing_coefficient": 1.700,
             }
         )
         self.productC = self.env["product.product"].create(
             {
-                "name": "Product C",
+                "name": "Warming Kit 102",
                 "type": "product",
                 "has_liquid": True,
-                "min_box_id": self.packing_box_id2.id,
-                "packing_coefficient": 0.35,
+                "packing_coefficient": 2.120,
             }
         )
-
+        self.productD = self.env["product.product"].create(
+            {
+                "name": "Warming Solution Set 205",
+                "type": "product",
+                "has_liquid": True,
+                "packing_coefficient": 1.800,
+            }
+        )
+        self.productE = self.env["product.product"].create(
+            {
+                "name": "Cooling rack",
+                "type": "product",
+                "min_box_id": self.packing_box_id4.id,
+                "packing_coefficient": 24.800,
+            }
+        )
         self.picking_ship = self.env["stock.picking"].create(
             {
                 "location_id": self.stock_location.id,
@@ -89,7 +122,7 @@ class TestPacking(TransactionCase):
             {
                 "name": self.productA.name,
                 "product_id": self.productA.id,
-                "product_uom_qty": 200,
+                "product_uom_qty": 9,
                 "product_uom": self.productA.uom_id.id,
                 "picking_id": self.picking_ship.id,
                 "location_id": self.stock_location.id,
@@ -100,7 +133,7 @@ class TestPacking(TransactionCase):
             {
                 "name": self.productB.name,
                 "product_id": self.productB.id,
-                "product_uom_qty": 300,
+                "product_uom_qty": 6,
                 "product_uom": self.productB.uom_id.id,
                 "picking_id": self.picking_ship.id,
                 "location_id": self.stock_location.id,
@@ -111,9 +144,30 @@ class TestPacking(TransactionCase):
             {
                 "name": self.productC.name,
                 "product_id": self.productC.id,
-                "product_uom_qty": 300,
+                "product_uom_qty": 10,
                 "product_uom": self.productC.uom_id.id,
                 "picking_id": self.picking_ship.id,
+                "location_id": self.stock_location.id,
+                "location_dest_id": self.customer_location.id,
+            }
+        )
+        self.move4 = self.MoveObj.create(
+            {
+                "name": self.productD.name,
+                "product_id": self.productD.id,
+                "product_uom_qty": 6,
+                "product_uom": self.productD.uom_id.id,
+                "picking_id": self.picking_ship.id,
+                "location_id": self.stock_location.id,
+                "location_dest_id": self.customer_location.id,
+            }
+        )
+        self.move5 = self.MoveObj.create(
+            {
+                "name": self.productE.name,
+                "product_id": self.productE.id,
+                "product_uom_qty": 1,
+                "product_uom": self.productE.uom_id.id,
                 "location_id": self.stock_location.id,
                 "location_dest_id": self.customer_location.id,
             }
@@ -129,9 +183,11 @@ class TestPacking(TransactionCase):
         self.assertFalse(self.picking_ship._get_moves_for_box_calc())
 
     def test_02_get_min_box(self):
+        self.move5.write({'picking_id': self.picking_ship.id})
         min_box = self.picking_ship._get_min_box(self.picking_ship.move_lines)
         self.assertEqual(
-            (self.packing_box_id0 + self.packing_box_id1 + self.packing_box_id2).sorted(
+            (
+                self.packing_box_id0 + self.packing_box_id1 + self.packing_box_id2+ self.packing_box_id3+ self.packing_box_id4).sorted(
                 reverse=True
             )[0],
             min_box,
@@ -150,6 +206,14 @@ class TestPacking(TransactionCase):
             self.packing_box_id2,
             self.picking_ship._get_packing_boxes(self.productC.has_liquid),
         )
+        self.assertTrue(
+            self.packing_box_id3,
+            self.picking_ship._get_packing_boxes(self.productD.has_liquid),
+        )
+        self.assertTrue(
+            self.packing_box_id4,
+            self.picking_ship._get_packing_boxes(self.productE.has_liquid),
+        )
 
     def test_04_compute_box_line_ids(self):
         self.picking_ship.do_unreserve()
@@ -163,34 +227,91 @@ class TestPacking(TransactionCase):
 
         self.picking_ship.action_assign()
         self.picking_ship.write({"box_calc_type": "initial_qty"})
+
         self.picking_ship.recompute_product_packing()
+
+        # CASE 1
+        self.assertEqual(
+            self.picking_ship.box_line_ids[0].packing_box_id,
+            self.packing_box_id0,
+            "Packing Box is not correctly picked up",
+        )
+
+        self.assertEqual(
+            sum(box.box_quantity for box in self.picking_ship.box_line_ids),
+            1,
+            "please check the No. of Boxes",
+        )
+
+        self.picking_ship.write(
+            {"move_lines": [(3, self.picking_ship.move_lines.filtered(
+                lambda p:p.product_id.id == self.productB.id).id)]}
+        )
+        self.picking_ship.write(
+            {"move_lines": [(3, self.picking_ship.move_lines.filtered(
+                lambda p:p.product_id.id == self.productD.id).id)]}
+        )
+        self.picking_ship.move_lines[0].write({'product_uom_qty': 1})
+        self.picking_ship.move_lines[1].write({'product_uom_qty': 1})
+
+        # CASE 2
+        self.assertEqual(
+            sum(box.box_quantity for box in self.picking_ship.box_line_ids),
+            1,
+            "please check the No. of Boxes",
+        )
+        self.assertEqual(
+            self.picking_ship.box_line_ids[0].packing_box_id,
+            self.packing_box_id1,
+            "please check the No. of Boxes",
+        )
+        self.move2.write({
+            'product_uom_qty': 750
+        })
+        self.picking_ship.write(
+            {"move_lines": [(6, 0, [self.move2.id])]}
+        )
+
+        # CASE 3
+        self.assertEqual(
+            sum(box.box_quantity for box in self.picking_ship.box_line_ids),
+            4,
+            "please check the No. of Boxes",
+        )
         self.assertEqual(
             self.picking_ship.box_line_ids[0].packing_box_id,
             self.packing_box_id2,
-            "Packing Box is not correctly picked up",
+            "please check the No. of Boxes",
         )
-        # self.assertEqual(
-        #     self.picking_ship.box_line_ids[0].box_quantity,
-        #     280,
-        #     "please check the No. of Boxes",
-        # )
-        # self.picking_ship.write(
-        #     {"move_lines": [(3, self.picking_ship.move_lines[2].id)]}
-        # )
-        # self.assertEqual(
-        #     self.picking_ship.box_line_ids[0].box_quantity,
-        #     210,
-        #     "please check the No. of Boxes",
-        # )
+        self.assertEqual(
+            self.picking_ship.box_line_ids[1].packing_box_id,
+            self.packing_box_id0,
+            "please check the No. of Boxes",
+        )
 
-        # self.picking_ship.write(
-        #     {"move_lines": [(3, self.picking_ship.move_lines[1].id)]}
-        # )
-        # self.assertEqual(
-        #     self.picking_ship.box_line_ids[0].box_quantity,
-        #     60,
-        #     "please check the No. of Boxes",
-        # )
+        self.move2.write({
+            'product_uom_qty': 1
+        })
+        self.picking_ship.write(
+            {"move_lines": [(6, 0, [self.move4.id])]}
+        )
+
+        # CASE 4
+        self.assertEqual(
+            sum(box.box_quantity for box in self.picking_ship.box_line_ids),
+            1,
+            "please check the No. of Boxes",
+        )
+
+        self.picking_ship.write(
+            {"move_lines": [(6, 0, [self.move5.id])]}
+        )
+
+        self.assertEqual(
+            self.picking_ship.box_line_ids.packing_box_id,
+            self.packing_box_id4,
+            "please check the No. of Boxes",
+        )
 
     def test_05_recompute_product_packing(self):
         self.picking_ship.recompute_product_packing()
