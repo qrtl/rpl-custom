@@ -7,7 +7,7 @@
         <field name="arch" type="xml">
             <xpath expr="//group[@name='technical']" position="after">
                 <group string="Sale Order Export" name="order_export">
-                    <field name="no_export"/>
+                    <field name="no_export" />
                     <field name="rakushisu_order_id" />
                     <field name="rakushisu_status" />
                 </group>
@@ -20,9 +20,17 @@
         <field name="inherit_id" ref="sale.view_sales_order_filter" />
         <field name="arch" type="xml">
             <xpath expr="//filter[@name='activities_my']" position="before">
-                <filter string="Export Targets" name="export" domain='[("state", "in", ("done", "sale")), ("no_export", "!=", True)]'/>
-                <filter string="Exclude From Export" name="no_export" domain='["|", ("state", "not in", ("done", "sale")), ("no_export", "=", True)]'/>
-                <separator/>
+                <filter
+                    string="Export Targets"
+                    name="export"
+                    domain='[("state", "in", ("done", "sale")), ("no_export", "!=", True)]'
+                />
+                <filter
+                    string="Exclude From Export"
+                    name="no_export"
+                    domain='["|", ("state", "not in", ("done", "sale")), ("no_export", "=", True)]'
+                />
+                <separator />
             </xpath>
         </field>
     </record>
