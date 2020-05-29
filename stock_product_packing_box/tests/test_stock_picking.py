@@ -18,9 +18,7 @@ class TestPacking(TransactionCase):
             "stock.picking_type_out"
         )
         self.MoveObj = self.env["stock.move"]
-
         self.packing_box = self.env["product.packing.box"]
-
         self.packing_box_id0 = self.packing_box.create(
             {
                 "name": "Test Packing DM",
@@ -328,7 +326,6 @@ class TestPacking(TransactionCase):
 
     def test_06_get_packing_coefficient(self):
         self.picking_ship.action_assign()
-
         packing_coefficient = (
             self.move1.product_uom_qty * self.productA.packing_coefficient
         )
