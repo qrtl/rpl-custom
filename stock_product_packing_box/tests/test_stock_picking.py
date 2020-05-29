@@ -183,13 +183,16 @@ class TestPacking(TransactionCase):
         self.assertFalse(self.picking_ship._get_moves_for_box_calc())
 
     def test_02_get_min_box(self):
-        self.move5.write({'picking_id': self.picking_ship.id})
+        self.move5.write({"picking_id": self.picking_ship.id})
         min_box = self.picking_ship._get_min_box(self.picking_ship.move_lines)
         self.assertEqual(
             (
-                self.packing_box_id0 + self.packing_box_id1 + self.packing_box_id2+ self.packing_box_id3+ self.packing_box_id4).sorted(
-                reverse=True
-            )[0],
+                self.packing_box_id0
+                + self.packing_box_id1
+                + self.packing_box_id2
+                + self.packing_box_id3
+                + self.packing_box_id4
+            ).sorted(reverse=True)[0],
             min_box,
         )
 
@@ -244,15 +247,31 @@ class TestPacking(TransactionCase):
         )
 
         self.picking_ship.write(
-            {"move_lines": [(3, self.picking_ship.move_lines.filtered(
-                lambda p:p.product_id.id == self.productB.id).id)]}
+            {
+                "move_lines": [
+                    (
+                        3,
+                        self.picking_ship.move_lines.filtered(
+                            lambda p: p.product_id.id == self.productB.id
+                        ).id,
+                    )
+                ]
+            }
         )
         self.picking_ship.write(
-            {"move_lines": [(3, self.picking_ship.move_lines.filtered(
-                lambda p:p.product_id.id == self.productD.id).id)]}
+            {
+                "move_lines": [
+                    (
+                        3,
+                        self.picking_ship.move_lines.filtered(
+                            lambda p: p.product_id.id == self.productD.id
+                        ).id,
+                    )
+                ]
+            }
         )
-        self.picking_ship.move_lines[0].write({'product_uom_qty': 1})
-        self.picking_ship.move_lines[1].write({'product_uom_qty': 1})
+        self.picking_ship.move_lines[0].write({"product_uom_qty": 1})
+        self.picking_ship.move_lines[1].write({"product_uom_qty": 1})
 
         # CASE 2
         self.assertEqual(
@@ -265,12 +284,8 @@ class TestPacking(TransactionCase):
             self.packing_box_id1,
             "please check the No. of Boxes",
         )
-        self.move2.write({
-            'product_uom_qty': 750
-        })
-        self.picking_ship.write(
-            {"move_lines": [(6, 0, [self.move2.id])]}
-        )
+        self.move2.write({"product_uom_qty": 750})
+        self.picking_ship.write({"move_lines": [(6, 0, [self.move2.id])]})
 
         # CASE 3
         self.assertEqual(
@@ -289,12 +304,8 @@ class TestPacking(TransactionCase):
             "please check the No. of Boxes",
         )
 
-        self.move2.write({
-            'product_uom_qty': 1
-        })
-        self.picking_ship.write(
-            {"move_lines": [(6, 0, [self.move4.id])]}
-        )
+        self.move2.write({"product_uom_qty": 1})
+        self.picking_ship.write({"move_lines": [(6, 0, [self.move4.id])]})
 
         # CASE 4
         self.assertEqual(
@@ -303,9 +314,7 @@ class TestPacking(TransactionCase):
             "please check the No. of Boxes",
         )
 
-        self.picking_ship.write(
-            {"move_lines": [(6, 0, [self.move5.id])]}
-        )
+        self.picking_ship.write({"move_lines": [(6, 0, [self.move5.id])]})
 
         self.assertEqual(
             self.picking_ship.box_line_ids.packing_box_id,
