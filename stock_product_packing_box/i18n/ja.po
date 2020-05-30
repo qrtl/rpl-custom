@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-24 07:23+0000\n"
-"PO-Revision-Date: 2020-05-24 07:23+0000\n"
+"POT-Creation-Date: 2020-05-30 08:17+0000\n"
+"PO-Revision-Date: 2020-05-30 08:17+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -19,11 +19,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:stock_product_packing_box.field_stock_picking__box_calc_type
 msgid "Calculation Type"
 msgstr "計算タイプ"
-
-#. module: stock_product_packing_box
-#: model_terms:ir.ui.view,arch_db:stock_product_packing_box.view_picking_form
-msgid "Compute Packing Box"
-msgstr "箱を計算"
 
 #. module: stock_product_packing_box
 #: model:ir.model.fields,field_description:stock_product_packing_box.field_product_packing_box__create_uid
@@ -105,12 +100,6 @@ msgid "Name"
 msgstr "名称"
 
 #. module: stock_product_packing_box
-#: code:addons/stock_product_packing_box/models/stock_picking.py:51
-#, python-format
-msgid "No corresponding boxes can be found."
-msgstr "対象の箱が見つかりません。"
-
-#. module: stock_product_packing_box
 #: model:ir.model.fields,field_description:stock_product_packing_box.field_product_packing_line__box_quantity
 msgid "No. of Boxes"
 msgstr "箱数"
@@ -137,9 +126,19 @@ msgid "Packing Coefficient"
 msgstr "梱包係数"
 
 #. module: stock_product_packing_box
+#: model_terms:ir.ui.view,arch_db:stock_product_packing_box.view_picking_form
+msgid "Press this button in case boxes need to be re-calculated due to changes in box definitions, etc."
+msgstr "梱包箱設定が変更された等で梱包箱を再計算したい場合に、このボタンを押してください。"
+
+#. module: stock_product_packing_box
 #: model:ir.model,name:stock_product_packing_box.model_product_template
 msgid "Product Template"
 msgstr "プロダクトテンプレート"
+
+#. module: stock_product_packing_box
+#: model_terms:ir.ui.view,arch_db:stock_product_packing_box.view_picking_form
+msgid "Re-compute Packing Box"
+msgstr "箱を再計算"
 
 #. module: stock_product_packing_box
 #: selection:stock.picking,box_calc_type:0

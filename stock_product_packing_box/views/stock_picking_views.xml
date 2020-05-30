@@ -9,15 +9,16 @@
                 <group>
                     <group>
                         <field name="box_calc_type" widget="radio" />
-                    </group>
-                    <group>
                         <button
                             name="recompute_product_packing"
-                            string="Compute Packing Box"
+                            string="Re-compute Packing Box"
                             type="object"
                             groups="base.group_user"
+                            help="Press this button in case boxes need to be re-calculated due to changes in box definitions, etc."
                         />
-                        <field name="box_line_ids" />
+                    </group>
+                    <group>
+                        <field name="box_line_ids" nolabel="1" />
                     </group>
                 </group>
             </xpath>
