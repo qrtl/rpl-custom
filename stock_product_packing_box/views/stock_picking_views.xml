@@ -8,7 +8,7 @@
             <xpath expr="//sheet/group[1]" position="after">
                 <group>
                     <group>
-                        <field name="box_calc_type" widget="radio"/>
+                        <field name="box_calc_type" widget="radio" />
                         <button
                             name="recompute_product_packing"
                             string="Re-compute Packing Box"

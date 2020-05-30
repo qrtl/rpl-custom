@@ -49,7 +49,11 @@ class StockPicking(models.Model):
         return res
 
     @api.multi
-    @api.depends("box_calc_type", "move_lines.product_uom_qty", "move_lines.reserved_availability")
+    @api.depends(
+        "box_calc_type",
+        "move_lines.product_uom_qty",
+        "move_lines.reserved_availability",
+    )
     def _compute_box_line_ids(self):
         for picking in self:
             picking.box_line_ids.unlink()
