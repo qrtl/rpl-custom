@@ -35,6 +35,7 @@ exclude: |
   stock_picking_comment_template/|
   web_environment_ribbon/|
   web_favicon/|
+  web_m2x_options/|
   website_sale_hide_price/
 default_language_version:
   python: python3
