@@ -11,6 +11,7 @@ class SaleOrder(models.Model):
         "Order ID (Rakushisu)", compute="_compute_rakushisu_order_id"
     )
     rakushisu_status = fields.Char(string="Status (Rakushisu)")
+    no_export = fields.Boolean(string="Exclude From Export")
 
     @api.multi
     def _compute_rakushisu_order_id(self):
@@ -18,13 +19,18 @@ class SaleOrder(models.Model):
             order.rakushisu_order_id = order.name.replace("SO", "")
 
     def export_order_csv(self):
-        orders = self.env["sale.order"].search([("state", "in", ("done", "sale"))])
+        domain = self._get_export_domain()
+        orders = self.env["sale.order"].search(domain)
         return self.env.ref("sale_order_export_rpl.sale_order_csv").report_action(
             orders.ids
         )
 
     def export_order_line_csv(self):
-        orders = self.env["sale.order"].search([("state", "in", ("done", "sale"))])
+        domain = self._get_export_domain()
+        orders = self.env["sale.order"].search(domain)
         return self.env.ref("sale_order_export_rpl.sale_order_line_csv").report_action(
             orders.ids
         )
+
+    def _get_export_domain(self):
+        return [("state", "in", ("done", "sale")), ("no_export", "!=", True)]
