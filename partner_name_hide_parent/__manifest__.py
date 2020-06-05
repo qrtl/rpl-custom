@@ -8,6 +8,6 @@
     "category": "Extra Tools",
     "license": "LGPL-3",
     "depends": ["base"],
-    "data": ["views/res_partner_views.xml", ],
+    "data": ["views/res_partner_views.xml"],
     "installable": True,
 }
