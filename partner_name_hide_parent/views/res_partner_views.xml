@@ -6,12 +6,16 @@
         <field name="inherit_id" ref="base.view_partner_form" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='vat']" position="after">
-                <!-- <field name="hide_self_for_children" attrs="{'invisible':[('parent_id','!=',False)]}" /> -->
-                <field name="hide_parent" attrs="{'invisible':[('parent_id','=',False)]}" />
+                <field
+                    name="hide_parent"
+                    attrs="{'invisible':[('parent_id','=',False)]}"
+                />
             </xpath>
             <xpath expr="//page[1]//form[1]//field[@name='comment']" position="after">
-                <!-- <field name="hide_self_for_children" attrs="{'invisible':[('parent_id','!=',False)]}" /> -->
-                <field name="hide_parent" attrs="{'invisible':[('parent_id','=',False)]}" />
+                <field
+                    name="hide_parent"
+                    attrs="{'invisible':[('parent_id','=',False)]}"
+                />
             </xpath>
         </field>
     </record>

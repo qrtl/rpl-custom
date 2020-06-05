@@ -9,9 +9,8 @@ class ResPartner(models.Model):
 
     hide_parent = fields.Boolean(
         help="If selected, the parent's name will not be included in the "
-             "display name of self."
+        "display name of self."
     )
-
 
     @api.multi
     def name_get(self):
