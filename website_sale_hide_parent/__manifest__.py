@@ -8,6 +8,6 @@
     "category": "Website",
     "license": "LGPL-3",
     "depends": ["website_sale", "partner_name_hide_parent"],
-    "data": ["views/res_partner_views.xml",],
+    "data": ["views/res_partner_views.xml"],
     "installable": True,
 }
