@@ -7,7 +7,10 @@ from odoo import api, fields, models
 class ResPartner(models.Model):
     _inherit = "res.partner"
 
-    hide_parent = fields.Boolean()
+    hide_parent = fields.Boolean(
+        help="If selected, the parent's name will not be included in the "
+             "display name of self."
+    )
 
 
     @api.multi

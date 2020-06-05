@@ -1,3 +1,3 @@
 This module does the following:
-- Add Invoice Address to contact model, and propose Invoice Address of
-the sales order based on the selected Delivery Address.
+
+* Adds the ability to hide parent's name from the presentation of the partners' names according to the settings of the partners.
