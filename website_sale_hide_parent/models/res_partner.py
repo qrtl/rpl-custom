@@ -9,5 +9,5 @@ class ResPartner(models.Model):
 
     hide_self_for_children = fields.Boolean(
         help="If selected, 'Hide Parent' will be selected by default for the "
-             "delivery addresses created through the eCommerce interface."
+        "delivery addresses created through the eCommerce interface."
     )
