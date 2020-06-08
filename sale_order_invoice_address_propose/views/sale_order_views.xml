@@ -13,11 +13,6 @@
                     name="domain"
                 >[('commercial_partner_id', '=', commercial_partner_id)]</attribute>
             </xpath>
-            <xpath expr="//field[@name='partner_shipping_id']" position="attributes">
-                <attribute
-                    name="domain"
-                >[('commercial_partner_id', '=', commercial_partner_id)]</attribute>
-            </xpath>
         </field>
     </record>
 </odoo>
