@@ -16,7 +16,7 @@ class SaleOrderCSV(models.AbstractModel):
         writer.writeheader()
         for order in orders:
             shipping_cost = sum(
-                [l.price_subtotal for l in order.order_line if l.is_delivery]
+                [line.price_subtotal for line in order.order_line if line.is_delivery]
             )
             writer.writerow(
                 {

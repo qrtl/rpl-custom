@@ -38,7 +38,7 @@ class TestSaleOrderExportRPL(common.TransactionCase):
             str(self.docs.order.amount_untaxed), dict(dict_report[0])["Total"]
         )
         shipping_cost = sum(
-            [l.price_subtotal for l in self.docs.order_line if l.is_delivery]
+            [line.price_subtotal for line in self.docs.order_line if line.is_delivery]
         )
         self.assertEqual(
             str(self.docs.order.amount_untaxed - shipping_cost),
