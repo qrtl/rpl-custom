@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import csv
+
 import html2text
 
 from odoo import models
@@ -20,10 +21,15 @@ class SaleOrderCSV(models.AbstractModel):
                     "E-mail": order.partner_id.email,
                     "User ID": order.partner_id.tekkuro_user_id or "",
                     "Total": order.amount_untaxed,
-                    "Subtotal": order.amount_untaxed - sum([l.price_subtotal for l in order.order_line if l.is_delivery]),
+                    "Subtotal": order.amount_untaxed
+                    - sum(
+                        [l.price_subtotal for l in order.order_line if l.is_delivery]
+                    ),
                     "Discount": 0,
                     "Payment surcharge": 0,
-                    "Shipping cost": sum([l.price_subtotal for l in order.order_line if l.is_delivery]),
+                    "Shipping cost": sum(
+                        [l.price_subtotal for l in order.order_line if l.is_delivery]
+                    ),
                     "Date": order.confirmation_date
                     and order.confirmation_date.strftime("%Y/%-m/%-d %-H:%-M")
                     or "",

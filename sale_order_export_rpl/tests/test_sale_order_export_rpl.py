@@ -32,19 +32,23 @@ class TestSaleOrderExportRPL(common.TransactionCase):
         self.assertEqual(self.docs.rakushisu_order_id, dict(dict_report[0])["Order ID"])
         self.assertEqual(self.docs.partner_id.email, dict(dict_report[0])["E-mail"])
         self.assertEqual(
-            self.docs.partner_id.tekkuro_user_id or "",
-            dict(dict_report[0])["User ID"],
+            self.docs.partner_id.tekkuro_user_id or "", dict(dict_report[0])["User ID"],
         )
-        self.assertEqual(str(self.docs.order.amount_untaxed), dict(dict_report[0])["Total"])
         self.assertEqual(
-            str(self.docs.order.amount_untaxed - sum([l.price_subtotal for l in docs.order_line if l.is_delivery])),
+            str(self.docs.order.amount_untaxed), dict(dict_report[0])["Total"]
+        )
+        self.assertEqual(
+            str(
+                self.docs.order.amount_untaxed
+                - sum([l.price_subtotal for l in self.docs.order_line if l.is_delivery])
+            ),
             dict(dict_report[0])["Subtotal"],
         )
         self.assertEqual("0", dict(dict_report[0])["Discount"])
         self.assertEqual("0", dict(dict_report[0])["Payment surcharge"])
         self.assertEqual(
-            str(sum([l.price_subtotal for l in docs.order_line if l.is_delivery])),
-            dict(dict_report[0])["Shipping cost"]
+            str(sum([l.price_subtotal for l in self.docs.order_line if l.is_delivery])),
+            dict(dict_report[0])["Shipping cost"],
         )
         self.assertEqual(
             self.docs.confirmation_date
@@ -83,8 +87,7 @@ class TestSaleOrderExportRPL(common.TransactionCase):
         self.assertEqual("", dict(dict_report[0])["First name"])
         self.assertEqual("", dict(dict_report[0])["Last name"])
         self.assertEqual(
-            self.docs.user_id.partner_id.name,
-            dict(dict_report[0])["Company"],
+            self.docs.user_id.partner_id.name, dict(dict_report[0])["Company"],
         )
         self.assertEqual("", dict(dict_report[0])["Fax"])
         self.assertEqual(
