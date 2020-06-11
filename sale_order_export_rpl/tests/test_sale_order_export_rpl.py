@@ -37,18 +37,17 @@ class TestSaleOrderExportRPL(common.TransactionCase):
         self.assertEqual(
             str(self.docs.order.amount_untaxed), dict(dict_report[0])["Total"]
         )
+        shipping_cost = sum(
+            [l.price_subtotal for l in self.docs.order_line if l.is_delivery]
+        )
         self.assertEqual(
-            str(
-                self.docs.order.amount_untaxed
-                - sum([l.price_subtotal for l in self.docs.order_line if l.is_delivery])
-            ),
+            str(self.docs.order.amount_untaxed - shipping_cost),
             dict(dict_report[0])["Subtotal"],
         )
         self.assertEqual("0", dict(dict_report[0])["Discount"])
         self.assertEqual("0", dict(dict_report[0])["Payment surcharge"])
         self.assertEqual(
-            str(sum([l.price_subtotal for l in self.docs.order_line if l.is_delivery])),
-            dict(dict_report[0])["Shipping cost"],
+            str(shipping_cost), dict(dict_report[0])["Shipping cost"],
         )
         self.assertEqual(
             self.docs.confirmation_date

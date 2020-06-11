@@ -15,21 +15,19 @@ class SaleOrderCSV(models.AbstractModel):
     def generate_csv_report(self, writer, data, orders):
         writer.writeheader()
         for order in orders:
+            shipping_cost = sum(
+                [l.price_subtotal for l in order.order_line if l.is_delivery]
+            )
             writer.writerow(
                 {
                     "Order ID": order.rakushisu_order_id,
                     "E-mail": order.partner_id.email,
                     "User ID": order.partner_id.tekkuro_user_id or "",
                     "Total": order.amount_untaxed,
-                    "Subtotal": order.amount_untaxed
-                    - sum(
-                        [l.price_subtotal for l in order.order_line if l.is_delivery]
-                    ),
+                    "Subtotal": order.amount_untaxed - shipping_cost,
                     "Discount": 0,
                     "Payment surcharge": 0,
-                    "Shipping cost": sum(
-                        [l.price_subtotal for l in order.order_line if l.is_delivery]
-                    ),
+                    "Shipping cost": shipping_cost,
                     "Date": order.confirmation_date
                     and order.confirmation_date.strftime("%Y/%-m/%-d %-H:%-M")
                     or "",
