@@ -4,6 +4,8 @@
 import csv
 from io import StringIO
 
+import html2text
+
 from odoo.tests import common, tagged
 
 
@@ -32,7 +34,7 @@ class TestSaleOrderExportRPL(common.TransactionCase):
         self.assertEqual(self.docs.rakushisu_order_id, dict(dict_report[0])["Order ID"])
         self.assertEqual(self.docs.partner_id.email, dict(dict_report[0])["E-mail"])
         self.assertEqual(
-            self.docs.partner_id.tekkuro_user_id or "", dict(dict_report[0])["User ID"],
+            self.docs.partner_id.tecro_user_id or "", dict(dict_report[0])["User ID"],
         )
         self.assertEqual(str(self.docs.amount_untaxed), dict(dict_report[0])["Total"])
         shipping_cost = sum(
@@ -75,7 +77,12 @@ class TestSaleOrderExportRPL(common.TransactionCase):
             .get_param("sale_order_export_rpl.rakushisu_ip_address", default=""),
             dict(dict_report[0])["IP address"],
         )
-        self.assertEqual(self.docs.note2 or "", dict(dict_report[0])["Details"])
+        self.assertEqual(
+            self.docs.note2
+            and html2text.html2text(self.docs.note2).replace("\n", " ")
+            or "",
+            dict(dict_report[0])["Details"],
+        )
         self.assertEqual("", dict(dict_report[0])["Payment information"])
         self.assertEqual("", dict(dict_report[0])["Taxes"])
         self.assertEqual("", dict(dict_report[0])["Coupons"])

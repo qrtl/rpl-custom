@@ -22,7 +22,7 @@ class SaleOrderCSV(models.AbstractModel):
                 {
                     "Order ID": order.rakushisu_order_id,
                     "E-mail": order.partner_id.email,
-                    "User ID": order.partner_id.tekkuro_user_id or "",
+                    "User ID": order.partner_id.tecro_user_id or "",
                     "Total": order.amount_untaxed,
                     "Subtotal": order.amount_untaxed - shipping_cost,
                     "Discount": 0,
@@ -46,7 +46,9 @@ class SaleOrderCSV(models.AbstractModel):
                     .get_param(
                         "sale_order_export_rpl.rakushisu_ip_address", default=""
                     ),
-                    "Details": order.note2 and html2text.html2text(order.note2) or "",
+                    "Details": order.note2
+                    and html2text.html2text(order.note2).replace("\n", " ")
+                    or "",
                     "Payment information": "",
                     "Taxes": "",
                     "Coupons": "",
