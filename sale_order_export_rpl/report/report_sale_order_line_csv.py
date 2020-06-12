@@ -13,9 +13,8 @@ class SaleOrderLineCSV(models.AbstractModel):
     def generate_csv_report(self, writer, data, orders):
         writer.writeheader()
         for order in orders:
-            for order_line in order.order_line.filtered(
-                lambda line: not line.is_delivery
-            ):
+            for line in order.order_line:
+               if not line.is_delivery:
                 writer.writerow(
                     {
                         "Order ID": order.rakushisu_order_id,
