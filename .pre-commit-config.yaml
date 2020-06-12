@@ -33,6 +33,7 @@ exclude: |
   sale_automatic_workflow/|
   sequence_reset_period/|
   stock_picking_comment_template/|
+  stock_picking_report_valued/|
   web_environment_ribbon/|
   web_favicon/|
   web_m2x_options/|
