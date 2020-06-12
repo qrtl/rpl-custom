@@ -35,13 +35,13 @@ class TestSaleOrderExportRPL(common.TransactionCase):
             self.docs.partner_id.tekkuro_user_id or "", dict(dict_report[0])["User ID"],
         )
         self.assertEqual(
-            str(self.docs.order.amount_untaxed), dict(dict_report[0])["Total"]
+            str(self.docs.amount_untaxed), dict(dict_report[0])["Total"]
         )
         shipping_cost = sum(
             [line.price_subtotal for line in self.docs.order_line if line.is_delivery]
         )
         self.assertEqual(
-            str(self.docs.order.amount_untaxed - shipping_cost),
+            str(self.docs.amount_untaxed - shipping_cost),
             dict(dict_report[0])["Subtotal"],
         )
         self.assertEqual("0", dict(dict_report[0])["Discount"])
