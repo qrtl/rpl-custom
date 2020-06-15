@@ -91,7 +91,8 @@ class TestSaleOrderExportRPL(common.TransactionCase):
         self.assertEqual("", dict(dict_report[0])["First name"])
         self.assertEqual("", dict(dict_report[0])["Last name"])
         self.assertEqual(
-            self.docs.partner_id.name, dict(dict_report[0])["Company"],
+            self.docs.partner_id.commercial_partner_id.name,
+            dict(dict_report[0])["Company"],
         )
         self.assertEqual("", dict(dict_report[0])["Fax"])
         self.assertEqual(
@@ -251,3 +252,7 @@ class TestSaleOrderExportRPL(common.TransactionCase):
         # Typical call from render
         objs = self.csv_report._get_objs_for_report(self.docs.ids, {})
         self.assertEquals(objs, self.docs)
+
+    def test_order_note2_export(self):
+        self.docs.note2 = "<p>Line 1</p><p>Line 2</p>"
+        self.assertEqual(self.docs.note2_export, "Line 1  Line 2  ")
