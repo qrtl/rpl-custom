@@ -91,7 +91,7 @@ class TestSaleOrderExportRPL(common.TransactionCase):
         self.assertEqual("", dict(dict_report[0])["First name"])
         self.assertEqual("", dict(dict_report[0])["Last name"])
         self.assertEqual(
-            self.docs.user_id.partner_id.name, dict(dict_report[0])["Company"],
+            self.docs.partner_id.name, dict(dict_report[0])["Company"],
         )
         self.assertEqual("", dict(dict_report[0])["Fax"])
         self.assertEqual(
