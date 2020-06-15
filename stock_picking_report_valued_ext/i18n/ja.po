@@ -17,16 +17,6 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: stock_picking_report_valued_ext
-#: model_terms:ir.ui.view,arch_db:stock_picking_report_valued_ext.valued_report_picking
-msgid "<strong>Subtotal</strong>"
-msgstr "<strong>金額</strong>"
-
-#. module: stock_picking_report_valued_ext
-#: model_terms:ir.ui.view,arch_db:stock_picking_report_valued_ext.valued_report_picking
-msgid "<strong>Unit Price</strong>"
-msgstr "<strong>単価</strong>"
-
-#. module: stock_picking_report_valued_ext
 #: model_terms:ir.ui.view,arch_db:stock_picking_report_valued_ext.report_delivery_document
 msgid "Delivery Note"
 msgstr "納品書"
@@ -44,5 +34,25 @@ msgstr "<strong>税抜金額</strong>"
 #. module: stock_picking_report_valued
 #: model_terms:ir.ui.view,arch_db:stock_picking_report_valued.valued_report_picking
 msgid "<strong>Total</strong>"
-msgstr "<strong>税込み金額</strong>"
+msgstr "<strong>税込金額</strong>"
+
+#. module: stock_picking_report_valued
+#: model_terms:ir.ui.view,arch_db:stock_picking_report_valued.valued_report_picking
+msgid "<strong>Discount</strong>"
+msgstr "<strong>値引 (%)</strong>"
+
+#. module: stock_picking_report_valued
+#: model_terms:ir.ui.view,arch_db:stock_picking_report_valued.valued_report_picking
+msgid "<strong>Qty Reserved</strong>"
+msgstr "<strong>引当済数量</strong>"
+
+#. module: stock_picking_report_valued
+#: model_terms:ir.ui.view,arch_db:stock_picking_report_valued.valued_report_picking
+msgid "<strong>Subtotal</strong>"
+msgstr "<strong>金額</strong>"
+
+#. module: stock_picking_report_valued
+#: model_terms:ir.ui.view,arch_db:stock_picking_report_valued.valued_report_picking
+msgid "<strong>Unit Price</strong>"
+msgstr "<strong>単価</strong>"
 
