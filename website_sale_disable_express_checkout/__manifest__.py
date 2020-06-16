@@ -8,7 +8,6 @@
     "website": "https://www.quartile.co/",
     "license": "LGPL-3",
     "depends": ["website_sale"],
-    "data": [
-    ],
+    "data": [],
     "installable": True,
 }
