@@ -24,7 +24,7 @@ msgstr "納品書"
 #. module: stock_picking_report_valued
 #: model_terms:ir.ui.view,arch_db:stock_picking_report_valued.valued_report_picking
 msgid "<strong>Taxes</strong>"
-msgstr "<strong>消費税</strong>"
+msgstr "<strong>税</strong>"
 
 #. module: stock_picking_report_valued
 #: model_terms:ir.ui.view,arch_db:stock_picking_report_valued.valued_report_picking
@@ -39,7 +39,7 @@ msgstr "<strong>税込金額</strong>"
 #. module: stock_picking_report_valued
 #: model_terms:ir.ui.view,arch_db:stock_picking_report_valued.valued_report_picking
 msgid "<strong>Discount</strong>"
-msgstr "<strong>値引 (%)</strong>"
+msgstr "<strong>値引(%)</strong>"
 
 #. module: stock_picking_report_valued
 #: model_terms:ir.ui.view,arch_db:stock_picking_report_valued.valued_report_picking
