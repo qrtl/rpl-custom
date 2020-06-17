@@ -104,7 +104,7 @@ msgid "Status (rakushisu)"
 msgstr "Status (ラクシス)"
 
 #. module: sale_order_export_rpl
-#: model:ir.model.fields,field_description:sale_order_export_rpl.field_res_partner__rakushisu_user_id
-#: model:ir.model.fields,field_description:sale_order_export_rpl.field_res_users__rakushisu_user_id
-msgid "User ID (rakushisu)"
-msgstr "User ID (ラクシス)"
+#: model:ir.model.fields,field_description:sale_order_export_rpl.field_res_partner__tecro_user_id
+#: model:ir.model.fields,field_description:sale_order_export_rpl.field_res_users__tecro_user_id
+msgid "User ID (Tecro)"
+msgstr "User ID (テックロ)"

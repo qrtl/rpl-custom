@@ -4,6 +4,8 @@
 import csv
 from io import StringIO
 
+import html2text
+
 from odoo.tests import common, tagged
 
 
@@ -32,22 +34,24 @@ class TestSaleOrderExportRPL(common.TransactionCase):
         self.assertEqual(self.docs.rakushisu_order_id, dict(dict_report[0])["Order ID"])
         self.assertEqual(self.docs.partner_id.email, dict(dict_report[0])["E-mail"])
         self.assertEqual(
-            self.docs.partner_id.rakushisu_user_id or "",
-            dict(dict_report[0])["User ID"],
+            self.docs.partner_id.tecro_user_id or "", dict(dict_report[0])["User ID"],
         )
-        self.assertEqual(str(self.docs.amount_total), dict(dict_report[0])["Total"])
+        self.assertEqual(str(self.docs.amount_untaxed), dict(dict_report[0])["Total"])
+        shipping_cost = sum(
+            [line.price_subtotal for line in self.docs.order_line if line.is_delivery]
+        )
         self.assertEqual(
-            str(self.docs.amount_total - self.docs.delivery_price),
+            str(self.docs.amount_untaxed - shipping_cost),
             dict(dict_report[0])["Subtotal"],
         )
         self.assertEqual("0", dict(dict_report[0])["Discount"])
         self.assertEqual("0", dict(dict_report[0])["Payment surcharge"])
         self.assertEqual(
-            str(self.docs.delivery_price), dict(dict_report[0])["Shipping cost"]
+            str(shipping_cost), dict(dict_report[0])["Shipping cost"],
         )
         self.assertEqual(
             self.docs.confirmation_date
-            and self.docs.confirmation_date.strftime("%d/%m/%Y %H:%M")
+            and self.docs.confirmation_date.strftime("%Y/%-m/%-d %-H:%-M")
             or "",
             dict(dict_report[0])["Date"],
         )
@@ -73,7 +77,12 @@ class TestSaleOrderExportRPL(common.TransactionCase):
             .get_param("sale_order_export_rpl.rakushisu_ip_address", default=""),
             dict(dict_report[0])["IP address"],
         )
-        self.assertEqual(self.docs.note2 or "", dict(dict_report[0])["Details"])
+        self.assertEqual(
+            self.docs.note2
+            and html2text.html2text(self.docs.note2).replace("\n", " ")
+            or "",
+            dict(dict_report[0])["Details"],
+        )
         self.assertEqual("", dict(dict_report[0])["Payment information"])
         self.assertEqual("", dict(dict_report[0])["Taxes"])
         self.assertEqual("", dict(dict_report[0])["Coupons"])
@@ -82,9 +91,7 @@ class TestSaleOrderExportRPL(common.TransactionCase):
         self.assertEqual("", dict(dict_report[0])["First name"])
         self.assertEqual("", dict(dict_report[0])["Last name"])
         self.assertEqual(
-            self.docs.partner_id.parent_id
-            and self.docs.user_id.partner_id.parent_id.name
-            or "",
+            self.docs.partner_id.commercial_partner_id.name,
             dict(dict_report[0])["Company"],
         )
         self.assertEqual("", dict(dict_report[0])["Fax"])
@@ -245,3 +252,7 @@ class TestSaleOrderExportRPL(common.TransactionCase):
         # Typical call from render
         objs = self.csv_report._get_objs_for_report(self.docs.ids, {})
         self.assertEquals(objs, self.docs)
+
+    def test_order_note2_export(self):
+        self.docs.note2 = "<p>Line 1</p><p>Line 2</p>"
+        self.assertEqual(self.docs.note2_export, "Line 1  Line 2  ")

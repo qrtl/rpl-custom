@@ -7,4 +7,4 @@ from odoo import fields, models
 class ResPartner(models.Model):
     _inherit = "res.partner"
 
-    rakushisu_user_id = fields.Char(string="User ID (rakushisu)")
+    tecro_user_id = fields.Char(string="User ID (Tecro)")

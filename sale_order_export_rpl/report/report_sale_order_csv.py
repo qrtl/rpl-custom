@@ -3,6 +3,8 @@
 
 import csv
 
+import html2text
+
 from odoo import models
 
 
@@ -13,18 +15,21 @@ class SaleOrderCSV(models.AbstractModel):
     def generate_csv_report(self, writer, data, orders):
         writer.writeheader()
         for order in orders:
+            shipping_cost = sum(
+                [line.price_subtotal for line in order.order_line if line.is_delivery]
+            )
             writer.writerow(
                 {
                     "Order ID": order.rakushisu_order_id,
                     "E-mail": order.partner_id.email,
-                    "User ID": order.partner_id.rakushisu_user_id or "",
-                    "Total": order.amount_total,
-                    "Subtotal": order.amount_total - order.delivery_price,
+                    "User ID": order.partner_id.tecro_user_id or "",
+                    "Total": order.amount_untaxed,
+                    "Subtotal": order.amount_untaxed - shipping_cost,
                     "Discount": 0,
                     "Payment surcharge": 0,
-                    "Shipping cost": order.delivery_price,
+                    "Shipping cost": shipping_cost,
                     "Date": order.confirmation_date
-                    and order.confirmation_date.strftime("%d/%m/%Y %H:%M")
+                    and order.confirmation_date.strftime("%Y/%-m/%-d %-H:%-M")
                     or "",
                     "Status": order.rakushisu_status
                     or self.env["ir.config_parameter"]
@@ -41,7 +46,9 @@ class SaleOrderCSV(models.AbstractModel):
                     .get_param(
                         "sale_order_export_rpl.rakushisu_ip_address", default=""
                     ),
-                    "Details": order.note2 or "",
+                    "Details": order.note2
+                    and html2text.html2text(order.note2).replace("\n", " ")
+                    or "",
                     "Payment information": "",
                     "Taxes": "",
                     "Coupons": "",
@@ -50,9 +57,7 @@ class SaleOrderCSV(models.AbstractModel):
                     "Title": "",
                     "First name": "",
                     "Last name": "",
-                    "Company": order.partner_id.parent_id
-                    and order.user_id.partner_id.parent_id.name
-                    or "",
+                    "Company": order.partner_id.commercial_partner_id.name,
                     "Fax": "",
                     "Phone": order.partner_shipping_id.phone,
                     "Web site": "",

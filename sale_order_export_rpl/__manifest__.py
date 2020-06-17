@@ -9,7 +9,7 @@
     "author": "Quartile Limited",
     "license": "AGPL-3",
     "installable": True,
-    "depends": ["sale_stock", "report_csv", "delivery"],
+    "depends": ["sale_stock", "sale_comment_template_ext", "report_csv", "delivery"],
     "data": [
         "data/ir_actions_data.xml",
         "report/sale_order_reports.xml",

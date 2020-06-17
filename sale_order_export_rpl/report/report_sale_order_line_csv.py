@@ -13,18 +13,19 @@ class SaleOrderLineCSV(models.AbstractModel):
     def generate_csv_report(self, writer, data, orders):
         writer.writeheader()
         for order in orders:
-            for order_line in order.order_line:
-                writer.writerow(
-                    {
-                        "Order ID": order.rakushisu_order_id,
-                        "Item ID": order_line.product_id.rakushisu_item_id or "",
-                        "Product ID": order_line.product_id.rakushisu_product_id or "",
-                        "Product code": "",
-                        "Price": order_line.price_unit,
-                        "Quantity": order_line.product_uom_qty,
-                        "Extra": "",
-                    }
-                )
+            for line in order.order_line:
+                if not line.is_delivery:
+                    writer.writerow(
+                        {
+                            "Order ID": order.rakushisu_order_id,
+                            "Item ID": line.product_id.rakushisu_item_id or "",
+                            "Product ID": line.product_id.rakushisu_product_id or "",
+                            "Product code": "",
+                            "Price": line.price_unit,
+                            "Quantity": line.product_uom_qty,
+                            "Extra": "",
+                        }
+                    )
 
     def csv_report_options(self):
         res = super().csv_report_options()
