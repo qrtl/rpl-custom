@@ -44,6 +44,22 @@
             expr="//div[@class='col-12 col-xl order-xl-1 oe_cart']/div[1]/div"
             position="replace"
         >
+            <t t-if="order.partner_id != order.partner_invoice_id">
+                <div class="col-lg-6">
+                    <div>
+                        <h3 class="o_page_header mt8">Billing Address</h3>
+                    </div>
+                    <div class="one_kanban">
+                        <t t-call="website_sale.address_kanban">
+                            <t t-set="actual_partner" t-value="order.partner_id" />
+                            <t t-set="ship" t-value="order.partner_invoice_id" />
+                            <t t-set="contact" t-value="order.partner_invoice_id" />
+                            <t t-set="selected" t-value="1" />
+                            <t t-set="readonly" t-value="1" />
+                        </t>
+                    </div>
+                </div>
+            </t>
         </xpath>
     </template>
 </odoo>
