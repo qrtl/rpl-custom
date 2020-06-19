@@ -1,5 +1,5 @@
 # Copyright 2020 Quartile Limited
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 {
     "name": "Account Invoice Grouped Lines",
     "version": "12.0.1.0.0",
