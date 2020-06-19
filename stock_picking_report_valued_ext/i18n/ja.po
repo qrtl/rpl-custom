@@ -17,9 +17,19 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: stock_picking_report_valued_ext
+#: model_terms:ir.ui.view,arch_db:stock_picking_report_valued_ext.valued_report_picking
+msgid "<strong>Delivery Price</strong>"
+msgstr "<strong>配送料</strong>"
+
+#. module: stock_picking_report_valued_ext
 #: model_terms:ir.ui.view,arch_db:stock_picking_report_valued_ext.report_delivery_document
 msgid "Delivery Note"
 msgstr "納品書"
+
+#. module: stock_picking_report_valued_ext
+#: model:ir.model.fields,field_description:stock_picking_report_valued_ext.field_stock_picking__delivery_price
+msgid "Delivery Price"
+msgstr "配送料"
 
 #. module: stock_picking_report_valued
 #: model_terms:ir.ui.view,arch_db:stock_picking_report_valued.valued_report_picking

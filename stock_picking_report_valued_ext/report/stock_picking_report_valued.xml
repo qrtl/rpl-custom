@@ -2,12 +2,30 @@
 <odoo>
     <template id="report_delivery_document" inherit_id="stock.report_delivery_document">
         <xpath expr="//h2" position="replace">
-            <h3>
+            <h2>
                 Delivery Note
-            </h3>
-            <h3>
+            </h2>
+            <h4>
                 <span t-field="o.name" />
-            </h3>
+            </h4>
+        </xpath>
+    </template>
+    <template id="valued_report_picking" inherit_id="stock_picking_report_valued.valued_report_picking">
+        <xpath expr="//span[@t-field='o.amount_untaxed']/../../../.." position="before">
+            <table class="table table-condensed mt32">
+                <thead>
+                    <tr>
+                        <th class="text-right"><strong>Delivery Price</strong></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="text-right">
+                            <span t-field="o.delivery_price"/>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </xpath>
     </template>
 </odoo>
