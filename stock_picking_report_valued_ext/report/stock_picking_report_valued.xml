@@ -10,18 +10,23 @@
             </h4>
         </xpath>
     </template>
-    <template id="valued_report_picking" inherit_id="stock_picking_report_valued.valued_report_picking">
+    <template
+        id="valued_report_picking"
+        inherit_id="stock_picking_report_valued.valued_report_picking"
+    >
         <xpath expr="//span[@t-field='o.amount_untaxed']/../../../.." position="before">
             <table class="table table-condensed mt32">
                 <thead>
                     <tr>
-                        <th class="text-right"><strong>Delivery Price</strong></th>
+                        <th class="text-right">
+                            <strong>Delivery Price</strong>
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td class="text-right">
-                            <span t-field="o.delivery_price"/>
+                            <span t-field="o.delivery_price" />
                         </td>
                     </tr>
                 </tbody>
