@@ -21,7 +21,8 @@ Valued Picking Report Ext
 
 This module does the following:
 
-* Adjust delivery note report
+* Adjusts the content/presentation of delivery slip report, showing the amount for each line, etc.
+* Add delivery_price to picking which reflects the total amount of delivery price from the sales order.
 
 **Table of contents**
 
