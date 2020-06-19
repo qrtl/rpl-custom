@@ -60,6 +60,23 @@
                     </div>
                 </div>
             </t>
+            <div class="col-lg-6">
+                <div>
+                    <t t-if="order.partner_id == order.partner_invoice_id">
+                        <h3 class="o_page_header mt8">Billing Address</h3>
+                    </t>
+                    <t t-if="order.partner_id != order.partner_invoice_id">
+                        <h3 class="o_page_header mt8">Your Address</h3>
+                    </t>
+                </div>
+                <div class="one_kanban">
+                    <t t-call="website_sale.address_kanban">
+                        <t t-set="contact" t-value="order.partner_id" />
+                        <t t-set="selected" t-value="1" />
+                        <t t-set="readonly" t-value="1" />
+                    </t>
+                </div>
+            </div>
         </xpath>
     </template>
 </odoo>
