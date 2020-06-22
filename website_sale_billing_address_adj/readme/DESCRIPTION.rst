@@ -1,3 +1,3 @@
 This module does the following:
 
-* This Module allows us to show the correct address when the partner invoice is different from the partner.
+* Shows the correct addresses in the eCommerce frontend when the invoice address is different from the customer (standard Odoo assumes that the customer and the invoice address are the same for eCommerce orders).
