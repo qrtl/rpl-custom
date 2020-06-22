@@ -28,7 +28,7 @@
                 <!--<div class="col-lg-6 one_kanban">-->
                 <!--    <t t-call="website_sale.address_kanban">-->
                 <!--        <t t-set="contact" t-value="order.partner_id"/>-->
-                        <!--<t t-set="contact" t-value="order.partner_invoice_id"/>-->
+                <!--<t t-set="contact" t-value="order.partner_invoice_id"/>-->
                 <!--        <t t-set="selected" t-value="1"/>-->
                 <!--        <t t-set="readonly" t-value="1"/>-->
                 <!--    </t>-->
