@@ -19,13 +19,13 @@ class AccountInvoice(models.Model):
         for _key, group in groupby(
             invoice_lines, lambda x: (x.product_id, x.discounted_price_unit)
         ):
-            lines_recs = list(group)
+            line_recs = list(group)
             group_invoice_lines.append(
                 {
-                    "product": lines_recs[0].name,
-                    "price_unit": lines_recs[0].discounted_price_unit,
-                    "quantity": sum(rec.quantity for rec in lines_recs),
-                    "price_subtotal": sum(rec.price_subtotal for rec in lines_recs),
+                    "product": line_recs[0].name,
+                    "price_unit": line_recs[0].discounted_price_unit,
+                    "quantity": sum(rec.quantity for rec in line_recs),
+                    "price_subtotal": sum(rec.price_subtotal for rec in line_recs),
                 }
             )
         return group_invoice_lines
