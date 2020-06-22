@@ -8,11 +8,17 @@ class StockPicking(models.Model):
     _inherit = "stock.picking"
 
     delivery_price = fields.Monetary(
-        string="Delivery Price",
+        string="Delivery Price (Tax Included)",
         compute="_compute_delivery_price",
         store=True,
         readonly=False,
     )
+
+    @api.multi
+    def _compute_amount_all(self):
+        super(StockPicking, self)._compute_amount_all()
+        for pick in self:
+            pick.amount_total += pick.delivery_price
 
     @api.multi
     @api.depends("sale_id")
@@ -21,7 +27,7 @@ class StockPicking(models.Model):
             if picking.sale_id:
                 picking.delivery_price = sum(
                     [
-                        line.price_subtotal
+                        line.price_reduce_taxinc
                         for line in picking.sale_id.order_line
                         if line.is_delivery
                     ]
