@@ -18,7 +18,7 @@ msgstr ""
 #. module: website_sale_billing_address_adj
 #: model_terms:ir.ui.view,arch_db:website_sale_billing_address_adj.checkout
 msgid "Billing Address"
-msgstr "請求先住所"
+msgstr "請求宛先"
 
 #. module: website_sale_billing_address_adj
 #: model_terms:ir.ui.view,arch_db:website_sale_billing_address_adj.checkout
