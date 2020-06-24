@@ -129,33 +129,5 @@ class TestAccountInvoceGroupedInvoiceLines(common.TransactionCase):
         )
         grouped_lines2 = invoice2.report_grouped_invoice_lines()
         self.assertEquals(grouped_lines2[0]["quantity"], 7.0)
-        self.assertEquals(grouped_lines2[0]["price_unit"], 90)
-
-    def test_discounted_price_unit(self):
-        invoice_lines3 = [
-            (
-                0,
-                False,
-                {
-                    "name": self.product1.display_name,
-                    "product_id": self.product1.id,
-                    "quantity": 3,
-                    "uom_id": self.product1.uom_id.id,
-                    "discount": "20.0",
-                    "price_unit": 100,
-                    "account_id": self.account.id,
-                },
-            )
-        ]
-        invoice3 = self.env["account.invoice"].create(
-            {
-                "partner_id": self.customer.id,
-                "type": "out_invoice",
-                "date_invoice": fields.Date.today(),
-                "invoice_line_ids": invoice_lines3,
-                "origin": "Unit test",
-                "journal_id": self.journal.id,
-                "account_id": self.account.id,
-            }
-        )
-        self.assertEquals(invoice3.invoice_line_ids[0].discounted_price_unit, 80.0)
+        self.assertEquals(grouped_lines2[0]["price_unit"], 100)
+        self.assertEquals(grouped_lines2[0]["discount"], 10.0)
