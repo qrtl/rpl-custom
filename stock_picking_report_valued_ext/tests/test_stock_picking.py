@@ -8,37 +8,44 @@ from odoo.tests import common, tagged
 class TestStockPicking(common.TransactionCase):
     def setUp(self):
         super().setUp()
-        self.partner_delta_id = self.env.ref(
-            'base.res_partner_4')
-        product_01 = self.env['product.product'].create({
-            'name': 'product 01',
-            'type': 'product',
-        })
-        product_02 = self.env['product.product'].create({
-            'name': 'product 02',
-            'type': 'product',
-        })
-        self.sale_order_01 = self.env['sale.order'].create({
-            'partner_id': self.partner_delta_id.id,
-            'order_line': [
-                (0, 0, {
-                    'name': product_01.name,
-                    'product_id': product_01.id,
-                    'product_uom_qty': 1,
-                    'product_uom': product_01.uom_po_id.id,
-                    'price_unit': 100,
-                    'is_delivery': True,
-                }),
-                (0, 0, {
-                    'name': product_02.name,
-                    'product_id': product_02.id,
-                    'product_uom_qty': 1,
-                    'product_uom': product_02.uom_po_id.id,
-                    'price_unit': 200,
-                    'is_delivery': False,
-                })
-            ],
-        })
+        self.partner_delta_id = self.env.ref("base.res_partner_4")
+        product_01 = self.env["product.product"].create(
+            {"name": "product 01", "type": "product"}
+        )
+        product_02 = self.env["product.product"].create(
+            {"name": "product 02", "type": "product"}
+        )
+        self.sale_order_01 = self.env["sale.order"].create(
+            {
+                "partner_id": self.partner_delta_id.id,
+                "order_line": [
+                    (
+                        0,
+                        0,
+                        {
+                            "name": product_01.name,
+                            "product_id": product_01.id,
+                            "product_uom_qty": 1,
+                            "product_uom": product_01.uom_po_id.id,
+                            "price_unit": 100,
+                            "is_delivery": True,
+                        },
+                    ),
+                    (
+                        0,
+                        0,
+                        {
+                            "name": product_02.name,
+                            "product_id": product_02.id,
+                            "product_uom_qty": 1,
+                            "product_uom": product_02.uom_po_id.id,
+                            "price_unit": 200,
+                            "is_delivery": False,
+                        },
+                    ),
+                ],
+            }
+        )
         self.sale_order_01.action_confirm()
 
     def test_compute_delivery_price(self):

@@ -8,7 +8,11 @@
     "author": "Quartile Limited",
     "category": "Warehouse Management",
     "license": "AGPL-3",
-    "depends": ["stock_picking_comment_template", "stock_picking_report_valued", 'delivery'],
+    "depends": [
+        "stock_picking_comment_template",
+        "stock_picking_report_valued",
+        "delivery",
+    ],
     "data": ["report/stock_picking_report_valued.xml", "views/stock_picking_views.xml"],
     "installable": True,
 }
