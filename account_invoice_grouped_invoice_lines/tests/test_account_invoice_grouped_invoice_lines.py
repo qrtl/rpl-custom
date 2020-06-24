@@ -128,6 +128,6 @@ class TestAccountInvoceGroupedInvoiceLines(common.TransactionCase):
             }
         )
         grouped_lines2 = invoice2.report_grouped_invoice_lines()
-        self.assertEquals(grouped_lines2[0]["quantity"], 7.0)
-        self.assertEquals(grouped_lines2[0]["price_unit"], 100)
-        self.assertEquals(grouped_lines2[0]["discount"], 10.0)
+        self.assertEquals(grouped_lines2[1]["quantity"], 7.0)
+        self.assertEquals(grouped_lines2[1]["price_unit"], 100)
+        self.assertEquals(grouped_lines2[1]["discount"], 10.0)
