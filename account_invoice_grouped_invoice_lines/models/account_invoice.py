@@ -22,7 +22,7 @@ class AccountInvoice(models.Model):
             line_recs = list(group)
             group_invoice_lines.append(
                 {
-                    "product": line_recs[0].name,
+                    "name": line_recs[0].name,
                     "price_unit": line_recs[0].price_unit,
                     "discount": line_recs[0].discount,
                     "quantity": sum(rec.quantity for rec in line_recs),
