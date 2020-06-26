@@ -31,7 +31,7 @@ class TestAccountInvoceGroupedInvoiceLines(common.TransactionCase):
                     "quantity": 1,
                     "uom_id": self.product1.uom_id.id,
                     "price_unit": 100,
-                    "account_id": self.account.id,
+                    "account_id": self.customer.property_account_receivable_id.id,
                 },
             ),
             (
@@ -43,7 +43,7 @@ class TestAccountInvoceGroupedInvoiceLines(common.TransactionCase):
                     "quantity": 2,
                     "uom_id": self.product1.uom_id.id,
                     "price_unit": 100,
-                    "account_id": self.account.id,
+                    "account_id": self.customer.property_account_receivable_id.id,
                 },
             ),
             (
@@ -55,7 +55,7 @@ class TestAccountInvoceGroupedInvoiceLines(common.TransactionCase):
                     "quantity": 3,
                     "uom_id": self.product2.uom_id.id,
                     "price_unit": 100,
-                    "account_id": self.account.id,
+                    "account_id": self.customer.property_account_receivable_id.id,
                 },
             ),
         ]
@@ -67,12 +67,17 @@ class TestAccountInvoceGroupedInvoiceLines(common.TransactionCase):
                 "invoice_line_ids": invoice_lines1,
                 "origin": "Unit test",
                 "journal_id": self.journal.id,
-                "account_id": self.account.id,
+                "account_id": self.customer.property_account_receivable_id.id,
             }
         )
         grouped_lines1 = invoice1.report_grouped_invoice_lines()
-        self.assertEquals(grouped_lines1[0]["quantity"], 3.0)
-        self.assertEquals(grouped_lines1[0]["price_unit"], 100)
+        for line in grouped_lines1:
+            if line['product'] == self.product1:
+                self.assertEquals(line["quantity"], 3.0)
+                self.assertEquals(line["price_unit"], 100)
+            if line['product'] == self.product1:
+                self.assertEquals(line["quantity"], 3.0)
+                self.assertEquals(line["price_unit"], 100)
 
     def test_group_invoice_lines_with_discount(self):
         invoice_lines2 = [
@@ -86,7 +91,7 @@ class TestAccountInvoceGroupedInvoiceLines(common.TransactionCase):
                     "uom_id": self.product1.uom_id.id,
                     "discount": "10.0",
                     "price_unit": 100,
-                    "account_id": self.account.id,
+                    "account_id": self.customer.property_account_receivable_id.id,
                 },
             ),
             (
@@ -99,7 +104,7 @@ class TestAccountInvoceGroupedInvoiceLines(common.TransactionCase):
                     "uom_id": self.product1.uom_id.id,
                     "discount": "10.0",
                     "price_unit": 100,
-                    "account_id": self.account.id,
+                    "account_id": self.customer.property_account_receivable_id.id,
                 },
             ),
             (
@@ -112,7 +117,7 @@ class TestAccountInvoceGroupedInvoiceLines(common.TransactionCase):
                     "uom_id": self.product1.uom_id.id,
                     "discount": "0",
                     "price_unit": 100,
-                    "account_id": self.account.id,
+                    "account_id": self.customer.property_account_receivable_id.id,
                 },
             ),
         ]
@@ -124,10 +129,13 @@ class TestAccountInvoceGroupedInvoiceLines(common.TransactionCase):
                 "invoice_line_ids": invoice_lines2,
                 "origin": "Unit test",
                 "journal_id": self.journal.id,
-                "account_id": self.account.id,
+                "account_id": self.customer.property_account_receivable_id.id,
             }
         )
         grouped_lines2 = invoice2.report_grouped_invoice_lines()
-        self.assertEquals(grouped_lines2[1]["quantity"], 7.0)
-        self.assertEquals(grouped_lines2[1]["price_unit"], 100)
-        self.assertEquals(grouped_lines2[1]["discount"], 10.0)
+        for line in grouped_lines2:
+            if line['price_unit'] == 90.0:
+                self.assertEquals(line["quantity"], 7.0)
+            else:
+                self.assertEquals(line["quantity"], 3.0)
+                self.assertEquals(line["price_unit"], 100)
