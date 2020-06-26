@@ -17,7 +17,6 @@ class AccountInvoice(models.Model):
             lambda l: l.price_subtotal > 0.0
         ).sorted(
             key=lambda x: (
-                x.product_id.default_code,
                 x.product_id.name,
                 x.name,
                 x.price_unit,
@@ -30,9 +29,10 @@ class AccountInvoice(models.Model):
             line_recs = list(group)
             group_invoice_lines.append(
                 {
+                    "name": line_recs[0].name,
                     "product": line_recs[0].product_id,
-                    "price_unit": line_recs[0].price_unit
-                    * (1 - (line_recs[0].discount or 0.0) / 100),
+                    "price_unit": line_recs[0].price_unit,
+                    "discount": line_recs[0].discount or 0.0,
                     "quantity": sum(rec.quantity for rec in line_recs),
                     "price_subtotal": sum(rec.price_subtotal for rec in line_recs),
                 }

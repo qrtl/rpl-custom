@@ -31,7 +31,7 @@ class TestAccountInvoceGroupedInvoiceLines(common.TransactionCase):
                     "quantity": 1,
                     "uom_id": self.product1.uom_id.id,
                     "price_unit": 100,
-                    "account_id": self.customer.property_account_receivable_id.id,
+                    "account_id": self.account.id,
                 },
             ),
             (
@@ -43,7 +43,7 @@ class TestAccountInvoceGroupedInvoiceLines(common.TransactionCase):
                     "quantity": 2,
                     "uom_id": self.product1.uom_id.id,
                     "price_unit": 100,
-                    "account_id": self.customer.property_account_receivable_id.id,
+                    "account_id": self.account.id,
                 },
             ),
             (
@@ -55,7 +55,7 @@ class TestAccountInvoceGroupedInvoiceLines(common.TransactionCase):
                     "quantity": 3,
                     "uom_id": self.product2.uom_id.id,
                     "price_unit": 100,
-                    "account_id": self.customer.property_account_receivable_id.id,
+                    "account_id": self.account.id,
                 },
             ),
         ]
@@ -91,7 +91,7 @@ class TestAccountInvoceGroupedInvoiceLines(common.TransactionCase):
                     "uom_id": self.product1.uom_id.id,
                     "discount": "10.0",
                     "price_unit": 100,
-                    "account_id": self.customer.property_account_receivable_id.id,
+                    "account_id": self.account.id,
                 },
             ),
             (
@@ -104,7 +104,7 @@ class TestAccountInvoceGroupedInvoiceLines(common.TransactionCase):
                     "uom_id": self.product1.uom_id.id,
                     "discount": "10.0",
                     "price_unit": 100,
-                    "account_id": self.customer.property_account_receivable_id.id,
+                    "account_id": self.account.id,
                 },
             ),
             (
@@ -117,7 +117,7 @@ class TestAccountInvoceGroupedInvoiceLines(common.TransactionCase):
                     "uom_id": self.product1.uom_id.id,
                     "discount": "0",
                     "price_unit": 100,
-                    "account_id": self.customer.property_account_receivable_id.id,
+                    "account_id": self.account.id,
                 },
             ),
         ]
