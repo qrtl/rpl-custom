@@ -15,7 +15,7 @@ class AccountInvoice(models.Model):
         group_invoice_lines = []
         invoice_lines = self.invoice_line_ids.filtered(
             lambda l: l.price_subtotal > 0.0
-        ).sorted(key=lambda x: (x.product_id.name, x.name, x.price_unit, x.discount))
+        ).sorted(key=lambda x: (x.product_id.default_code, x.product_id.name, x.name, x.price_unit, x.discount))
         for _key, group in groupby(
             invoice_lines, lambda x: (x.product_id, x.price_unit, x.discount)
         ):
