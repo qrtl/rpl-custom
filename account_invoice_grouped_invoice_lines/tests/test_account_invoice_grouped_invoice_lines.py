@@ -72,10 +72,10 @@ class TestAccountInvoceGroupedInvoiceLines(common.TransactionCase):
         )
         grouped_lines1 = invoice1.report_grouped_invoice_lines()
         for line in grouped_lines1:
-            if line['product'] == self.product1:
+            if line["product"] == self.product1:
                 self.assertEquals(line["quantity"], 3.0)
                 self.assertEquals(line["price_unit"], 100)
-            if line['product'] == self.product1:
+            if line["product"] == self.product1:
                 self.assertEquals(line["quantity"], 3.0)
                 self.assertEquals(line["price_unit"], 100)
 
@@ -134,7 +134,7 @@ class TestAccountInvoceGroupedInvoiceLines(common.TransactionCase):
         )
         grouped_lines2 = invoice2.report_grouped_invoice_lines()
         for line in grouped_lines2:
-            if line['price_unit'] == 90.0:
+            if line["price_unit"] == 90.0:
                 self.assertEquals(line["quantity"], 7.0)
             else:
                 self.assertEquals(line["quantity"], 3.0)
