@@ -13,7 +13,6 @@ class AccountInvoice(models.Model):
     def report_grouped_invoice_lines(self):
         self.ensure_one()
         grouped_lines = []
-
         # Firstly process invoice lines with product.
         lines = self.invoice_line_ids.filtered(lambda l: l.product_id).sorted(
             key=lambda x: (x.product_id.display_name, x.name, x.price_unit, x.discount)
@@ -22,7 +21,6 @@ class AccountInvoice(models.Model):
             lines, lambda x: (x.product_id.display_name, x.price_unit, x.discount)
         ):
             grouped_lines = self._update_grouped_lines(grouped_lines, group)
-
         # Secondly process invoice lines with no product.
         # display_type "line_note" and "line_section" should be excluded.
         lines = self.invoice_line_ids.filtered(
