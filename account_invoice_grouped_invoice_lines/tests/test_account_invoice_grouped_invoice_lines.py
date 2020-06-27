@@ -19,9 +19,19 @@ class TestAccountInvoceGroupedInvoiceLines(common.TransactionCase):
         self.journal = self.env["account.journal"].create(
             {"name": "Sale journal - Test", "code": "SJ-TT", "type": "sale"}
         )
+        self.invoice = self.env["account.invoice"].create(
+            {
+                "partner_id": self.customer.id,
+                "type": "out_invoice",
+                "date_invoice": fields.Date.today(),
+                "origin": "Unit test",
+                "journal_id": self.journal.id,
+                "account_id": self.customer.property_account_receivable_id.id,
+            }
+        )
 
     def test_group_invoice_lines(self):
-        invoice_lines1 = [
+        lines = [
             (
                 0,
                 False,
@@ -59,19 +69,9 @@ class TestAccountInvoceGroupedInvoiceLines(common.TransactionCase):
                 },
             ),
         ]
-        invoice1 = self.env["account.invoice"].create(
-            {
-                "partner_id": self.customer.id,
-                "type": "out_invoice",
-                "date_invoice": fields.Date.today(),
-                "invoice_line_ids": invoice_lines1,
-                "origin": "Unit test",
-                "journal_id": self.journal.id,
-                "account_id": self.customer.property_account_receivable_id.id,
-            }
-        )
-        grouped_lines1 = invoice1.report_grouped_invoice_lines()
-        for line in grouped_lines1:
+        self.invoice.write({"invoice_line_ids": lines})
+        grouped_lines = self.invoice.report_grouped_invoice_lines()
+        for line in grouped_lines:
             if line["product"] == self.product1:
                 self.assertEquals(line["quantity"], 3.0)
                 self.assertEquals(line["price_unit"], 100)
@@ -80,7 +80,7 @@ class TestAccountInvoceGroupedInvoiceLines(common.TransactionCase):
                 self.assertEquals(line["price_unit"], 100)
 
     def test_group_invoice_lines_with_discount(self):
-        invoice_lines2 = [
+        lines = [
             (
                 0,
                 False,
@@ -121,20 +121,64 @@ class TestAccountInvoceGroupedInvoiceLines(common.TransactionCase):
                 },
             ),
         ]
-        invoice2 = self.env["account.invoice"].create(
-            {
-                "partner_id": self.customer.id,
-                "type": "out_invoice",
-                "date_invoice": fields.Date.today(),
-                "invoice_line_ids": invoice_lines2,
-                "origin": "Unit test",
-                "journal_id": self.journal.id,
-                "account_id": self.customer.property_account_receivable_id.id,
-            }
-        )
-        grouped_lines2 = invoice2.report_grouped_invoice_lines()
-        for line in grouped_lines2:
+        self.invoice.write({"invoice_line_ids": lines})
+        grouped_lines = self.invoice.report_grouped_invoice_lines()
+        for line in grouped_lines:
             if line["discount"]:
                 self.assertEquals(line["quantity"], 7.0)
             else:
                 self.assertEquals(line["quantity"], 3.0)
+
+    def test_group_invoice_lines_with_no_product(self):
+        lines = [
+            (
+                0,
+                False,
+                {
+                    "name": "AAA",
+                    "quantity": 2,
+                    "price_unit": 100,
+                    "account_id": self.account.id,
+                },
+            ),
+            (
+                0,
+                False,
+                {
+                    "name": "AAA",
+                    "quantity": 3,
+                    "price_unit": 100,
+                    "account_id": self.account.id,
+                },
+            ),
+            (
+                0,
+                False,
+                {
+                    "name": "BBB",
+                    "quantity": 4,
+                    "price_unit": 100,
+                    "account_id": self.account.id,
+                },
+            ),
+            (
+                0,
+                False,
+                {
+                    "name": self.product1.display_name,
+                    "product_id": self.product1.id,
+                    "quantity": 8,
+                    "uom_id": self.product1.uom_id.id,
+                    "price_unit": 100,
+                    "account_id": self.account.id,
+                },
+            ),
+        ]
+        self.invoice.write({"invoice_line_ids": lines})
+        grouped_lines = self.invoice.report_grouped_invoice_lines()
+        self.assertEquals(len(grouped_lines), 3)
+        for line in grouped_lines:
+            if line["name"] == "AAA":
+                self.assertEquals(line["quantity"], 5.0)
+            elif line["name"] == "BBB":
+                self.assertEquals(line["quantity"], 4.0)
