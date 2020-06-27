@@ -13,16 +13,10 @@ class AccountInvoice(models.Model):
     def report_grouped_invoice_lines(self):
         self.ensure_one()
         group_invoice_lines = []
+        # display_type "line_note" and "line_section" are excluded
         invoice_lines = self.invoice_line_ids.filtered(
-            lambda l: l.price_subtotal > 0.0
-        ).sorted(
-            key=lambda x: (
-                x.product_id.name,
-                x.name,
-                x.price_unit,
-                x.discount,
-            )
-        )
+            lambda l: not l.display_type
+        ).sorted(key=lambda x: (x.product_id.name, x.name, x.price_unit, x.discount,))
         for _key, group in groupby(
             invoice_lines, lambda x: (x.product_id, x.price_unit, x.discount)
         ):
