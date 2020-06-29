@@ -3,6 +3,7 @@
 
 from odoo import http
 from odoo.http import request
+
 from odoo.addons.website_sale.controllers.main import WebsiteSale
 
 
@@ -10,7 +11,9 @@ class WebsiteSale(WebsiteSale):
 
     # Overwrite the original checkout
     # i.e. https://github.com/odoo/odoo/blob/5957aa317e8bb5b0041a1b5d8256cb3ff7d9fe42/addons/website_sale/controllers/main.py#L717-L742 # noqa
-    @http.route(['/shop/checkout'], type='http', auth="public", website=True, sitemap=False)
+    @http.route(
+        ["/shop/checkout"], type="http", auth="public", website=True, sitemap=False
+    )
     def checkout(self, **post):
         order = request.website.sale_get_order()
         redirection = self.checkout_redirection(order)
@@ -22,7 +25,9 @@ class WebsiteSale(WebsiteSale):
 
         for f in self._get_mandatory_billing_fields():
             if not order.partner_id[f]:
-                return request.redirect("/shop/address?partner_id=%d" % order.partner_id.id)
+                return request.redirect(
+                    "/shop/address?partner_id=%d" % order.partner_id.id
+                )
 
         values = self.checkout_values(**post)
 
