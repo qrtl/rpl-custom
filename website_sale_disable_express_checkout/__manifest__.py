@@ -3,11 +3,11 @@
 {
     "name": "Disable Website Express Checkout",
     "category": "Website",
-    "version": "12.0.1.1.0",
+    "version": "12.0.1.2.0",
     "author": "Quartile Limited",
     "website": "https://www.quartile.co/",
     "license": "LGPL-3",
     "depends": ["website_sale"],
-    "data": [],
+    "data": ["views/website_sale_template.xml"],
     "installable": True,
 }
