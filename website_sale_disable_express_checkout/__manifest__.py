@@ -8,8 +8,6 @@
     "website": "https://www.quartile.co/",
     "license": "LGPL-3",
     "depends": ["website_sale"],
-    "data": [
-        "views/website_sale_disable_checkout_express_checkout_template.xml"
-    ],
+    "data": ["views/website_sale_disable_checkout_express_checkout_template.xml"],
     "installable": True,
 }

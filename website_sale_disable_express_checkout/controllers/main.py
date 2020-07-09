@@ -37,7 +37,6 @@ class WebsiteSale(WebsiteSale):
         # Modified by QTL <<<
 
         values.update({"website_sale_order": order})
-        print("Checking end")
         # Avoid useless rendering if called in ajax
         if post.get("xhr"):
             return "ok"
