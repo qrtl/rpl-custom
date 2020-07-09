@@ -1,6 +1,7 @@
-import odoo.tests
+# Copyright 2020 Quartile Limited
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
-from odoo.addons.website_sale_disable_express_checkout.controllers.main import WebsiteSale
+import odoo.tests
 
 
 @odoo.tests.tagged('post_install', '-at_install')
@@ -11,13 +12,13 @@ class TestUi(odoo.tests.HttpCase):
 
     def test_disable_express_checkout(self):
         self.website = self.env['website'].browse(1)
-        self.country_id = self.env['res.country'].search([], limit=1).id
-        self.WebsiteSaleController = WebsiteSale()
         self.partner_id = self.env.ref('base.partner_admin')
         self._create_so(self.partner_id.id)
         self.phantom_js(
             "/",
-            "odoo.__DEBUG__.services['web_tour.tour'].run('website_sale_disable_express_checkout')", "odoo.__DEBUG__.services['web_tour.tour'].tours.website_sale_disable_express_checkout.ready", login="admin")
+            "odoo.__DEBUG__.services['web_tour.tour'].run('website_sale_disable_express_checkout')",
+            "odoo.__DEBUG__.services['web_tour.tour'].tours.website_sale_disable_express_checkout.ready",
+            login="admin")
 
     def _create_so(self, partner_id=None):
         return self.env['sale.order'].create({

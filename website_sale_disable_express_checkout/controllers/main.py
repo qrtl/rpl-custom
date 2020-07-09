@@ -15,7 +15,6 @@ class WebsiteSale(WebsiteSale):
         ["/shop/checkout"], type="http", auth="public", website=True, sitemap=False
     )
     def checkout(self, **post):
-        print("Callllllllllllllllllllllllllllll")
         order = request.website.sale_get_order()
         redirection = self.checkout_redirection(order)
         if redirection:
@@ -31,7 +30,6 @@ class WebsiteSale(WebsiteSale):
                 )
 
         values = self.checkout_values(**post)
-        print("Skipppppppppppppppp")
         # Modified by QTL >>>
         # Disable express checkout
         # if post.get('express'):
@@ -43,5 +41,4 @@ class WebsiteSale(WebsiteSale):
         # Avoid useless rendering if called in ajax
         if post.get("xhr"):
             return "ok"
-        print("Enddddddddddddddddddddddddddddddddddd")
         return request.render("website_sale.checkout", values)
