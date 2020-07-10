@@ -14,14 +14,13 @@ class TestUi(odoo.tests.HttpCase):
             "/",
             "odoo.__DEBUG__.services["
             "'web_tour.tour'].run("
-            "'website_sale_comment_tour_enable_extra_step_settings')",
+            "'enable_extra_step_setting')",
             "odoo.__DEBUG__.services["
-            "'web_tour.tour'].tours."
-            "website_sale_comment_tour_enable_extra_step_settings.ready",
+            "'web_tour.tour'].tours.enable_extra_step_setting.ready",
             login="admin",
         )
 
-        # Checking the website sale comment flow
+        # Checking the website comment flow
         self.phantom_js(
             "/",
             "odoo.__DEBUG__.services["

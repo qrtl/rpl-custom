@@ -1,10 +1,10 @@
-odoo.define("website_sale_comment_tour_sale.tour_shop_customize", function(require) {
+odoo.define("website_sale_comment_tour_sale.tour_test_extra_step", function(require) {
     "use strict";
 
     var tour = require("web_tour.tour");
     var base = require("web_editor.base");
     tour.register(
-        "website_sale_comment_tour_enable_extra_step_settings",
+        "enable_extra_step_setting",
         {
             test: true,
             url: "/shop/cart",
