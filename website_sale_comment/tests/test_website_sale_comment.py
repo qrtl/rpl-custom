@@ -9,6 +9,19 @@ class TestUi(odoo.tests.HttpCase):
         super(TestUi, self).setUp()
 
     def test_website_sale_comment(self):
+        # Enable Extra Step option from Customize Menu
+        self.phantom_js(
+            "/",
+            "odoo.__DEBUG__.services["
+            "'web_tour.tour'].run("
+            "'website_sale_comment_tour_enable_extra_step_settings')",
+            "odoo.__DEBUG__.services["
+            "'web_tour.tour'].tours."
+            "website_sale_comment_tour_enable_extra_step_settings.ready",
+            login="admin",
+        )
+
+        # Checking the website sale comment flow
         self.phantom_js(
             "/",
             "odoo.__DEBUG__.services["

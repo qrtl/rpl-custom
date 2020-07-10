@@ -3,6 +3,25 @@ odoo.define("website_sale_comment_tour_sale.tour_shop_customize", function(requi
 
     var tour = require("web_tour.tour");
     var base = require("web_editor.base");
+    tour.register(
+        "website_sale_comment_tour_enable_extra_step_settings",
+        {
+            test: true,
+            url: "/shop/cart",
+            wait_for: base.ready(),
+        },
+        [
+            {
+                content: "open customize menu",
+                trigger: "#customize-menu > a",
+            },
+            {
+                content: "click on 'Product Attribute's Filters'",
+                trigger: "#customize-menu a:contains(Extra Step Option)",
+                run: "click",
+            },
+        ]
+    );
 
     tour.register(
         "website_sale_comment_tour_sale",
@@ -44,41 +63,6 @@ odoo.define("website_sale_comment_tour_sale.tour_shop_customize", function(requi
             {
                 content: "click in modal on 'Proceed to checkout' button",
                 trigger: 'button:contains("Proceed to Checkout")',
-            },
-            {
-                content: "add suggested",
-                extra_trigger:
-                    '#wrap:not(:has(#cart_products:contains("Storage Box")))',
-                trigger:
-                    '.oe_cart:has(tr:contains("Storage Box")) a:contains("Add to Cart")',
-            },
-            {
-                content: "add one more",
-                extra_trigger: '#cart_products tr:contains("Storage Box")',
-                trigger: '#cart_products tr:contains("Steel") a.js_add_cart_json:eq(1)',
-            },
-            {
-                content: "remove Storage Box",
-                extra_trigger:
-                    '#cart_products tr:contains("Steel") input.js_quantity:propValue(2)',
-                trigger:
-                    '#cart_products tr:contains("Storage Box") a.js_add_cart_json:first',
-            },
-            {
-                content: "set one",
-                extra_trigger:
-                    '#wrap:not(:has(#cart_products tr:contains("Storage Box")))',
-                trigger: "#cart_products input.js_quantity",
-                run: "text 1",
-            },
-
-            {
-                content: "open customize menu",
-                trigger: "#customize-menu > a",
-            },
-            {
-                content: "click on 'Product Attribute's Filters'",
-                trigger: "#customize-menu a:contains(Extra Step Option)",
             },
             {
                 content: "go to checkout",
