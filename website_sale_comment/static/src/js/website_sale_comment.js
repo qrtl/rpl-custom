@@ -16,7 +16,7 @@ odoo.define("website_sale_comment_tour_sale.tour_test_extra_step", function(requ
                 trigger: "#customize-menu > a",
             },
             {
-                content: "click on 'Product Attribute's Filters'",
+                content: "click on Extra Step Option",
                 trigger: "#customize-menu a:contains(Extra Step Option)",
                 run: "click",
             },
