@@ -20,12 +20,18 @@
         id="valued_report_picking"
         inherit_id="stock_picking_report_valued.valued_report_picking"
     >
-        <xpath expr="//span[@t-field='o.amount_untaxed']/../../../../thead//th[last()]" position="before">
+        <xpath
+            expr="//span[@t-field='o.amount_untaxed']/../../../../thead//th[last()]"
+            position="before"
+        >
             <th class="text-right" t-if="o.delivery_price">
                 <strong>Delivery Price (Tax Included)</strong>
             </th>
         </xpath>
-        <xpath expr="//span[@t-field='o.amount_untaxed']/../../../../tbody//td[last()]" position="before">
+        <xpath
+            expr="//span[@t-field='o.amount_untaxed']/../../../../tbody//td[last()]"
+            position="before"
+        >
             <td class="text-right" t-if="o.delivery_price">
                 <span t-field="o.delivery_price" />
             </td>
