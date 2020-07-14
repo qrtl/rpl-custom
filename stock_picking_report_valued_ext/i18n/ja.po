@@ -66,3 +66,15 @@ msgstr "<strong>金額</strong>"
 msgid "<strong>Unit Price</strong>"
 msgstr "<strong>単価</strong>"
 
+#. module: stock
+#: model_terms:ir.ui.view,arch_db:stock.report_delivery_document
+#: model_terms:ir.ui.view,arch_db:stock.report_picking
+msgid "<strong>Order</strong>"
+msgstr "<strong>オーダー</strong>"
+
+#. module: delivery
+#: model_terms:ir.ui.view,arch_db:delivery.report_delivery_document2
+#: model_terms:ir.ui.view,arch_db:delivery.report_shipping2
+msgid "<strong>Carrier</strong>"
+msgstr "<strong>配送業者</strong>"
+

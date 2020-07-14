@@ -9,28 +9,26 @@
                 <span t-field="o.name" />
             </h4>
         </xpath>
+        <xpath expr="//span[@t-field='o.date_done']" position="attributes">
+            <attribute name="t-options">{"widget": "date"}</attribute>
+        </xpath>
+        <xpath expr="//span[@t-field='o.scheduled_date']" position="attributes">
+            <attribute name="t-options">{"widget": "date"}</attribute>
+        </xpath>
     </template>
     <template
         id="valued_report_picking"
         inherit_id="stock_picking_report_valued.valued_report_picking"
     >
-        <xpath expr="//span[@t-field='o.amount_untaxed']/../../../.." position="before">
-            <table class="table table-condensed mt32">
-                <thead>
-                    <tr>
-                        <th class="text-right">
-                            <strong>Delivery Price (Tax Included)</strong>
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="text-right">
-                            <span t-field="o.delivery_price" />
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+        <xpath expr="//span[@t-field='o.amount_untaxed']/../../../../thead//th[last()]" position="before">
+            <th class="text-right" t-if="o.delivery_price">
+                <strong>Delivery Price (Tax Included)</strong>
+            </th>
+        </xpath>
+        <xpath expr="//span[@t-field='o.amount_untaxed']/../../../../tbody//td[last()]" position="before">
+            <td class="text-right" t-if="o.delivery_price">
+                <span t-field="o.delivery_price" />
+            </td>
         </xpath>
     </template>
 </odoo>
