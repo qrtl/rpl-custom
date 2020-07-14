@@ -81,8 +81,11 @@ class TestPacking(SavepointCase):
         self.assertFalse(self.picking._get_moves_for_box_calc())
 
     def test_02_get_min_box(self):
-        # The largest among the min boxes should be proposed.
+        # With just a move line with a product with no min box setting.
         self.move1.write({"picking_id": self.picking.id, "product_uom_qty": 1})
+        min_box = self.picking._get_min_box(self.picking.move_lines)
+        self.assertFalse(min_box)
+        # With a move line with a product with min box setting.
         self.move3.write({"picking_id": self.picking.id, "product_uom_qty": 1})
         min_box = self.picking._get_min_box(self.picking.move_lines)
         self.assertEqual(min_box, self.box_d200)
