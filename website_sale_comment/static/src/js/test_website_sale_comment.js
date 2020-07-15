@@ -70,6 +70,24 @@ odoo.define("website_sale_comment_tour_sale.tour_test_extra_step", function(requ
                 run: "click",
             },
             {
+                trigger: "input[name='street']",
+                run: "text Street 1",
+            },
+            {
+                trigger: "input[name='city']",
+                run: "text City",
+            },
+            {
+                content: "go to Next",
+                trigger: "a:contains(Next)",
+                run: "click",
+            },
+            {
+                content: "go to checkout",
+                trigger: "a:contains(Confirm)",
+                run: "click",
+            },
+            {
                 trigger: "textarea[name='Give us your feedback']",
                 run: "click",
             },
@@ -78,7 +96,6 @@ odoo.define("website_sale_comment_tour_sale.tour_test_extra_step", function(requ
                 trigger: "textarea[name='Give us your feedback']",
                 run: "text Test Feedback Comment",
             },
-
             {
                 trigger: ".o_website_form_send",
                 run: "click",
