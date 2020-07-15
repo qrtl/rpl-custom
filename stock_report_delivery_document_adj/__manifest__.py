@@ -7,10 +7,7 @@
     "author": "Quartile Limited",
     "category": "Warehouse Management",
     "license": "LGPL-3",
-    "depends": [
-        "delivery",
-        "stock",
-    ],
+    "depends": ["delivery", "stock"],
     "data": ["report/report_deliveryslip.xml"],
     "installable": True,
 }
