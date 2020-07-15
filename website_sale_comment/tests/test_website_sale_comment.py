@@ -20,6 +20,7 @@ class TestUi(odoo.tests.HttpCase):
             login="admin",
         )
 
+
         # Checking the website comment flow
         self.phantom_js(
             "/",
@@ -28,4 +29,14 @@ class TestUi(odoo.tests.HttpCase):
             "odoo.__DEBUG__.services["
             "'web_tour.tour'].tours.website_sale_comment_tour_sale.ready",
             login="admin",
+        )
+        partner_id = self.env.ref('base.partner_admin').id
+        sale_order = self.env['sale.order'].search([
+            ('partner_id', '=', partner_id)], limit=1)
+
+        # Compare the SaleOrder Note2 Value which is create by tour test-case
+        self.assertEqual(
+            sale_order.note2,
+            '<p>Customer Remarks: Test Feedback Comment</p>',
+            'Sale Order Note2 does not Match with the value.'
         )

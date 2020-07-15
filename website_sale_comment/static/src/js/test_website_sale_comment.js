@@ -70,11 +70,6 @@ odoo.define("website_sale_comment_tour_sale.tour_test_extra_step", function(requ
                 run: "click",
             },
             {
-                content: "go to checkout",
-                trigger: "a:contains(Confirm)",
-                run: "click",
-            },
-            {
                 trigger: "textarea[name='Give us your feedback']",
                 run: "click",
             },
