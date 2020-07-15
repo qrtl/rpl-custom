@@ -30,6 +30,7 @@ class WebsiteSale(WebsiteSale):
                 )
 
         values = self.checkout_values(**post)
+
         # Modified by QTL >>>
         # Disable express checkout
         # if post.get('express'):
@@ -37,6 +38,7 @@ class WebsiteSale(WebsiteSale):
         # Modified by QTL <<<
 
         values.update({"website_sale_order": order})
+
         # Avoid useless rendering if called in ajax
         if post.get("xhr"):
             return "ok"
