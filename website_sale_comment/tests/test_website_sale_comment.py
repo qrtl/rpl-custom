@@ -31,6 +31,7 @@ class TestUi(odoo.tests.HttpCase):
             "'web_tour.tour'].tours.website_sale_comment_tour_sale.ready",
             login="portal",
         )
+
         partner_id = self.env.ref("base.partner_demo_portal").id
         sale_order = self.env["sale.order"].search(
             [("partner_id", "=", partner_id)], limit=1
