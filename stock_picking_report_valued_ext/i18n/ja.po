@@ -22,11 +22,6 @@ msgid "<strong>Delivery Price (Tax Included)</strong>"
 msgstr "<strong>配送料(税込)</strong>"
 
 #. module: stock_picking_report_valued_ext
-#: model_terms:ir.ui.view,arch_db:stock_picking_report_valued_ext.report_delivery_document
-msgid "Delivery Note"
-msgstr "納品書"
-
-#. module: stock_picking_report_valued_ext
 #: model:ir.model.fields,field_description:stock_picking_report_valued_ext.field_stock_picking__delivery_price
 msgid "Delivery Price (Tax Included)"
 msgstr "配送料(税込)"
@@ -65,16 +60,4 @@ msgstr "<strong>金額</strong>"
 #: model_terms:ir.ui.view,arch_db:stock_picking_report_valued.valued_report_picking
 msgid "<strong>Unit Price</strong>"
 msgstr "<strong>単価</strong>"
-
-#. module: stock
-#: model_terms:ir.ui.view,arch_db:stock.report_delivery_document
-#: model_terms:ir.ui.view,arch_db:stock.report_picking
-msgid "<strong>Order</strong>"
-msgstr "<strong>オーダー</strong>"
-
-#. module: delivery
-#: model_terms:ir.ui.view,arch_db:delivery.report_delivery_document2
-#: model_terms:ir.ui.view,arch_db:delivery.report_shipping2
-msgid "<strong>Carrier</strong>"
-msgstr "<strong>配送業者</strong>"
 

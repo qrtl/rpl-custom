@@ -1,21 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-    <template id="report_delivery_document" inherit_id="stock.report_delivery_document">
-        <xpath expr="//h2" position="replace">
-            <h2>
-                Delivery Note
-            </h2>
-            <h4>
-                <span t-field="o.name" />
-            </h4>
-        </xpath>
-        <xpath expr="//span[@t-field='o.date_done']" position="attributes">
-            <attribute name="t-options">{"widget": "date"}</attribute>
-        </xpath>
-        <xpath expr="//span[@t-field='o.scheduled_date']" position="attributes">
-            <attribute name="t-options">{"widget": "date"}</attribute>
-        </xpath>
-    </template>
     <template
         id="valued_report_picking"
         inherit_id="stock_picking_report_valued.valued_report_picking"
