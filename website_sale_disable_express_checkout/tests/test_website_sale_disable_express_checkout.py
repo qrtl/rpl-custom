@@ -11,8 +11,9 @@ class TestUi(odoo.tests.HttpCase):
 
     def test_disable_express_checkout(self):
         self.website = self.env["website"].browse(1)
-        self.partner_id = self.env.ref("base.partner_admin")
-        self._create_so(self.partner_id.id)
+        partner_id = self.env.ref("base.partner_demo_portal")
+        self._create_so(partner_id.id)
+        partner_id.write({"street": "", "city": ""})
         self.phantom_js(
             "/",
             "odoo.__DEBUG__.services["
@@ -20,7 +21,20 @@ class TestUi(odoo.tests.HttpCase):
             "odoo.__DEBUG__.services["
             "'web_tour.tour'"
             "].tours.website_sale_disable_express_checkout.ready",
-            login="admin",
+            login="portal",
+        )
+
+        # Compare the Partner Address values which is
+        # enter through website address page.
+        self.assertEqual(
+            partner_id.street,
+            "Test Street 1",
+            "Partner Address Street field does not match with value.",
+        )
+        self.assertEqual(
+            partner_id.city,
+            "Test City",
+            "Partner Address city field does not match with value.",
         )
 
     def _create_so(self, partner_id=None):

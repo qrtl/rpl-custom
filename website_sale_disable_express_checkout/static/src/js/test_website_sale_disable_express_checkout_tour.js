@@ -17,7 +17,21 @@ odoo.define("website_sale_disable_express_checkout.tour", function(require) {
                 trigger: 'a:contains("Process Checkout")',
             },
             {
-                trigger: 'a:contains("Confirm")',
+                trigger: "input[name='street']",
+                run: "text Test Street 1",
+            },
+            {
+                trigger: "input[name='city']",
+                run: "text Test City",
+            },
+            {
+                content: "go to Next",
+                trigger: "a:contains(Next)",
+                run: "click",
+            },
+            {
+                content: "go to checkout",
+                trigger: "a:contains(Confirm)",
                 run: "click",
             },
             {
