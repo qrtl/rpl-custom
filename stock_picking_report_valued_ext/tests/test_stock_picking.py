@@ -10,12 +10,14 @@ class TestStockPicking(common.TransactionCase):
         super().setUp()
         delivery_product = self.env.ref("delivery.product_product_delivery_normal")
         test_product = self.env.ref("product.product_product_25")
-        tax = self.env['account.tax'].create({
-            'name': 'TAX 15%',
-            'amount_type': 'percent',
-            'type_tax_use': 'sale',
-            'amount': 15.0,
-        })
+        tax = self.env["account.tax"].create(
+            {
+                "name": "TAX 15%",
+                "amount_type": "percent",
+                "type_tax_use": "sale",
+                "amount": 15.0,
+            }
+        )
         self.sale_order = self.env["sale.order"].create(
             {
                 "partner_id": self.env.ref("base.res_partner_4").id,
