@@ -8,8 +8,8 @@ from odoo.tests import common, tagged
 class TestStockPicking(common.TransactionCase):
     def setUp(self):
         super().setUp()
-        delivery_product = self.env.ref('delivery.product_product_delivery_normal')
-        test_product = self.env.ref('product.product_product_25')
+        delivery_product = self.env.ref("delivery.product_product_delivery_normal")
+        test_product = self.env.ref("product.product_product_25")
         self.sale_order = self.env["sale.order"].create(
             {
                 "partner_id": self.env.ref("base.res_partner_4").id,
