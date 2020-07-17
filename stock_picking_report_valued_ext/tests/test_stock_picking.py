@@ -8,56 +8,50 @@ from odoo.tests import common, tagged
 class TestStockPicking(common.TransactionCase):
     def setUp(self):
         super().setUp()
-        self.partner_delta_id = self.env.ref("base.res_partner_4")
-        product_01 = self.env["product.product"].create(
-            {"name": "product 01", "type": "product"}
-        )
-        product_02 = self.env["product.product"].create(
-            {"name": "product 02", "type": "product"}
-        )
-        self.sale_order_01 = self.env["sale.order"].create(
+        delivery_product = self.env.ref('delivery.product_product_delivery_normal')
+        test_product = self.env.ref('product.product_product_25')
+        self.sale_order = self.env["sale.order"].create(
             {
-                "partner_id": self.partner_delta_id.id,
+                "partner_id": self.env.ref("base.res_partner_4").id,
                 "order_line": [
                     (
                         0,
                         0,
                         {
-                            "name": product_01.name,
-                            "product_id": product_01.id,
+                            "name": "Delivery Charge",
+                            "product_id": delivery_product.id,
                             "product_uom_qty": 1,
-                            "product_uom": product_01.uom_po_id.id,
+                            "product_uom": delivery_product.uom_po_id.id,
                             "price_unit": 100,
                             "is_delivery": True,
+                            "tax_id": False,
                         },
                     ),
                     (
                         0,
                         0,
                         {
-                            "name": product_02.name,
-                            "product_id": product_02.id,
+                            "name": test_product.name,
+                            "product_id": test_product.id,
                             "product_uom_qty": 1,
-                            "product_uom": product_02.uom_po_id.id,
+                            "product_uom": test_product.uom_po_id.id,
                             "price_unit": 200,
                             "is_delivery": False,
+                            "tax_id": False,
                         },
                     ),
                 ],
             }
         )
-        self.sale_order_01.action_confirm()
+        self.sale_order.action_confirm()
 
-    def test_compute_delivery_price(self):
+    def test_01_delivery_price(self):
         """This Method evaluate the delivery price from sale order lines"""
+        delivery_price = self.sale_order.picking_ids[0].delivery_price
+        self.assertEqual(delivery_price, 100)
 
-        delivery_price = self.sale_order_01.picking_ids[0].delivery_price
-        self.assertEqual(delivery_price, 115)
-
-    def test_compute_amount_all(self):
-        """This Method evaluate the delivery price
-        should be added in amount total"""
-
-        self.sale_order_01.picking_ids[0].move_lines[0].quantity_done = 1
-        amount_total = self.sale_order_01.picking_ids[0].amount_total
-        self.assertEqual(amount_total, 230)
+    def test_02_amount_total(self):
+        """This Method evaluate the delivery price should be added in amount total"""
+        self.sale_order.picking_ids.action_done()
+        amount_total = self.sale_order.picking_ids[0].amount_total
+        self.assertEqual(amount_total, 300)
