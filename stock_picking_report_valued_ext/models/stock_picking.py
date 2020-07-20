@@ -12,6 +12,7 @@ class StockPicking(models.Model):
         compute="_compute_delivery_price",
         store=True,
         readonly=False,
+        help="Store the delivery price from sale order, can be adjusted manually.",
     )
 
     @api.multi
