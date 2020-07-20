@@ -61,3 +61,8 @@ msgstr "<strong>金額</strong>"
 msgid "<strong>Unit Price</strong>"
 msgstr "<strong>単価</strong>"
 
+#. module: stock_picking_report_valued_ext
+#: model:ir.model.fields,help:stock_picking_report_valued_ext.field_stock_picking__delivery_price
+msgid "Store the delivery price from sale order, can be adjusted manually."
+msgstr "デフォルトで販売オーダの配送料となりますが、マニュアル調整もできます。"
+
