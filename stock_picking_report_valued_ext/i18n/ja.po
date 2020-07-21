@@ -63,6 +63,6 @@ msgstr "<strong>単価</strong>"
 
 #. module: stock_picking_report_valued_ext
 #: model:ir.model.fields,help:stock_picking_report_valued_ext.field_stock_picking__delivery_price
-msgid "Store the delivery price from sale order, can be adjusted manually."
-msgstr "デフォルトで販売オーダの配送料となりますが、マニュアル調整もできます。"
+msgid "Takes the delivery price from related sale order when delivery is created. User can manually adjust the amount as necessary."
+msgstr "配送作成時に関連販売オーダから配送料を取得します。マニュアル調整も可能です。"
 
