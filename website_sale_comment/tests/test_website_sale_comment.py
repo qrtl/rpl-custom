@@ -60,10 +60,10 @@ class TestUi(odoo.tests.HttpCase):
         with MockRequest(
             self.env, website=self.website, sale_order_id=so.id
         ) as request:
-            # Note: Facing error: When run this MockRequest without this headers.
-            # We will have error like this
+            # Note: if you face this kind of errors
+            # during the using of MockRequest.
             # ` AttributeError: 'NoneType' object has no attribute 'environ' `
-            # to fix above error added this headers for run the MockRequest.
+            # to fix above error added this headers and environ in request.
             httprequest = request.httprequest
             httprequest.update({"headers": {"environ": {}}})
             # Update the httprequest with request Object
