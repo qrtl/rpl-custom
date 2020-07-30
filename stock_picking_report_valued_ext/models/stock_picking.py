@@ -9,9 +9,7 @@ class StockPicking(models.Model):
 
     delivery_price = fields.Monetary(
         string="Delivery Price (Tax Included)",
-        compute="_compute_delivery_price",
-        store=True,
-        readonly=False,
+        copy=False,
         help="Takes the delivery price from related sale order when delivery "
         "is created. User can manually adjust the amount as necessary.",
     )
@@ -21,16 +19,3 @@ class StockPicking(models.Model):
         super(StockPicking, self)._compute_amount_all()
         for pick in self:
             pick.amount_total += pick.delivery_price
-
-    @api.multi
-    @api.depends("sale_id")
-    def _compute_delivery_price(self):
-        for picking in self:
-            if picking.sale_id:
-                picking.delivery_price = sum(
-                    [
-                        line.price_reduce_taxinc
-                        for line in picking.sale_id.order_line
-                        if line.is_delivery
-                    ]
-                )

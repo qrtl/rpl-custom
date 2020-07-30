@@ -41,7 +41,7 @@ class TestStockPicking(common.TransactionCase):
                         {
                             "name": test_product.name,
                             "product_id": test_product.id,
-                            "product_uom_qty": 1,
+                            "product_uom_qty": 2,
                             "product_uom": test_product.uom_po_id.id,
                             "price_unit": 200,
                             "is_delivery": False,
@@ -52,14 +52,25 @@ class TestStockPicking(common.TransactionCase):
             }
         )
         self.sale_order.action_confirm()
+        self.sale_order.picking_ids.mapped("move_line_ids").update({"qty_done": 1})
+        backorder_wizard_dict = self.sale_order.picking_ids.button_validate()
+        backorder_wizard = self.env[backorder_wizard_dict["res_model"]].browse(
+            backorder_wizard_dict["res_id"]
+        )
+        backorder_wizard.process()
 
     def test_01_delivery_price(self):
         """This Method evaluate the delivery price from sale order lines"""
-        delivery_price = self.sale_order.picking_ids[0].delivery_price
-        self.assertEqual(delivery_price, 115)
+        for picking in self.sale_order.picking_ids:
+            if not picking.backorder_id:
+                self.assertEqual(picking.delivery_price, 115)
+            else:
+                self.assertEqual(picking.delivery_price, 0)
 
     def test_02_amount_total(self):
         """This Method evaluate the delivery price should be added in amount total"""
-        self.sale_order.picking_ids.action_done()
-        amount_total = self.sale_order.picking_ids[0].amount_total
-        self.assertEqual(amount_total, 345)
+        for picking in self.sale_order.picking_ids:
+            if not picking.backorder_id:
+                self.assertEqual(picking.amount_total, 345)
+            else:
+                self.assertEqual(picking.amount_total, 230)
