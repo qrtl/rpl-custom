@@ -52,11 +52,11 @@ class TestStockPicking(common.TransactionCase):
             }
         )
         self.sale_order.action_confirm()
-        self.sale_order.picking_ids.mapped('move_line_ids').update({
-            'qty_done': 1
-        })
+        self.sale_order.picking_ids.mapped("move_line_ids").update({"qty_done": 1})
         backorder_wizard_dict = self.sale_order.picking_ids.button_validate()
-        backorder_wizard = self.env[backorder_wizard_dict['res_model']].browse(backorder_wizard_dict['res_id'])
+        backorder_wizard = self.env[backorder_wizard_dict["res_model"]].browse(
+            backorder_wizard_dict["res_id"]
+        )
         backorder_wizard.process()
 
     def test_01_delivery_price(self):
