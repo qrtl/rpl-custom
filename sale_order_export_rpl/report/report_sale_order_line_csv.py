@@ -4,14 +4,24 @@
 import csv
 
 from odoo import models
+from io import StringIO
 
 
 class SaleOrderLineCSV(models.AbstractModel):
     _name = "report.report_csv.sale_order_line_csv"
     _inherit = "report.report_csv.abstract"
 
-    def generate_csv_report(self, writer, data, orders):
+    def create_csv_report(self, docids, data):
+        objs = self._get_objs_for_report(docids, data)
+        file_data = StringIO()
+        self.generate_csv_report(data, objs, file_data)
+        file_data.seek(0)
+        return file_data.read(), 'csv'
+
+    def generate_csv_report(self, data, orders, file_data):
+        writer = csv.DictWriter(file_data, **self.csv_report_options(), quoting=csv.QUOTE_NONE)
         writer.writeheader()
+        writer = csv.DictWriter(file_data, **self.csv_report_options(), quoting=csv.QUOTE_ALL)
         for order in orders:
             for line in order.order_line:
                 if not line.is_delivery:
@@ -22,7 +32,7 @@ class SaleOrderLineCSV(models.AbstractModel):
                             "Product ID": line.product_id.rakushisu_product_id or "",
                             "Product code": "",
                             "Price": line.price_unit,
-                            "Quantity": line.product_uom_qty,
+                            "Quantity": int(line.product_uom_qty),
                             "Extra": "",
                         }
                     )
@@ -37,5 +47,5 @@ class SaleOrderLineCSV(models.AbstractModel):
         res["fieldnames"].append("Quantity")
         res["fieldnames"].append("Extra")
         res["delimiter"] = ","
-        res["quoting"] = csv.QUOTE_ALL
+        res["lineterminator"] = "\n"
         return res
