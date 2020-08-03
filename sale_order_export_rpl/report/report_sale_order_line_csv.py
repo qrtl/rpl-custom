@@ -2,9 +2,9 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import csv
+from io import StringIO
 
 from odoo import models
-from io import StringIO
 
 
 class SaleOrderLineCSV(models.AbstractModel):
@@ -16,12 +16,16 @@ class SaleOrderLineCSV(models.AbstractModel):
         file_data = StringIO()
         self.generate_csv_report(data, objs, file_data)
         file_data.seek(0)
-        return file_data.read(), 'csv'
+        return file_data.read(), "csv"
 
     def generate_csv_report(self, data, orders, file_data):
-        writer = csv.DictWriter(file_data, **self.csv_report_options(), quoting=csv.QUOTE_NONE)
+        writer = csv.DictWriter(
+            file_data, **self.csv_report_options(), quoting=csv.QUOTE_NONE
+        )
         writer.writeheader()
-        writer = csv.DictWriter(file_data, **self.csv_report_options(), quoting=csv.QUOTE_ALL)
+        writer = csv.DictWriter(
+            file_data, **self.csv_report_options(), quoting=csv.QUOTE_ALL
+        )
         for order in orders:
             for line in order.order_line:
                 if not line.is_delivery:
