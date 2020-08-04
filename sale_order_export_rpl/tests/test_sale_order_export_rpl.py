@@ -51,7 +51,7 @@ class TestSaleOrderExportRPL(common.TransactionCase):
         )
         self.assertEqual(
             self.docs.confirmation_date
-            and self.docs.confirmation_date.strftime("%Y/%-m/%-d %-H:%-M")
+            and self.docs.confirmation_date.strftime("%d %b %Y %H:%M:%S")
             or "",
             dict(dict_report[0])["Date"],
         )
@@ -206,7 +206,7 @@ class TestSaleOrderExportRPL(common.TransactionCase):
             str(self.docs.order_line[0].price_unit), dict(dict_report[0])["Price"]
         )
         self.assertEqual(
-            str(self.docs.order_line[0].product_uom_qty),
+            str(int(self.docs.order_line[0].product_uom_qty)),
             dict(dict_report[0])["Quantity"],
         )
         self.assertEqual("", dict(dict_report[0])["Extra"])

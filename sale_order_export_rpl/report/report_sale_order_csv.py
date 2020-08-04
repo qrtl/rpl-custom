@@ -10,10 +10,16 @@ from odoo import models
 
 class SaleOrderCSV(models.AbstractModel):
     _name = "report.report_csv.sale_order_csv"
-    _inherit = "report.report_csv.abstract"
+    _inherit = "report.report_csv.custom"
 
-    def generate_csv_report(self, writer, data, orders):
+    def generate_csv_report(self, data, orders, file_data):
+        writer = csv.DictWriter(
+            file_data, **self.csv_report_options(), quoting=csv.QUOTE_NONE
+        )
         writer.writeheader()
+        writer = csv.DictWriter(
+            file_data, **self.csv_report_options(), quoting=csv.QUOTE_ALL
+        )
         for order in orders:
             shipping_cost = sum(
                 [line.price_subtotal for line in order.order_line if line.is_delivery]
@@ -29,7 +35,7 @@ class SaleOrderCSV(models.AbstractModel):
                     "Payment surcharge": 0,
                     "Shipping cost": shipping_cost,
                     "Date": order.confirmation_date
-                    and order.confirmation_date.strftime("%Y/%-m/%-d %-H:%-M")
+                    and order.confirmation_date.strftime("%d %b %Y %H:%M:%S")
                     or "",
                     "Status": order.rakushisu_status
                     or self.env["ir.config_parameter"]
@@ -155,5 +161,5 @@ class SaleOrderCSV(models.AbstractModel):
         res["fieldnames"].append("Credit memo ID")
         res["fieldnames"].append("payment_date")
         res["delimiter"] = ","
-        res["quoting"] = csv.QUOTE_ALL
+        res["lineterminator"] = "\n"
         return res
