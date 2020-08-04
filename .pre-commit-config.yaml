@@ -28,10 +28,12 @@ exclude: |
   l10n_jp_address_layout_website_sale/|
   l10n_jp_country_state/|
   l10n_jp_partner_title_qweb/|
+  queue_job/|
   report_csv/|
   report_py3o/|
   sale_comment_template/|
   sale_automatic_workflow/|
+  sale_order_invoicing_queued/|
   sequence_reset_period/|
   sql_request_abstract/|
   stock_picking_comment_template/|
