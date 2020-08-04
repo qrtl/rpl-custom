@@ -20,6 +20,7 @@ exclude: |
   base_country_state_translatable/|
   base_technical_features/|
   base_user_role/|
+  bi_sql_editor/|
   dbfilter_from_header/|
   l10n_ch_states/|
   l10n_de_country_states/|
@@ -32,6 +33,7 @@ exclude: |
   sale_comment_template/|
   sale_automatic_workflow/|
   sequence_reset_period/|
+  sql_request_abstract/|
   stock_picking_comment_template/|
   stock_picking_report_valued/|
   web_environment_ribbon/|
