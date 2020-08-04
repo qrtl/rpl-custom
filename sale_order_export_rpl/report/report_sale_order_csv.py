@@ -2,8 +2,6 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import csv
-from io import StringIO
-
 import html2text
 
 from odoo import models
@@ -11,14 +9,7 @@ from odoo import models
 
 class SaleOrderCSV(models.AbstractModel):
     _name = "report.report_csv.sale_order_csv"
-    _inherit = "report.report_csv.abstract"
-
-    def create_csv_report(self, docids, data):
-        objs = self._get_objs_for_report(docids, data)
-        file_data = StringIO()
-        self.generate_csv_report(data, objs, file_data)
-        file_data.seek(0)
-        return file_data.read(), "csv"
+    _inherit = "report.report_csv.custom"
 
     def generate_csv_report(self, data, orders, file_data):
         writer = csv.DictWriter(
