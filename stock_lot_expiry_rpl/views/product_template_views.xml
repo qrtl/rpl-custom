@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding='UTF-8' ?>
+<odoo>
+    <record id="view_product_form_expiry" model="ir.ui.view">
+        <field name="name">view.product.form.expiry</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product_expiry.view_product_form_expiry" />
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='expiry_and_lots']" position="after">
+                <group
+                    string="Removal Date Params"
+                    name="date_params"
+                    groups="stock.group_production_lot"
+                    attrs="{'invisible': [('tracking', '=','none')]}"
+                >
+                    <field name="base_date" />
+                    <field name="weekday_delta" />
+                    <field name="month_delta" />
+                    <field name="day_delta" />
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
