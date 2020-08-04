@@ -28,6 +28,7 @@ exclude: |
   l10n_jp_address_layout_website_sale/|
   l10n_jp_country_state/|
   l10n_jp_partner_title_qweb/|
+  mrp_subcontracting/|
   queue_job/|
   report_csv/|
   report_py3o/|
