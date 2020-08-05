@@ -17,7 +17,13 @@ class TestAccountInvoiceReport(TransactionCase):
         self.partner_id = self.env['res.partner'].create({
             'name': 'Partner Test'
         })
-        self.sale_order = self.env.ref('sale.sale_order_7')
+        # QRTL EDIT:
+        # Change to another sales order since mrp_subcontracting added
+        # "Make to order" route to "[FURN_8888] Office Lamp" which causes
+        # "No procurement rule found" error when confirming the sale order.
+        # https://github.com/qrtl/rpl-custom/pull/75/files#diff-0eafdf1385d96e12f82a2ff7847b1571R27-R29 # noqa
+        # self.sale_order = self.env.ref('sale.sale_order_7')
+        self.sale_order = self.env.ref('sale.sale_order_3')
         # Trigger qty_to_invoice again
         for order_line in self.sale_order.order_line:
             order_line.product_id.invoice_policy = 'order'
