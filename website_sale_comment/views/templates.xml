@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <template id="extra_info" inherit_id="website_sale.extra_info">
         <xpath expr="//label[@for='client_order_ref']" position="attributes">

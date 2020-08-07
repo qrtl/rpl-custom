@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="website_sale_comment" inherit_id="web.assets_common">
+        <xpath expr="." position="inside">
+            <script
+                type="text/javascript"
+                src="/website_sale_comment/static/src/js/test_website_sale_comment.js"
+            />
+        </xpath>
+    </template>
+</odoo>
