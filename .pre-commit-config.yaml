@@ -39,8 +39,9 @@ exclude: |
   stock_picking_report_valued/|
   web_environment_ribbon/|
   web_favicon/|
+  website_no_crawler/|
   web_m2x_options/|
-  website_sale_hide_price/
+  website_sale_hide_price
 default_language_version:
   python: python3
 repos:
