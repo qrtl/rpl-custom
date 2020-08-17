@@ -1,4 +1,4 @@
-# Copyright 2019 Quartile Limited
+# Copyright 2019-2020 Quartile Limited
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo.tests import common
@@ -23,23 +23,32 @@ class TestWebsiteSaleProductAttributeValueFilterRpl(common.TransactionCase):
         self.demo_context = {"uid": self.demo_user.id}
         self.public_context = {"uid": self.public_user.id}
 
-    def test_00_no_constriants(self):
+    def test_00_no_rules(self):
+        self.assertEqual(
+            self.test_product_template.with_context(
+                self.demo_context
+            )._is_combination_possible(self.product_template_steel_attribute_value),
+            True,
+        )
+
+    def test_01_allow_country_rule(self):
         self.demo_user.partner_id.commercial_partner_id.sudo().write(
             {"country_id": False}
         )
-        self.steel_attribute_value.sudo().write({"allowed_country_group_ids": False})
+        self.env['product.attribute.value.permission'].create({
+            'product_id': self.test_product_variant_steel.id,
+            'product_attribute_value_id': self.steel_attribute_value.id,
+            'allowed_country_ids': [(4, self.belgium.id, None)]
+        })
         self.assertEqual(
             self.test_product_template.with_context(
                 self.demo_context
             )._is_combination_possible(self.product_template_steel_attribute_value),
-            True,
+            False,
         )
-
-    def test_01_partner_with_country(self):
         self.demo_user.partner_id.commercial_partner_id.sudo().write(
             {"country_id": self.belgium.id}
         )
-        self.steel_attribute_value.sudo().write({"allowed_country_group_ids": False})
         self.assertEqual(
             self.test_product_template.with_context(
                 self.demo_context
@@ -47,27 +56,91 @@ class TestWebsiteSaleProductAttributeValueFilterRpl(common.TransactionCase):
             True,
         )
 
-    def test_02_partner_with_country_in_attribute_country_group(self):
+    def test_02_unallow_country_rule(self):
         self.demo_user.partner_id.commercial_partner_id.sudo().write(
             {"country_id": self.belgium.id}
         )
-        self.steel_attribute_value.sudo().write(
-            {"allowed_country_group_ids": [(6, 0, [self.europe_country_group.id])]}
-        )
+        self.env['product.attribute.value.permission'].create({
+            'product_id': self.test_product_variant_steel.id,
+            'product_attribute_value_id': self.steel_attribute_value.id,
+            'unallowed_country_ids': [(4, self.belgium.id, None)]
+        })
         self.assertEqual(
             self.test_product_template.with_context(
                 self.demo_context
             )._is_combination_possible(self.product_template_steel_attribute_value),
-            True,
+            False,
         )
-
-    def test_03_partner_with_country_outside_attribute_country_group(self):
         self.demo_user.partner_id.commercial_partner_id.sudo().write(
             {"country_id": self.japan.id}
         )
-        self.steel_attribute_value.sudo().write(
-            {"allowed_country_group_ids": [(6, 0, [self.europe_country_group.id])]}
+        self.assertEqual(
+            self.test_product_template.with_context(
+                self.demo_context
+            )._is_combination_possible(self.product_template_steel_attribute_value),
+            True,
         )
+
+    def test_03_allow_country_group_rule(self):
+        self.demo_user.partner_id.commercial_partner_id.sudo().write(
+            {"country_id": False}
+        )
+        self.env['product.attribute.value.permission'].create({
+            'product_id': self.test_product_variant_steel.id,
+            'product_attribute_value_id': self.steel_attribute_value.id,
+            'allowed_country_group_ids': [(4, self.europe_country_group.id, None)]
+        })
+        self.assertEqual(
+            self.test_product_template.with_context(
+                self.demo_context
+            )._is_combination_possible(self.product_template_steel_attribute_value),
+            False,
+        )
+        self.demo_user.partner_id.commercial_partner_id.sudo().write(
+            {"country_id": self.belgium.id}
+        )
+        self.assertEqual(
+            self.test_product_template.with_context(
+                self.demo_context
+            )._is_combination_possible(self.product_template_steel_attribute_value),
+            True,
+        )
+
+    def test_04_unallow_country_group_rule(self):
+        self.demo_user.partner_id.commercial_partner_id.sudo().write(
+            {"country_id": self.belgium.id}
+        )
+        self.env['product.attribute.value.permission'].create({
+            'product_id': self.test_product_variant_steel.id,
+            'product_attribute_value_id': self.steel_attribute_value.id,
+            'unallowed_country_group_ids': [(4, self.europe_country_group.id, None)]
+        })
+        self.assertEqual(
+            self.test_product_template.with_context(
+                self.demo_context
+            )._is_combination_possible(self.product_template_steel_attribute_value),
+            False,
+        )
+        self.demo_user.partner_id.commercial_partner_id.sudo().write(
+            {"country_id": self.japan.id}
+        )
+        self.assertEqual(
+            self.test_product_template.with_context(
+                self.demo_context
+            )._is_combination_possible(self.product_template_steel_attribute_value),
+            True,
+        )
+
+    def test_05_allow_country_group_and_unallow_country_rule(self):
+        self.demo_user.partner_id.commercial_partner_id.sudo().write(
+            {"country_id": self.belgium.id}
+        )
+        self.env['product.attribute.value.permission'].create({
+            'product_id': self.test_product_variant_steel.id,
+            'product_attribute_value_id': self.steel_attribute_value.id,
+            'unallowed_country_ids': [(4, self.belgium.id, None)],
+            'allowed_country_group_ids': [(4, self.europe_country_group.id, None)]
+        })
         self.assertEqual(
             self.test_product_template.with_context(
                 self.demo_context
@@ -75,27 +148,90 @@ class TestWebsiteSaleProductAttributeValueFilterRpl(common.TransactionCase):
             False,
         )
 
-    def test_04_attribute_country_group(self):
-        self.demo_user.partner_id.commercial_partner_id.sudo().write(
-            {"country_id": False}
-        )
-        self.steel_attribute_value.sudo().write(
-            {"allowed_country_group_ids": [(6, 0, [self.europe_country_group.id])]}
-        )
+    def test_06_allow_user_rule(self):
+        self.env['product.attribute.value.permission'].create({
+            'product_id': self.test_product_variant_steel.id,
+            'product_attribute_value_id': self.steel_attribute_value.id,
+            'allowed_partner_ids': [(4, self.demo_user.partner_id.id, None)]
+        })
         self.assertEqual(
             self.test_product_template.with_context(
                 self.demo_context
             )._is_combination_possible(self.product_template_steel_attribute_value),
             True,
         )
+        self.assertEqual(
+            self.test_product_template.with_context(
+                self.public_context
+            )._is_combination_possible(self.product_template_steel_attribute_value),
+            True,
+        )
 
-    # FIXME this test does not seem to work - no access error is observed
-    # even where there should be...
-    def test_05_public_user(self):
-        # no country is set to the partner of public_user
-        # the intention of this test is to make sure there is no access error
-        self.assertTrue(
-            self.test_product_template.sudo(self.public_user.id)
-            .with_context(self.public_context)
-            ._is_combination_possible(self.product_template_steel_attribute_value)
+    def test_07_unallow_user_rule(self):
+        self.env['product.attribute.value.permission'].create({
+            'product_id': self.test_product_variant_steel.id,
+            'product_attribute_value_id': self.steel_attribute_value.id,
+            'unallowed_partner_ids': [(4, self.demo_user.partner_id.id, None)]
+        })
+        self.assertEqual(
+            self.test_product_template.with_context(
+                self.demo_context
+            )._is_combination_possible(self.product_template_steel_attribute_value),
+            False,
+        )
+        self.assertEqual(
+            self.test_product_template.with_context(
+                self.public_context
+            )._is_combination_possible(self.product_template_steel_attribute_value),
+            True,
+        )
+
+    def test_08_unallow_user_with_allow_country_rule(self):
+        self.demo_user.partner_id.commercial_partner_id.sudo().write(
+            {"country_id": self.belgium.id}
+        )
+        rule = self.env['product.attribute.value.permission'].create({
+            'product_id': self.test_product_variant_steel.id,
+            'product_attribute_value_id': self.steel_attribute_value.id,
+            'allowed_country_group_ids': [(4, self.europe_country_group.id, None)]
+        })
+        self.assertEqual(
+            self.test_product_template.with_context(
+                self.demo_context
+            )._is_combination_possible(self.product_template_steel_attribute_value),
+            True,
+        )
+        rule.update({
+            'unallowed_partner_ids': [(4, self.demo_user.partner_id.id, None)],
+        })
+        self.assertEqual(
+            self.test_product_template.with_context(
+                self.demo_context
+            )._is_combination_possible(self.product_template_steel_attribute_value),
+            False,
+        )
+
+    def test_09_allow_user_with_unallow_country_rule(self):
+        self.demo_user.partner_id.commercial_partner_id.sudo().write(
+            {"country_id": self.belgium.id}
+        )
+        rule = self.env['product.attribute.value.permission'].create({
+            'product_id': self.test_product_variant_steel.id,
+            'product_attribute_value_id': self.steel_attribute_value.id,
+            'unallowed_country_group_ids': [(4, self.europe_country_group.id, None)]
+        })
+        self.assertEqual(
+            self.test_product_template.with_context(
+                self.demo_context
+            )._is_combination_possible(self.product_template_steel_attribute_value),
+            False,
+        )
+        rule.update({
+            'allowed_partner_ids': [(4, self.demo_user.partner_id.id, None)],
+        })
+        self.assertEqual(
+            self.test_product_template.with_context(
+                self.demo_context
+            )._is_combination_possible(self.product_template_steel_attribute_value),
+            True,
         )

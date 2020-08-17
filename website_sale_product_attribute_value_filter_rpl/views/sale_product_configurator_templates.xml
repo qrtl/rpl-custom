@@ -8,7 +8,7 @@
         >
             <attribute
                 name="t-if"
-            >not value_id.product_attribute_value_id.in_country_group_constraint()</attribute>
+            >not value_id.product_attribute_value_id.in_attribute_constraints()</attribute>
         </xpath>
         <!-- for "radio" -->
         <xpath
@@ -17,7 +17,7 @@
         >
             <attribute
                 name="t-if"
-            >not value_id.product_attribute_value_id.in_country_group_constraint()</attribute>
+            >not value_id.product_attribute_value_id.in_attribute_constraints()</attribute>
         </xpath>
         <!-- for "color" -->
         <xpath
@@ -26,7 +26,7 @@
         >
             <attribute
                 name="t-if"
-            >not value_id.product_attribute_value_id.in_country_group_constraint()</attribute>
+            >not value_id.product_attribute_value_id.in_attribute_constraints()</attribute>
         </xpath>
     </template>
 </odoo>

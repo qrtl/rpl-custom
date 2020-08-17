@@ -1,4 +1,4 @@
-# Copyright 2019 Quartile Limited
+# Copyright 2019-2020 Quartile Limited
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import api, models
@@ -16,7 +16,7 @@ class ProductTemplate(models.Model):
             if (
                 combination.mapped("product_attribute_value_id")
                 .with_context(self.env.context)
-                .in_country_group_constraint()
+                .in_attribute_constraints()
             ):
                 return False
         return res
