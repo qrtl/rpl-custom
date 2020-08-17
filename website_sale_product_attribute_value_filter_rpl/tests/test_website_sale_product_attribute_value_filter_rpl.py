@@ -35,11 +35,13 @@ class TestWebsiteSaleProductAttributeValueFilterRpl(common.TransactionCase):
         self.demo_user.partner_id.commercial_partner_id.sudo().write(
             {"country_id": False}
         )
-        self.env['product.attribute.value.permission'].create({
-            'product_id': self.test_product_variant_steel.id,
-            'product_attribute_value_id': self.steel_attribute_value.id,
-            'allowed_country_ids': [(4, self.belgium.id, None)]
-        })
+        self.env["product.attribute.value.permission"].create(
+            {
+                "product_id": self.test_product_variant_steel.id,
+                "product_attribute_value_id": self.steel_attribute_value.id,
+                "allowed_country_ids": [(4, self.belgium.id, None)],
+            }
+        )
         self.assertEqual(
             self.test_product_template.with_context(
                 self.demo_context
@@ -60,11 +62,13 @@ class TestWebsiteSaleProductAttributeValueFilterRpl(common.TransactionCase):
         self.demo_user.partner_id.commercial_partner_id.sudo().write(
             {"country_id": self.belgium.id}
         )
-        self.env['product.attribute.value.permission'].create({
-            'product_id': self.test_product_variant_steel.id,
-            'product_attribute_value_id': self.steel_attribute_value.id,
-            'unallowed_country_ids': [(4, self.belgium.id, None)]
-        })
+        self.env["product.attribute.value.permission"].create(
+            {
+                "product_id": self.test_product_variant_steel.id,
+                "product_attribute_value_id": self.steel_attribute_value.id,
+                "unallowed_country_ids": [(4, self.belgium.id, None)],
+            }
+        )
         self.assertEqual(
             self.test_product_template.with_context(
                 self.demo_context
@@ -85,11 +89,13 @@ class TestWebsiteSaleProductAttributeValueFilterRpl(common.TransactionCase):
         self.demo_user.partner_id.commercial_partner_id.sudo().write(
             {"country_id": False}
         )
-        self.env['product.attribute.value.permission'].create({
-            'product_id': self.test_product_variant_steel.id,
-            'product_attribute_value_id': self.steel_attribute_value.id,
-            'allowed_country_group_ids': [(4, self.europe_country_group.id, None)]
-        })
+        self.env["product.attribute.value.permission"].create(
+            {
+                "product_id": self.test_product_variant_steel.id,
+                "product_attribute_value_id": self.steel_attribute_value.id,
+                "allowed_country_group_ids": [(4, self.europe_country_group.id, None)],
+            }
+        )
         self.assertEqual(
             self.test_product_template.with_context(
                 self.demo_context
@@ -110,11 +116,15 @@ class TestWebsiteSaleProductAttributeValueFilterRpl(common.TransactionCase):
         self.demo_user.partner_id.commercial_partner_id.sudo().write(
             {"country_id": self.belgium.id}
         )
-        self.env['product.attribute.value.permission'].create({
-            'product_id': self.test_product_variant_steel.id,
-            'product_attribute_value_id': self.steel_attribute_value.id,
-            'unallowed_country_group_ids': [(4, self.europe_country_group.id, None)]
-        })
+        self.env["product.attribute.value.permission"].create(
+            {
+                "product_id": self.test_product_variant_steel.id,
+                "product_attribute_value_id": self.steel_attribute_value.id,
+                "unallowed_country_group_ids": [
+                    (4, self.europe_country_group.id, None)
+                ],
+            }
+        )
         self.assertEqual(
             self.test_product_template.with_context(
                 self.demo_context
@@ -135,12 +145,14 @@ class TestWebsiteSaleProductAttributeValueFilterRpl(common.TransactionCase):
         self.demo_user.partner_id.commercial_partner_id.sudo().write(
             {"country_id": self.belgium.id}
         )
-        self.env['product.attribute.value.permission'].create({
-            'product_id': self.test_product_variant_steel.id,
-            'product_attribute_value_id': self.steel_attribute_value.id,
-            'unallowed_country_ids': [(4, self.belgium.id, None)],
-            'allowed_country_group_ids': [(4, self.europe_country_group.id, None)]
-        })
+        self.env["product.attribute.value.permission"].create(
+            {
+                "product_id": self.test_product_variant_steel.id,
+                "product_attribute_value_id": self.steel_attribute_value.id,
+                "unallowed_country_ids": [(4, self.belgium.id, None)],
+                "allowed_country_group_ids": [(4, self.europe_country_group.id, None)],
+            }
+        )
         self.assertEqual(
             self.test_product_template.with_context(
                 self.demo_context
@@ -149,11 +161,13 @@ class TestWebsiteSaleProductAttributeValueFilterRpl(common.TransactionCase):
         )
 
     def test_06_allow_user_rule(self):
-        self.env['product.attribute.value.permission'].create({
-            'product_id': self.test_product_variant_steel.id,
-            'product_attribute_value_id': self.steel_attribute_value.id,
-            'allowed_partner_ids': [(4, self.demo_user.partner_id.id, None)]
-        })
+        self.env["product.attribute.value.permission"].create(
+            {
+                "product_id": self.test_product_variant_steel.id,
+                "product_attribute_value_id": self.steel_attribute_value.id,
+                "allowed_partner_ids": [(4, self.demo_user.partner_id.id, None)],
+            }
+        )
         self.assertEqual(
             self.test_product_template.with_context(
                 self.demo_context
@@ -168,11 +182,13 @@ class TestWebsiteSaleProductAttributeValueFilterRpl(common.TransactionCase):
         )
 
     def test_07_unallow_user_rule(self):
-        self.env['product.attribute.value.permission'].create({
-            'product_id': self.test_product_variant_steel.id,
-            'product_attribute_value_id': self.steel_attribute_value.id,
-            'unallowed_partner_ids': [(4, self.demo_user.partner_id.id, None)]
-        })
+        self.env["product.attribute.value.permission"].create(
+            {
+                "product_id": self.test_product_variant_steel.id,
+                "product_attribute_value_id": self.steel_attribute_value.id,
+                "unallowed_partner_ids": [(4, self.demo_user.partner_id.id, None)],
+            }
+        )
         self.assertEqual(
             self.test_product_template.with_context(
                 self.demo_context
@@ -190,20 +206,22 @@ class TestWebsiteSaleProductAttributeValueFilterRpl(common.TransactionCase):
         self.demo_user.partner_id.commercial_partner_id.sudo().write(
             {"country_id": self.belgium.id}
         )
-        rule = self.env['product.attribute.value.permission'].create({
-            'product_id': self.test_product_variant_steel.id,
-            'product_attribute_value_id': self.steel_attribute_value.id,
-            'allowed_country_group_ids': [(4, self.europe_country_group.id, None)]
-        })
+        rule = self.env["product.attribute.value.permission"].create(
+            {
+                "product_id": self.test_product_variant_steel.id,
+                "product_attribute_value_id": self.steel_attribute_value.id,
+                "allowed_country_group_ids": [(4, self.europe_country_group.id, None)],
+            }
+        )
         self.assertEqual(
             self.test_product_template.with_context(
                 self.demo_context
             )._is_combination_possible(self.product_template_steel_attribute_value),
             True,
         )
-        rule.update({
-            'unallowed_partner_ids': [(4, self.demo_user.partner_id.id, None)],
-        })
+        rule.update(
+            {"unallowed_partner_ids": [(4, self.demo_user.partner_id.id, None)]}
+        )
         self.assertEqual(
             self.test_product_template.with_context(
                 self.demo_context
@@ -215,20 +233,22 @@ class TestWebsiteSaleProductAttributeValueFilterRpl(common.TransactionCase):
         self.demo_user.partner_id.commercial_partner_id.sudo().write(
             {"country_id": self.belgium.id}
         )
-        rule = self.env['product.attribute.value.permission'].create({
-            'product_id': self.test_product_variant_steel.id,
-            'product_attribute_value_id': self.steel_attribute_value.id,
-            'unallowed_country_group_ids': [(4, self.europe_country_group.id, None)]
-        })
+        rule = self.env["product.attribute.value.permission"].create(
+            {
+                "product_id": self.test_product_variant_steel.id,
+                "product_attribute_value_id": self.steel_attribute_value.id,
+                "unallowed_country_group_ids": [
+                    (4, self.europe_country_group.id, None)
+                ],
+            }
+        )
         self.assertEqual(
             self.test_product_template.with_context(
                 self.demo_context
             )._is_combination_possible(self.product_template_steel_attribute_value),
             False,
         )
-        rule.update({
-            'allowed_partner_ids': [(4, self.demo_user.partner_id.id, None)],
-        })
+        rule.update({"allowed_partner_ids": [(4, self.demo_user.partner_id.id, None)]})
         self.assertEqual(
             self.test_product_template.with_context(
                 self.demo_context
