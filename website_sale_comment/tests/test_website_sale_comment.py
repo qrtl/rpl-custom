@@ -49,12 +49,7 @@ class TestUi(odoo.tests.HttpCase):
             "Sale Order Note2 does not Match with the value.",
         )
 
-    def test_02_create_website_sale_comment(self):
-        """
-            This test created using MockRequest:
-                This test perform to pass the comments
-                 from website to sale-order note2 field.
-        """
+    def test_02_input_comment_order_note2(self):
         partner = self.env.user.partner_id
         so = self._create_so(partner.id)
         with MockRequest(
@@ -73,12 +68,52 @@ class TestUi(odoo.tests.HttpCase):
             # Call the Controller Method for pass the feedback values.
             # `website_form_saleorder`
             self.WebsiteSaleController.website_form_saleorder(**values)
-
-            # Compare the Comments with Sale Order Note2 field.
             self.assertEqual(
                 so.note2,
                 "<p>Customer Remarks: test-comment</p>",
-                "Test-Comment Does not match with sale order note2 field",
+            )
+    
+    def test_03_input_increase_refrigerant_order_note2(self):
+        partner = self.env.user.partner_id
+        so = self._create_so(partner.id)
+        with MockRequest(
+            self.env, website=self.website, sale_order_id=so.id
+        ) as request:
+            httprequest = request.httprequest
+            httprequest.update({"headers": {"environ": {}}})
+            # Update the httprequest with request Object
+            request.update({"httprequest": httprequest})
+            values = {"increase_refrigerant": True}
+
+            # Call the Controller Method for pass the feedback values.
+            # `website_form_saleorder`
+            self.WebsiteSaleController.website_form_saleorder(**values)
+            self.assertEqual(
+                so.note2,
+                "<p>Increase Refrigerant: True</p>",
+            )
+
+    def test_04_input_comment_increase_refrigerant_order_note2(self):
+        partner = self.env.user.partner_id
+        so = self._create_so(partner.id)
+        with MockRequest(
+            self.env, website=self.website, sale_order_id=so.id
+        ) as request:
+            httprequest = request.httprequest
+            httprequest.update({"headers": {"environ": {}}})
+            # Update the httprequest with request Object
+            request.update({"httprequest": httprequest})
+            values = {
+                "increase_refrigerant": True,
+                "Give us your feedback": "test-comment"
+            }
+
+            # Call the Controller Method for pass the feedback values.
+            # `website_form_saleorder`
+            self.WebsiteSaleController.website_form_saleorder(**values)
+            self.assertEqual(
+                so.note2,
+                "<p>Increase Refrigerant: True<br>Customer Remarks: test-comment</p>",
             )
 
     def _create_so(self, partner_id=None):

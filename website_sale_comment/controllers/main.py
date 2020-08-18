@@ -17,7 +17,13 @@ class WebsiteSaleForm(WebsiteSaleForm):
     )
     def website_form_saleorder(self, **kwargs):
         order = request.website.sale_get_order()
+        note_list = []
+        if kwargs.get("increase_refrigerant") and order:
+            note_list.append(_("Increase Refrigerant: True"))
         if kwargs.get("Give us your feedback") and order:
             remarks = kwargs.get("Give us your feedback")
-            order.write({"note2": _("Customer Remarks: ") + remarks})
+            note_list.append(_("Customer Remarks: ") + remarks)
+        order.write({
+            "note2": "<br>".join(note_list)
+        })
         return super(WebsiteSaleForm, self).website_form_saleorder(**kwargs)
