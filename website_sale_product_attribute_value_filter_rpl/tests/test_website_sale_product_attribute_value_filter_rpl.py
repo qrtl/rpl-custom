@@ -85,34 +85,7 @@ class TestWebsiteSaleProductAttributeValueFilterRpl(common.TransactionCase):
             True,
         )
 
-    def test_03_allow_country_group_rule(self):
-        self.demo_user.partner_id.commercial_partner_id.sudo().write(
-            {"country_id": False}
-        )
-        self.env["product.attribute.value.permission"].create(
-            {
-                "product_id": self.test_product_variant_steel.id,
-                "product_attribute_value_id": self.steel_attribute_value.id,
-                "allowed_country_group_ids": [(4, self.europe_country_group.id, None)],
-            }
-        )
-        self.assertEqual(
-            self.test_product_template.with_context(
-                self.demo_context
-            )._is_combination_possible(self.product_template_steel_attribute_value),
-            False,
-        )
-        self.demo_user.partner_id.commercial_partner_id.sudo().write(
-            {"country_id": self.belgium.id}
-        )
-        self.assertEqual(
-            self.test_product_template.with_context(
-                self.demo_context
-            )._is_combination_possible(self.product_template_steel_attribute_value),
-            True,
-        )
-
-    def test_04_unallow_country_group_rule(self):
+    def test_03_unallow_country_group_rule(self):
         self.demo_user.partner_id.commercial_partner_id.sudo().write(
             {"country_id": self.belgium.id}
         )
@@ -141,26 +114,7 @@ class TestWebsiteSaleProductAttributeValueFilterRpl(common.TransactionCase):
             True,
         )
 
-    def test_05_allow_country_group_and_unallow_country_rule(self):
-        self.demo_user.partner_id.commercial_partner_id.sudo().write(
-            {"country_id": self.belgium.id}
-        )
-        self.env["product.attribute.value.permission"].create(
-            {
-                "product_id": self.test_product_variant_steel.id,
-                "product_attribute_value_id": self.steel_attribute_value.id,
-                "unallowed_country_ids": [(4, self.belgium.id, None)],
-                "allowed_country_group_ids": [(4, self.europe_country_group.id, None)],
-            }
-        )
-        self.assertEqual(
-            self.test_product_template.with_context(
-                self.demo_context
-            )._is_combination_possible(self.product_template_steel_attribute_value),
-            False,
-        )
-
-    def test_06_allow_user_rule(self):
+    def test_04_allow_user_rule(self):
         self.env["product.attribute.value.permission"].create(
             {
                 "product_id": self.test_product_variant_steel.id,
@@ -181,7 +135,7 @@ class TestWebsiteSaleProductAttributeValueFilterRpl(common.TransactionCase):
             False,
         )
 
-    def test_07_unallow_user_rule(self):
+    def test_05_unallow_user_rule(self):
         self.env["product.attribute.value.permission"].create(
             {
                 "product_id": self.test_product_variant_steel.id,
@@ -202,7 +156,7 @@ class TestWebsiteSaleProductAttributeValueFilterRpl(common.TransactionCase):
             True,
         )
 
-    def test_08_unallow_user_with_allow_country_rule(self):
+    def test_06_unallow_user_with_allow_country_rule(self):
         self.demo_user.partner_id.commercial_partner_id.sudo().write(
             {"country_id": self.belgium.id}
         )
@@ -229,7 +183,7 @@ class TestWebsiteSaleProductAttributeValueFilterRpl(common.TransactionCase):
             False,
         )
 
-    def test_09_allow_user_with_unallow_country_rule(self):
+    def test_07_allow_user_with_unallow_country_rule(self):
         self.demo_user.partner_id.commercial_partner_id.sudo().write(
             {"country_id": self.belgium.id}
         )
