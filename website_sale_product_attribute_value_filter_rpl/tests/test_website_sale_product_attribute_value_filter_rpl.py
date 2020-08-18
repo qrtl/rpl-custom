@@ -178,7 +178,7 @@ class TestWebsiteSaleProductAttributeValueFilterRpl(common.TransactionCase):
             self.test_product_template.with_context(
                 self.public_context
             )._is_combination_possible(self.product_template_steel_attribute_value),
-            True,
+            False,
         )
 
     def test_07_unallow_user_rule(self):

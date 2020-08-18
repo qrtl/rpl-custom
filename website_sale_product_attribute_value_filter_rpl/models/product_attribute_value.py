@@ -29,10 +29,12 @@ class ProductAttributeValue(models.Model):
         # partner is being contrainted by the rules, the second value
         # represents whether it is an absolute constraint.
         allowed_partner_ids, unallowed_partner_ids = self._get_partner_contraints()
+        if allowed_partner_ids:
+            if partner.id in allowed_partner_ids:
+                return False, True
+            return True, True
         if unallowed_partner_ids and partner.id in unallowed_partner_ids:
             return True, True
-        if allowed_partner_ids and partner.id in allowed_partner_ids:
-            return False, True
         return False, False
 
     @api.multi
@@ -44,8 +46,7 @@ class ProductAttributeValue(models.Model):
         if allowed_country_ids:
             if partner.country_id and partner.country_id.id in allowed_country_ids:
                 return False, True
-            if not partner.country_id:
-                return True, True
+            return True, True
         if (
             unallowed_country_ids
             and partner.country_id
@@ -63,8 +64,7 @@ class ProductAttributeValue(models.Model):
         if allowed_country_ids:
             if partner.country_id and partner.country_id.id in allowed_country_ids:
                 return False
-            if not partner.country_id:
-                return True
+            return True
         if (
             unallowed_country_ids
             and partner.country_id
