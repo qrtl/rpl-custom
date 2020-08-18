@@ -61,8 +61,18 @@ class ProductAttributeValue(models.Model):
         rules = self._get_permission_rules()
         allowed_country_group_ids = rules.mapped("allowed_country_group_ids")
         unallowed_country_group_ids = rules.mapped("unallowed_country_group_ids")
-        allowed_country_ids = list(set(rules.mapped("allowed_country_ids").ids + allowed_country_group_ids.mapped("country_ids").ids))
-        unallowed_country_ids = list(set(rules.mapped("unallowed_country_ids").ids + unallowed_country_group_ids.mapped("country_ids").ids))
+        allowed_country_ids = list(
+            set(
+                rules.mapped("allowed_country_ids").ids
+                + allowed_country_group_ids.mapped("country_ids").ids
+            )
+        )
+        unallowed_country_ids = list(
+            set(
+                rules.mapped("unallowed_country_ids").ids
+                + unallowed_country_group_ids.mapped("country_ids").ids
+            )
+        )
         return allowed_country_ids, unallowed_country_ids
 
     @api.multi
