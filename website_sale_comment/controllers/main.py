@@ -23,7 +23,5 @@ class WebsiteSaleForm(WebsiteSaleForm):
         if kwargs.get("Give us your feedback") and order:
             remarks = kwargs.get("Give us your feedback")
             note_list.append(_("Customer Remarks: ") + remarks)
-        order.write({
-            "note2": "<br>".join(note_list)
-        })
+        order.write({"note2": "<br>".join(note_list)})
         return super(WebsiteSaleForm, self).website_form_saleorder(**kwargs)

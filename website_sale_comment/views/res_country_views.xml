@@ -6,7 +6,7 @@
         <field name="inherit_id" ref="base.view_country_form" />
         <field name="arch" type="xml">
             <field name="vat_label" position="after">
-                <field name="increase_refrigerant_visible"/>
+                <field name="increase_refrigerant_visible" />
             </field>
         </field>
     </record>

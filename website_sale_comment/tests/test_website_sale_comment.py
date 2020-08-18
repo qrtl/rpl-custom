@@ -69,10 +69,9 @@ class TestUi(odoo.tests.HttpCase):
             # `website_form_saleorder`
             self.WebsiteSaleController.website_form_saleorder(**values)
             self.assertEqual(
-                so.note2,
-                "<p>Customer Remarks: test-comment</p>",
+                so.note2, "<p>Customer Remarks: test-comment</p>",
             )
-    
+
     def test_03_input_increase_refrigerant_order_note2(self):
         partner = self.env.user.partner_id
         so = self._create_so(partner.id)
@@ -89,8 +88,7 @@ class TestUi(odoo.tests.HttpCase):
             # `website_form_saleorder`
             self.WebsiteSaleController.website_form_saleorder(**values)
             self.assertEqual(
-                so.note2,
-                "<p>Increase Refrigerant: True</p>",
+                so.note2, "<p>Increase Refrigerant: True</p>",
             )
 
     def test_04_input_comment_increase_refrigerant_order_note2(self):
@@ -105,7 +103,7 @@ class TestUi(odoo.tests.HttpCase):
             request.update({"httprequest": httprequest})
             values = {
                 "increase_refrigerant": True,
-                "Give us your feedback": "test-comment"
+                "Give us your feedback": "test-comment",
             }
 
             # Call the Controller Method for pass the feedback values.
