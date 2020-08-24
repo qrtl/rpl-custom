@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-24 07:36+0000\n"
-"PO-Revision-Date: 2020-08-24 07:36+0000\n"
+"POT-Creation-Date: 2020-08-24 08:16+0000\n"
+"PO-Revision-Date: 2020-08-24 08:16+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -49,6 +49,6 @@ msgstr "販売オーダ"
 
 #. module: website_sale_comment
 #: model:ir.model.fields,field_description:website_sale_comment.field_res_country__increase_refrigerant_visible
-msgid "Show \"Increase Refrigerant\" option"
-msgstr "「保冷剤多め」 選択可能"
+msgid "Show \"Increase Refrigerant\" option in eCommerce checkout"
+msgstr "eコマースチェックアウト時に「保冷剤多め」オプションを表示"
 

@@ -8,5 +8,5 @@ class ResCountry(models.Model):
     _inherit = "res.country"
 
     increase_refrigerant_visible = fields.Boolean(
-        'Show "Increase Refrigerant" option', default=True,
+        'Show "Increase Refrigerant" option in eCommerce checkout', default=True,
     )
