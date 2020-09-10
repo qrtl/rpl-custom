@@ -32,7 +32,7 @@ msgid "Increase Refrigerant"
 msgstr "保冷剤多め"
 
 #. module: website_sale_comment
-#: code:addons/website_sale_comment/controllers/main.py:22
+#: code:addons/website_sale_comment/controllers/main.py:23
 #, python-format
 msgid "Increase due to refrigerant (the box to be used for shipping will be one size larger)"
 msgstr "保冷剤多め (配送の場合ひとつ大きい箱にする)"
