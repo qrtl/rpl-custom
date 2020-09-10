@@ -34,8 +34,8 @@ msgstr "保冷剤多め"
 #. module: website_sale_comment
 #: code:addons/website_sale_comment/controllers/main.py:22
 #, python-format
-msgid "Increase Refrigerant: True"
-msgstr "保冷剤多め: True"
+msgid "Increase due to refrigerant (the box to be used for shipping will be one size larger)"
+msgstr "保冷剤多め (配送の場合ひとつ大きい箱にする)"
 
 #. module: website_sale_comment
 #: model_terms:ir.ui.view,arch_db:website_sale_comment.extra_info

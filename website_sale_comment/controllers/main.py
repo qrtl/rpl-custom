@@ -19,7 +19,7 @@ class WebsiteSaleForm(WebsiteSaleForm):
         order = request.website.sale_get_order()
         note_list = []
         if kwargs.get("increase_refrigerant") and order:
-            note_list.append(_("Increase Refrigerant: True"))
+            note_list.append(_("Increase due to refrigerant (the box to be used for shipping will be one size larger)"))
         if kwargs.get("Give us your feedback") and order:
             remarks = kwargs.get("Give us your feedback")
             note_list.append(_("Customer Remarks: ") + remarks)
