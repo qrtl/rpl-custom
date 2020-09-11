@@ -39,6 +39,11 @@ msgstr "保冷剤多め: True"
 
 #. module: website_sale_comment
 #: model_terms:ir.ui.view,arch_db:website_sale_comment.extra_info
+msgid "Increase due to refrigerant (the box to be used for shipping will be one size larger)"
+msgstr "保冷剤多め (配送でひとつ大きいサイズの箱を使用)"
+
+#. module: website_sale_comment
+#: model_terms:ir.ui.view,arch_db:website_sale_comment.extra_info
 msgid "Remarks"
 msgstr "備考"
 
