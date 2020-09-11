@@ -88,9 +88,7 @@ class TestUi(odoo.tests.HttpCase):
             # `website_form_saleorder`
             self.WebsiteSaleController.website_form_saleorder(**values)
             self.assertEqual(
-                so.note2,
-                "<p>Increase due to refrigerant (the box to be used for "
-                "shipping will be one size larger)</p>",
+                so.note2, "<p>Increase Refrigerant: True</p>",
             )
 
     def test_04_input_comment_increase_refrigerant_order_note2(self):
@@ -113,9 +111,7 @@ class TestUi(odoo.tests.HttpCase):
             self.WebsiteSaleController.website_form_saleorder(**values)
             self.assertEqual(
                 so.note2,
-                "<p>Increase due to refrigerant (the box to be used for "
-                "shipping will be one size larger)<br>Customer Remarks: "
-                "test-comment</p>",
+                "<p>Increase Refrigerant: True<br>Customer Remarks: test-comment</p>",
             )
 
     def _create_so(self, partner_id=None):

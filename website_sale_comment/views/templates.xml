@@ -6,14 +6,8 @@
                 t-if="website_sale_order.partner_shipping_id.country_id.increase_refrigerant_visible"
                 class="form-group row form-field o_website_form_custom"
             >
-                <div class="col-lg-3 col-md-4 text-md-right">
-                    <label
-                        class="col-form-label"
-                        for="increase_refrigerant"
-                    >Increase Refrigerant</label>
-                </div>
-                <div class="col-lg-9 col-md-8">
-                    <label class="o_switch col-form-label" for="increase_refrigerant">
+                <div class="col-lg-3 col-md-4 text-md-right" style="align-self: center;">
+                    <label class="o_switch col-form-label" for="increase_refrigerant" style="display: inline-block !important;">
                         <input
                             type="checkbox"
                             name="increase_refrigerant"
@@ -21,6 +15,12 @@
                         />
                         <span />
                     </label>
+                </div>
+                <div class="col-lg-9 col-md-8">
+                    <label
+                        class="col-form-label"
+                        for="increase_refrigerant"
+                    >Increase due to refrigerant (the box to be used for shipping will be one size larger)</label>
                 </div>
             </div>
         </xpath>
