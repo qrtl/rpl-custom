@@ -1,1 +1,3 @@
-This module adds common fields that are used in py3o reports.
+This module does the following:
+
+* Adds the ability to replace the company address the translatable content that is managed in the company form.

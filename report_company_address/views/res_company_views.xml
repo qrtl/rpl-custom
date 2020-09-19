@@ -5,14 +5,11 @@
         <field name="model">res.company</field>
         <field name="inherit_id" ref="base.view_company_form" />
         <field name="arch" type="xml">
-            <field name="phone" position="after">
-                <field name="fax" />
-            </field>
             <notebook position="inside">
-                <page string="Reporting" name="reporting" groups="base.group_system">
-                    <group string="Common" name="common">
-                        <field name="ceo" />
-                        <field name="company_chop" widget='image' class="oe_avatar" />
+                <page string="Report Company Name &amp; Address" name="report_company_name_address" groups="base.group_system">
+                    <!-- <field name="company_name_address" widget="ace" options="{'mode': 'xml'}"/> -->
+                    <group>
+                        <field name="company_name_address" type="xml"/>
                     </group>
                 </page>
             </notebook>

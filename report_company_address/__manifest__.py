@@ -6,7 +6,7 @@
     "category": "Reporting",
     "license": "LGPL-3",
     "author": "Quartile Limited",
-    "depends": ["report_common_rpl"],
-    "data": ["views/report_templates.xml"],
+    "depends": ["web"],
+    "data": ["views/res_company_views.xml", "views/report_templates.xml"],
     "installable": True,
 }
