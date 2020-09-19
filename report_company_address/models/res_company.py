@@ -7,4 +7,9 @@ from odoo import fields, models
 class ResCompany(models.Model):
     _inherit = "res.company"
 
-    company_name_address = fields.Html("Company Name & Address", help="Company name and address that should show in report header when set.", translate=True, sanitize=False)
+    company_name_address = fields.Html(
+        "Company Name & Address",
+        help="Company name and address that should show in report header when set.",
+        translate=True,
+        sanitize=False,
+    )
