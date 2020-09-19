@@ -11,7 +11,6 @@
                     name="report_company_name_address"
                     groups="base.group_system"
                 >
-                    <!-- <field name="company_name_address" widget="ace" options="{'mode': 'xml'}"/> -->
                     <group>
                         <field name="company_name_address" type="xml" />
                     </group>
