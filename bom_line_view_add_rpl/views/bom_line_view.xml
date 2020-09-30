@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <data>
         <!-- Bill of Material Lines -->
@@ -7,13 +7,13 @@
             <field name="model">mrp.bom.line</field>
             <field name="arch" type="xml">
                 <tree string="Bill of Material line" default_order="bom_id">
-                    <field name="sequence" invisible="1"/>
-                    <field name="product_id"/>
-                    <field name="bom_id"/>
-                    <field name="attribute_value_ids" widget="many2many_tags"/>
-                    <field name="product_qty"/>
-                    <field name="product_uom_id"/>
-                    <field name="write_uid"/>
+                    <field name="sequence" invisible="1" />
+                    <field name="product_id" />
+                    <field name="bom_id" />
+                    <field name="attribute_value_ids" widget="many2many_tags" />
+                    <field name="product_qty" />
+                    <field name="product_uom_id" />
+                    <field name="write_uid" />
                 </tree>
             </field>
         </record>
@@ -22,27 +22,40 @@
             <field name="model">mrp.bom.line</field>
             <field name="arch" type="xml">
                 <search string="Search Bill Of Material Line">
-                    <field name="product_id" string="Components"/>
-                    <field name="product_tmpl_id" string="Product"/>
+                    <field name="product_id" string="Components" />
+                    <field name="product_tmpl_id" string="Product" />
                     <group expand="0" string="Group By...">
-                        <filter string="Parent BoM" name="Parent BoM" domain="[]" context="{'group_by':'bom_id'}"/>
-                        <filter string='Components' name="Components" domain="[]" context="{'group_by' : 'product_id'}"/>
-                   </group>
+                        <filter
+                            string="Parent BoM"
+                            name="Parent BoM"
+                            domain="[]"
+                            context="{'group_by':'bom_id'}"
+                        />
+                        <filter
+                            string='Components'
+                            name="Components"
+                            domain="[]"
+                            context="{'group_by' : 'product_id'}"
+                        />
+                    </group>
                 </search>
             </field>
         </record>
-        <record id="mrp_bom_line_tree_view" model="ir.actions.act_window">
+        <record id="mrp_bom_line_view_action" model="ir.actions.act_window">
             <field name="name">Bill of Material Lines</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">mrp.bom.line</field>
-            <field name="domain">[]</field> <!-- force empty -->
+            <field name="domain">[]</field>
+            <!-- force empty -->
             <field name="view_type">form</field>
             <field name="view_mode">tree</field>
-            <field name="search_view_id" ref="view_mrp_bom_line_filter"/>
+            <field name="search_view_id" ref="view_mrp_bom_line_filter" />
         </record>
-        <menuitem id="menu_mrp_bom_line_form_action"
-            action="mrp_bom_line_tree_view"
+        <menuitem
+            id="menu_mrp_bom_line_view_action"
+            action="mrp_bom_line_view_action"
             parent="mrp.menu_mrp_bom"
-            sequence="14"/>
+            sequence="14"
+        />
     </data>
 </odoo>
