@@ -2,7 +2,6 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 {
     "name": "BoM Line tree View",
-    "summary": "",
     "version": "12.0.1.0.0",
     "category": "Manufacturing",
     "website": "https://www.quartile.co/",
@@ -10,5 +9,5 @@
     "license": "LGPL-3",
     "installable": True,
     "depends": ["mrp"],
-    "data": ["views/bom_line_view.xml"],
+    "data": ["views/mrp_bom_line_views.xml"],
 }
