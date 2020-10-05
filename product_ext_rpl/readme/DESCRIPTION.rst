@@ -1,1 +1,0 @@
-Adds fields to product.
