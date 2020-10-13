@@ -6,9 +6,19 @@
         <field name="inherit_id" ref="purchase.purchase_order_form" />
         <field name="arch" type="xml">
             <xpath expr="//div[@name='button_box']" position="inside">
-                <button type="object" name="action_view_mrp" class="oe_stat_button" icon="fa-wrench" attrs="{'invisible':[('subcontract_production_count', '=', 0)]}">
-                    <field name="subcontract_production_ids" invisible="1"/>
-                    <field name="subcontract_production_count" widget="statinfo" string="Productions"/>
+                <button
+                    type="object"
+                    name="action_view_mrp"
+                    class="oe_stat_button"
+                    icon="fa-wrench"
+                    attrs="{'invisible':[('subcontract_production_count', '=', 0)]}"
+                >
+                    <field name="subcontract_production_ids" invisible="1" />
+                    <field
+                        name="subcontract_production_count"
+                        widget="statinfo"
+                        string="Productions"
+                    />
                 </button>
             </xpath>
         </field>

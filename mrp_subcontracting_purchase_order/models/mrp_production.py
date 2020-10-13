@@ -7,4 +7,6 @@ from odoo import fields, models
 class MrpProduction(models.Model):
     _inherit = "mrp.production"
 
-    purchase_order_id = fields.Many2one('purchase.order', 'Subcontract Purchase Order', readonly=True)
+    purchase_order_id = fields.Many2one(
+        "purchase.order", "Subcontract Purchase Order", readonly=True
+    )
