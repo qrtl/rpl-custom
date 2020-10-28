@@ -24,6 +24,15 @@
                     attrs="{'invisible':[('picking_type_code','!=','outgoing')]}"
                 />
             </xpath>
+            <xpath
+                expr="//field[@name='move_ids_without_package']//field[@name='location_dest_id'] "
+                position="attributes"
+            >
+                <attribute
+                    name="attrs"
+                >{'column_invisible': [('parent.picking_type_code', '!=', 'incoming')]}</attribute>
+                <attribute name="invisible" />
+            </xpath>
         </field>
     </record>
     <record id="vpicktree" model="ir.ui.view">
