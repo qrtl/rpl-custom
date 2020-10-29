@@ -44,7 +44,8 @@ exclude: |
   web_favicon/|
   website_no_crawler/|
   web_m2x_options/|
-  website_sale_hide_price
+  website_sale_hide_price/|
+  sale_order_incoterm_place/
 default_language_version:
   python: python3
 repos:
