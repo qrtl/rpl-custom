@@ -35,6 +35,7 @@ exclude: |
   report_py3o/|
   sale_comment_template/|
   sale_automatic_workflow/|
+  sale_order_incoterm_place/|
   sale_order_invoicing_queued/|
   sequence_reset_period/|
   sql_request_abstract/|
@@ -44,7 +45,7 @@ exclude: |
   web_favicon/|
   website_no_crawler/|
   web_m2x_options/|
-  website_sale_hide_price
+  website_sale_hide_price/
 default_language_version:
   python: python3
 repos:
