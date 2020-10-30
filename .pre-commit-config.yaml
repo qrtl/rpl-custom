@@ -19,6 +19,7 @@ exclude: |
   base_comment_template/|
   base_country_state_translatable/|
   base_technical_features/|
+  base_tier_validation/|
   base_user_role/|
   bi_sql_editor/|
   dbfilter_from_header/|
