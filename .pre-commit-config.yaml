@@ -39,6 +39,7 @@ exclude: |
   sale_order_invoicing_queued/|
   sequence_reset_period/|
   sql_request_abstract/|
+  stock_picking_auto_create_lot/|
   stock_picking_comment_template/|
   stock_picking_report_valued/|
   web_environment_ribbon/|
