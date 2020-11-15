@@ -8,7 +8,7 @@
     "author": "Quartile Limited",
     "license": "LGPL-3",
     "installable": True,
-    "depends": ["mrp"],
+    "depends": ["mrp", "stock_lot_management_rpl"],
     "data": [
         "views/mrp_production_views.xml",
     ]
