@@ -46,6 +46,7 @@ exclude: |
   web_favicon/|
   website_no_crawler/|
   web_m2x_options/|
+  website_sale_charge_payment_fee/|
   website_sale_hide_price/
 default_language_version:
   python: python3
