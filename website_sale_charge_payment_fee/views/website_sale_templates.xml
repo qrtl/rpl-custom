@@ -9,10 +9,22 @@
         </xpath>
     </template>
     <template id="payment_tokens_list_fee" inherit_id="payment.payment_tokens_list">
-        <xpath expr="//input[@t-att-data-acquirer-id='acq.id']" position="attributes">
+        <xpath
+            expr="//t[@t-if=&quot;acq.payment_flow == 'form'&quot;]//input[@t-att-data-acquirer-id='acq.id']"
+            position="attributes"
+        >
             <attribute
                 name="t-att-checked"
-            >acq == selected_acquirer if selected_acquirer else acquirers[0] == acq
+            >(acq == selected_acquirer if selected_acquirer else acquirers[0] == acq) and not checked_pm_id
+            </attribute>
+        </xpath>
+        <xpath
+            expr="//t[@t-else=&quot;acq.payment_flow == 's2s'&quot;]//input[@t-att-data-acquirer-id='acq.id']"
+            position="attributes"
+        >
+            <attribute
+                name="t-att-checked"
+            >(acq == selected_acquirer if selected_acquirer else acquirers[0] == acq) and not checked_pm_id
             </attribute>
         </xpath>
         <xpath expr="//span[@class='payment_option_name']" position="after">
@@ -36,18 +48,6 @@
             </t>
         </xpath>
     </template>
-    <template id="payment_fee" inherit_id="website_sale.payment">
-        <xpath
-            expr="//div[@t-if='not website_sale_order.amount_total']"
-            position="after"
-        >
-            <input
-                type="hidden"
-                t-att-value="selected_acquirer.id if selected_acquirer else acquirers and acquirers[0].id or False"
-                name="selected_acquirer_id"
-            />
-        </xpath>
-    </template>
     <template
         id="cart_line_product_link_fee"
         inherit_id="website_sale.cart_line_product_link"
@@ -59,7 +59,9 @@
                 />
             </t>
             <t t-if="not line.payment_fee_line">
-                <a t-att-href="line.product_id.website_url">
+                <a
+                    t-attf-href="/shop/product/#{ slug(line.product_id.product_tmpl_id) }"
+                >
                     <t t-raw="0" />
                 </a>
             </t>
