@@ -12,11 +12,13 @@ odoo.define("website_sale_change_payment_fee.website_sale_fee", function(require
             var clicked_acquirer = $(this).prop("value");
             // Check whether saved token / payment method is being selected.
             if (clicked_acquirer.includes("_") === true) {
-                // Represents the form id, e.g. form_5
+                // Extract acquirer id simply from the input value, e.g. form_5
                 var acquirer_id = clicked_acquirer.split("_")[1];
                 var checked_pm_id = "";
             } else {
-                // Search the acquirer from the saved token, data-provider='stripe'
+                // When saved token <input> is selected, the value is the id of
+                // the payment token, we need to search the acquirer id by
+                // data-provider attribute in the input, e.g. data-provider='stripe'
                 var acquirer_id = $(
                     "input[data-provider=" + $(this).attr("data-provider") + "]"
                 )[0].value.split("_")[1];
