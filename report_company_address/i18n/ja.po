@@ -35,8 +35,3 @@ msgstr "設定された場合、その値がレポートヘッダーの会社名
 msgid "Report Company Name & Address"
 msgstr "レポート用会社名と所在地"
 
-#. module: report_company_address
-#: model_terms:ir.ui.view,arch_db:report_company_address.external_layout_clean
-msgid "Tel:"
-msgstr "TEL:"
-
