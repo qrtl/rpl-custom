@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-    <!-- FIXME company_information is always set with "<p><br></p>" under the 
-    html widget. It is not possible to unset the value from UI once the 
+    <!-- FIXME company_information is always set with "<p><br></p>" under the
+    html widget. It is not possible to unset the value from UI once the
     company_information is edited. -->
     <template
         id="external_layout_background"
@@ -31,9 +31,13 @@
             <attribute name="t-if">not company.company_information</attribute>
         </xpath>
         <xpath expr="//div[@name='company_address']" position="before">
-            <div t-if="company.company_information" class="col-5 offset-1" name="company_address">
+            <div
+                t-if="company.company_information"
+                class="col-5 offset-1"
+                name="company_address"
+            >
                 <ul class="list-unstyled">
-                   <div t-field="company.company_information" />
+                    <div t-field="company.company_information" />
                 </ul>
             </div>
         </xpath>
