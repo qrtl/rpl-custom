@@ -7,9 +7,9 @@ from odoo import fields, models
 class ResCompany(models.Model):
     _inherit = "res.company"
 
-    company_information = fields.Html(
-        "Company Information",
-        help="Company information that should show in report footer when set.",
+    report_footer_custom = fields.Html(
+        "Report Footer Information",
+        help="To reset the value, please update the source and translations strings of the translation record.",
         translate=True,
         sanitize=False,
     )

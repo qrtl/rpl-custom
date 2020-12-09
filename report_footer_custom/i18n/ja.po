@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* report_company_information
+#	* report_report_footer_custom
 #
 msgid ""
 msgstr ""
@@ -15,18 +15,18 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
 
-#. module: report_company_information
-#: model:ir.model,name:report_company_information.model_res_company
+#. module: report_report_footer_custom
+#: model:ir.model,name:report_report_footer_custom.model_res_company
 msgid "Companies"
 msgstr "会社"
 
-#. module: report_company_information
-#: model:ir.model.fields,field_description:report_company_information.field_res_company__company_information
+#. module: report_report_footer_custom
+#: model:ir.model.fields,field_description:report_report_footer_custom.field_res_company__report_footer_custom
 msgid "Company Information"
 msgstr "会社情報"
 
-#. module: report_company_information
-#: model:ir.model.fields,help:report_company_information.field_res_company__company_information
+#. module: report_report_footer_custom
+#: model:ir.model.fields,help:report_report_footer_custom.field_res_company__report_footer_custom
 msgid "Company information that should show in report footer when set."
 msgstr "設定された場合、その値がレポートフッターの会社情報として表示されます。"
 
