@@ -9,7 +9,8 @@ class ResCompany(models.Model):
 
     report_footer_custom = fields.Html(
         "Report Footer Information",
-        help="To reset the value, please update the source and translations strings of the translation record.",
+        help="To reset the value, please update the source and translations "
+        "strings of the translation record.",
         translate=True,
         sanitize=False,
     )
