@@ -30,6 +30,7 @@ exclude: |
   l10n_jp_partner_title_qweb/|
   mrp_subcontracting/|
   partner_statement/|
+  purchase_allowed_product/|
   queue_job/|
   report_csv/|
   report_py3o/|
