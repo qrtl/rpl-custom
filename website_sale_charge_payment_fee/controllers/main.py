@@ -37,23 +37,3 @@ class WebsiteSaleFee(WebsiteSale):
             order.sudo().update_fee_line(selected_acquirer.sudo())
             return request.render("website_sale.payment", values)
         return res
-
-    @http.route(
-        ["/shop/update_acquirer"],
-        type="json",
-        auth="public",
-        methods=["POST"],
-        website=True,
-        csrf=False,
-    )
-    def update_acquirer(self, **post):
-        order = request.website.sale_get_order()
-        acquirer_id = post.get("acquirer_id")
-        if acquirer_id:
-            acquirer = request.env["payment.acquirer"].browse(int(acquirer_id))
-            order.sudo().update_fee_line(acquirer.sudo())
-        if "carrier_id" not in post:
-            post["carrier_id"] = order.carrier_id.id
-        results = self._update_website_sale_delivery_return(order, **post)
-        results["amount_payment_fee"] = order.amount_payment_fee
-        return results
