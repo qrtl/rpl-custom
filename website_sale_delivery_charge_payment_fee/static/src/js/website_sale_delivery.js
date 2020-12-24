@@ -8,6 +8,8 @@ odoo.define("website_sale_change_payment_fee.checkout", function(require) {
     var dp = new concurrency.DropPrevious();
 
     var _onUpdatePaymentFee = function(result) {
+        // Following structure is made consistent with _onCarrierUpdateAnswer
+        // of website_sale_delivery.
         var $pay_button = $("#o_payment_form_pay");
         var $amount_payment_fee = $("#order_payment_fee span.oe_currency_value");
         var $amount_untaxed = $("#order_total_untaxed span.oe_currency_value");

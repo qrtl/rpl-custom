@@ -25,7 +25,7 @@ eCommerce: charge payment fee (Delivery)
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
 
-This module adds logic to support features from website_sale_charge_payment_fee works with website_sale_delivery.
+This module adds logic for the features of website_sale_charge_payment_fee to work with website_sale_delivery.
 
 **Table of contents**
 
