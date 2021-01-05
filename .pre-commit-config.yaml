@@ -40,6 +40,7 @@ exclude: |
   sale_order_invoicing_queued/|
   sequence_reset_period/|
   sql_request_abstract/|
+  stock_no_negative/|
   stock_picking_auto_create_lot/|
   stock_picking_back2draft /|
   stock_picking_comment_template/|
