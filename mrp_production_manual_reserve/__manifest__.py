@@ -1,7 +1,7 @@
 # Copyright 2021 Quartile Limited
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 {
-    "name": "Production Stock Move Line Link",
+    "name": "Production Manual Reserve",
     "version": "12.0.1.0.0",
     "category": "Manufacturing",
     "website": "https://www.quartile.co",
