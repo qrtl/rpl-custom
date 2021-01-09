@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_raw_move_line_tree" model="ir.ui.view">
+        <field name="name">raw.stock.move.line.tree</field>
+        <field name="model">stock.move.line</field>
+        <field name="arch" type="xml">
+            <tree decoration-muted="state == 'cancel'" decoration-danger="(state not in ('cancel','done'))" string="Move Lines" create="1" edit="1" editable="bottom" default_order="lot_id">
+                <field name="date" invisible="1"/>
+                <field name="reference" string="Reference" readonly="1"/>
+                <field name="product_id" readonly="1"/>
+                <field name="location_id" readonly="1"/>
+                <field name="location_dest_id" readonly="1"/>
+                <field name="lot_id" domain="[('product_id','=',product_id)]"/>
+                <field name="uom_qty_to_reserve"/>
+                <field name="product_uom_qty" readonly="1"/>
+                <field name="product_uom_id" options="{'no_open': True, 'no_create': True}" string="Unit of Measure" groups="uom.group_uom"/>
+                <field name="product_qty" readonly="1" invisible="1"/>
+                <field name="qty_done" string="Quantity Done"/>
+                <field name="state" readonly="0"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="act_product_reserving_stock_move_open">
+        <field name="name">Inventory Moves</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">stock.move.line</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view">view_raw_move_line_tree</field>
+        <!-- <field name="target">new</field> -->
+    </record>
+
+</odoo>
