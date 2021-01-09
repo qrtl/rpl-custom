@@ -40,6 +40,5 @@
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
         <field name="view">view_raw_move_line_tree</field>
-        <!-- <field name="target">new</field> -->
     </record>
 </odoo>

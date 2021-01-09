@@ -11,6 +11,7 @@ from odoo.addons import decimal_precision as dp
 class StockMove(models.Model):
     _inherit = "stock.move"
 
+    #TODO: this field may not be needed
     qty_to_reserve = fields.Float(
         "Quantity to Reserve",
         compute="_compute_qty_to_reserve",
@@ -18,6 +19,7 @@ class StockMove(models.Model):
         readonly=True,
         help="Quantity that is expected to be reserved for this move.",
     )
+    tracking = fields.Selection(related="product_id.tracking")
 
     @api.multi
     @api.depends("move_line_ids.qty_to_reserve")
@@ -37,43 +39,37 @@ class StockMove(models.Model):
             if rec.product_qty >= rec.reserved_availability + qty_to_reserve:
                 rec.qty_to_reserve = qty_to_reserve
             else:
-                raise UserError(_("You are trying to reserve more that needed."))
+                raise UserError(_("You are trying to reserve more than needed."))
 
-    def _update_reserved_quantity_component(self, location_id, strict=True):
+    # def _update_reserved_quantity_component(self, location_id, strict=True):
+    def _update_reserved_quantity_component(self, location_id):
         """Unlike the standard method _update_reserved_quantity(), we will not
         create move lines here. We will just try updating reserved quantities
         of quants to keep consistency between existing move lines and quants.
         """
         self.ensure_one()
         taken_quantity = 0
+        rounding = self.env["decimal.precision"].precision_get(
+            "Product Unit of Measure"
+        )
         for line in self.move_line_ids:
             available_quantity = self.env["stock.quant"]._get_available_quantity(
                 line.product_id, line.location_id, line.lot_id
             )
             if available_quantity <= 0:
                 continue
-            quantity = min(line.qty_to_reserve, available_quantity)
-            # TODO: should do something if need > available_quantity here?
-
-            # `taken_quantity` is in the quants unit of measure. There's a possibility that the move's
-            # unit of measure won't be respected if we blindly reserve this quantity, a common usecase
-            # is if the move's unit of measure's rounding does not allow fractional reservation. We chose
-            # to convert `taken_quantity` to the move's unit of measure with a down rounding method and
-            # then get it back in the quants unit of measure with an half-up rounding_method. This
-            # way, we'll never reserve more than allowed. We do not apply this logic if
-            # `available_quantity` is brought by a chained move line. In this case, `_prepare_move_line_vals`
-            # will take care of changing the UOM to the UOM of the product.
-            if not strict:
-                quantity_move_uom = self.product_id.uom_id._compute_quantity(
-                    quantity, self.product_uom, rounding_method="DOWN"
-                )
-                quantity = self.product_uom._compute_quantity(
-                    quantity_move_uom, self.product_id.uom_id, rounding_method="HALF-UP"
-                )
-            quants = []
-            rounding = self.env["decimal.precision"].precision_get(
-                "Product Unit of Measure"
+            # missing_qty could go negative here, and that is OK.
+            missing_qty = line.qty_to_reserve - line.product_qty
+            quantity = min(missing_qty, available_quantity)
+            # See comments in the standard method _update_reserved_quantity()
+            # for the rationale of following conversions.
+            quantity_move_uom = self.product_id.uom_id._compute_quantity(
+                quantity, self.product_uom, rounding_method="DOWN"
             )
+            quantity = self.product_uom._compute_quantity(
+                quantity_move_uom, self.product_id.uom_id, rounding_method="HALF-UP"
+            )
+            quants = []
             # TODO: should we remove the case of serial?
             # if self.product_id.tracking == 'serial':
             #     if float_compare(quantity, int(quantity), precision_digits=rounding) != 0:
@@ -89,12 +85,13 @@ class StockMove(models.Model):
                             location_id,
                             quantity,
                             lot_id=line.lot_id,
-                            strict=strict,
+                            strict=True,
                         )
             except UserError:
                 quantity = 0
             if quants:
-                reserved_qty = quants[0][1]
+                reserved_qty_diff = quants[0][1]  # newly reserved qty
+                reserved_qty = line.product_qty + reserved_qty_diff
                 uom_quantity = self.product_id.uom_id._compute_quantity(
                     reserved_qty, line.product_uom_id, rounding_method="HALF-UP"
                 )
@@ -102,21 +99,22 @@ class StockMove(models.Model):
                 uom_quantity_back_to_product_uom = line.product_uom_id._compute_quantity(
                     uom_quantity, self.product_id.uom_id, rounding_method="HALF-UP"
                 )
-            if (
-                float_compare(
-                    quantity,
-                    uom_quantity_back_to_product_uom,
-                    precision_digits=rounding,
-                )
-                == 0
-            ):
-                line.with_context(
-                    bypass_reservation_update=True
-                ).product_uom_qty = uom_quantity
+                if (
+                    float_compare(
+                        reserved_qty,
+                        uom_quantity_back_to_product_uom,
+                        precision_digits=rounding,
+                    )
+                    == 0
+                ):
+                    line.with_context(
+                        bypass_reservation_update=True
+                    ).product_uom_qty = uom_quantity
+                    # line.uom_qty_to_reserve = 0
             taken_quantity += quantity
         return taken_quantity
 
-    def _action_assign_component(self):
+    def action_assign_component(self):
         """Logic is taken from the standard _action_assign() method but the
         difference is that we do try generating stock move line records here.
         Instead, we try to update the reservation of the stock according to
@@ -133,7 +131,7 @@ class StockMove(models.Model):
             if (
                 move.product_id.tracking != "lot"
                 or move.product_id.type == "consu"
-                or move.state not in ["confirmed", "partially_available"]
+                or move.state not in ["confirmed", "partially_available", "assigned"]
                 or move.location_id.should_bypass_reservation()
                 or move.move_orig_ids
                 or move.procure_method == "make_to_order"
@@ -149,7 +147,8 @@ class StockMove(models.Model):
                 rounding_method="HALF-UP",
             )
             taken_quantity = move._update_reserved_quantity_component(
-                move.location_id, strict=False
+                # move.location_id, strict=False
+                move.location_id
             )
             # TODO: should the case of taken_quantity being zero allowed?
             if float_is_zero(taken_quantity, precision_rounding=rounding):
@@ -168,34 +167,13 @@ class StockMove(models.Model):
         partially_available_moves.write({"state": "partially_available"})
         assigned_moves.write({"state": "assigned"})
 
-    # @api.multi
-    # @api.depends('move_line_ids.product_qty')
-    # def _compute_reserved_availability(self):
-    #     super()._compute_reserved_availability()
-    #     for rec in self:
-    #         if rec.reserved_availability:
-    #             if rec.reserved_availability < rec.product_uom_qty:
-    #                 rec.write({"state": "partially_available"})
-    #             elif rec.reserved_availability < rec.product_uom_qty:
-    #                 rec.write({"state": "assigned"})
-
-    # def write(self, vals):
-    #     res = super().write(vals)
-    #     for move in self:
-    #         if move.reserved_availability:
-    #             if move.reserved_availability < move.product_uom_qty and move.state != "partially_available":
-    #                 move.write({"state": "partially_available"})
-    #             elif move.reserved_availability == move.product_uom_qty and move.state != "assigned":
-    #                 move.write({"state": "assigned"})
-    #     return res
-
     @api.multi
     def action_view_stock_move_lines(self):
         # This method is expected to be used for component moves of a
         # production.
         self.ensure_one()
         action = self.env.ref(
-            "mrp_production_stock_move_line_link.act_product_reserving_stock_move_open"
+            "mrp_production_manual_reserve.act_product_reserving_stock_move_open"
         ).read()[0]
         action["context"] = {
             "default_move_id": self.id,

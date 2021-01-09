@@ -10,5 +10,5 @@ class MrpProduction(models.Model):
     @api.multi
     def action_assign_component(self):
         for production in self:
-            production.move_raw_ids._action_assign_component()
+            production.move_raw_ids.action_assign_component()
         return True
