@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="mrp_production_form_view" model="ir.ui.view">
+        <field name="name">mrp.production.form</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view" />
+        <field name="arch" type="xml">
+            <!-- todo: adjust attribute of the inventory moves button so that it will show all the time except for cancelled state -->
+            <xpath expr="//button[@name='action_assign']" position="before">
+                <button
+                    name="action_assign_component"
+                    attrs="{'invisible': ['|', ('availability', 'in', ('assigned', 'none')), ('is_locked', '=', False)]}"
+                    string="Reserve Stock"
+                    type="object"
+                    class="oe_highlight"
+                />
+            </xpath>
+            <xpath expr="//div[@name='button_box']//button[3]" position="attributes">
+                <attribute
+                    name="attrs"
+                >{"invisible":[("state","=","cancel")]}</attribute>
+            </xpath>
+            <xpath
+                expr="//field[@name='move_raw_ids']//field[@name='reserved_availability']"
+                position="after"
+            >
+                <button
+                    name="action_view_stock_move_lines"
+                    type="object"
+                    icon="fa-bars"
+                    string="Show Move Lines"
+                    attrs="{'invisible':[('is_done','=',True)]}"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
