@@ -19,7 +19,8 @@ class StockMove(models.Model):
         readonly=True,
         help="Quantity that is expected to be reserved for this move.",
     )
-    tracking = fields.Selection(related="product_id.tracking")
+    quant_ids = fields.Many2many("stock.quant", string="Quants")
+    # tracking = fields.Selection(related="product_id.tracking")
 
     @api.multi
     @api.depends("move_line_ids.qty_to_reserve")
@@ -166,6 +167,17 @@ class StockMove(models.Model):
                 partially_available_moves |= move
         partially_available_moves.write({"state": "partially_available"})
         assigned_moves.write({"state": "assigned"})
+
+    @api.multi
+    def action_create_move_lines(self):
+        self.ensure_one()
+        move_line_vals_list = []
+        for quant in self.quant_ids:
+            vals = self._prepare_move_line_vals(reserved_quant=quant)
+            vals = dict(vals, quant_id=quant.id, lot_id=quant.lot_id.id)
+            move_line_vals_list.append(vals)
+        self.env["stock.move.line"].create(move_line_vals_list)
+        self.write({"quant_ids": [(5, 0, 0)]})
 
     @api.multi
     def action_view_stock_move_lines(self):

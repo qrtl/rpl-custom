@@ -6,9 +6,24 @@
         <field name="model">stock.move</field>
         <field name="inherit_id" ref="mrp.view_stock_move_lots"/>
         <field name="arch" type="xml">
+            <xpath expr="//group[1]/group[1]" position="after">
+                <group>
+                    <field name="quant_ids" widget="many2many_tags" domain="[('product_id','=',product_id),('location_id','=',location_id)]"/>
+                    <button
+                        name="action_create_move_lines"
+                        attrs="{'invisible':[('quant_ids','=',False)]}"
+                        string="Create Move Lines"
+                        type="object"
+                        class="oe_highlight"
+                    />
+                </group>
+            </xpath>
+            <xpath expr="//field[@name='product_qty']" position="before">
+                <field name="quant_id"/>
+                <field name="quant_available_uom_qty"/>
+                <field name="uom_qty_to_reserve"/>
+            </xpath>
             <xpath expr="//field[@name='active_move_line_ids']" position="after">
-                <!-- <field name="qty_to_reserve" invisible="1"/> -->
-                <!-- <field name="tracking" invisible="1"/> -->
                 <field name="needs_lots" invisible="1"/>
                 <button
                     name="action_assign_component"
@@ -17,9 +32,6 @@
                     type="object"
                     class="oe_highlight"
                 />
-            </xpath>
-            <xpath expr="//field[@name='product_qty']" position="before">
-                <field name="uom_qty_to_reserve"/>
             </xpath>
         </field>
     </record>
