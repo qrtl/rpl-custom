@@ -7,7 +7,8 @@
         <field name="inherit_id" ref="mrp.view_stock_move_lots"/>
         <field name="arch" type="xml">
             <xpath expr="//group[1]/group[1]" position="after">
-                <group>
+                <field name="allow_manual_reservation" invisible="1"/>
+                <group name="create_move_line" attrs="{'invisible':[('allow_manual_reservation','=',False)]}">
                     <field name="quant_ids" widget="many2many_tags" domain="[('product_id','=',product_id),('location_id','=',location_id)]"/>
                     <field name="has_quant" invisible="1"/>
                     <button
@@ -20,20 +21,22 @@
                 </group>
             </xpath>
             <xpath expr="//field[@name='product_qty']" position="before">
-                <field name="quant_id"/>
-                <field name="quant_available_uom_qty"/>
-                <field name="uom_qty_to_reserve"/>
+                <field name="quant_id" attrs="{'column_invisible':[('parent.allow_manual_reservation','=',False)]}"/>
+                <field name="quant_available_uom_qty" attrs="{'column_invisible':[('parent.allow_manual_reservation','=',False)]}"/>
+                <field name="uom_qty_to_reserve" attrs="{'column_invisible':[('parent.allow_manual_reservation','=',False)]}"/>
             </xpath>
             <xpath expr="//field[@name='active_move_line_ids']" position="after">
-                <field name="needs_lots" invisible="1"/>
-                <field name="should_reserve_stock" invisible="1"/>
-                <button
-                    name="action_assign_component"
-                    attrs="{'invisible':['|','|',('state','not in',('confirmed','partially_available','assigned')),('needs_lots','=',False),('should_reserve_stock','=',False)]}"
-                    string="Reserve Stock"
-                    type="object"
-                    class="oe_highlight"
-                />
+                <group name="reserve_stock" attrs="{'invisible':[('allow_manual_reservation','=',False)]}">
+                    <field name="needs_lots" invisible="1"/>
+                    <field name="should_reserve_stock" invisible="1"/>
+                    <button
+                        name="action_assign_component"
+                        attrs="{'invisible':['|','|',('state','not in',('confirmed','partially_available','assigned')),('needs_lots','=',False),('should_reserve_stock','=',False)]}"
+                        string="Reserve Stock"
+                        type="object"
+                        class="oe_highlight"
+                    />
+                </group>
             </xpath>
         </field>
     </record>

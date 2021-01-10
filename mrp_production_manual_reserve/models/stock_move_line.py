@@ -22,7 +22,7 @@ class StockMoveLine(models.Model):
         default=0.0,
         digits=dp.get_precision("Product Unit of Measure"),
     )
-    quant_id = fields.Many2one("stock.quant", string="Quant")
+    quant_id = fields.Many2one("stock.quant", string="Quant", ondelete="set null")
     quant_available_uom_qty = fields.Float(
         compute="_compute_quant_available_uom_qty",
         string="Available Qty",
