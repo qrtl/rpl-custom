@@ -9,9 +9,10 @@
             <xpath expr="//group[1]/group[1]" position="after">
                 <group>
                     <field name="quant_ids" widget="many2many_tags" domain="[('product_id','=',product_id),('location_id','=',location_id)]"/>
+                    <field name="has_quant" invisible="1"/>
                     <button
                         name="action_create_move_lines"
-                        attrs="{'invisible':[('quant_ids','=',False)]}"
+                        attrs="{'invisible':[('has_quant','=',False)]}"
                         string="Create Move Lines"
                         type="object"
                         class="oe_highlight"
@@ -25,9 +26,10 @@
             </xpath>
             <xpath expr="//field[@name='active_move_line_ids']" position="after">
                 <field name="needs_lots" invisible="1"/>
+                <field name="should_reserve_stock" invisible="1"/>
                 <button
                     name="action_assign_component"
-                    attrs="{'invisible':['|',('state','not in',('confirmed','partially_available','assigned')),('needs_lots','=',False)]}"
+                    attrs="{'invisible':['|','|',('state','not in',('confirmed','partially_available','assigned')),('needs_lots','=',False),('should_reserve_stock','=',False)]}"
                     string="Reserve Stock"
                     type="object"
                     class="oe_highlight"

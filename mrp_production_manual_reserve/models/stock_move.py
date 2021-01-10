@@ -20,7 +20,22 @@ class StockMove(models.Model):
         help="Quantity that is expected to be reserved for this move.",
     )
     quant_ids = fields.Many2many("stock.quant", string="Quants")
-    # tracking = fields.Selection(related="product_id.tracking")
+    has_quant = fields.Boolean(compute="_compute_has_quant")
+    should_reserve_stock = fields.Boolean(compute="_compute_should_reserve_stock")
+
+    @api.depends("quant_ids")
+    def _compute_has_quant(self):
+        for move in self:
+            if move.quant_ids:
+                move.has_quant = True
+
+    @api.depends("active_move_line_ids.quant_available_uom_qty", "active_move_line_ids.uom_qty_to_reserve", "active_move_line_ids.product_uom_qty")
+    def _compute_should_reserve_stock(self):
+        for move in self:
+            for line in move.active_move_line_ids:
+                if line.uom_qty_to_reserve != line.product_uom_qty and line.uom_qty_to_reserve <= line.quant_available_uom_qty:
+                    move.should_reserve_stock = True
+                    break
 
     @api.multi
     @api.depends("move_line_ids.qty_to_reserve")
