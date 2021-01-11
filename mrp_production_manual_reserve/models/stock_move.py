@@ -124,6 +124,7 @@ class StockMove(models.Model):
         for move in self:
             if not move.allow_manual_reservation:
                 continue
+            #TODO: below lines can be much simplified with move._recompute_state()?
             rounding = roundings[move]
             missing_reserved_uom_quantity = (
                 move.product_uom_qty - reserved_availability[move]

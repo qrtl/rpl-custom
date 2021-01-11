@@ -9,6 +9,7 @@
             <xpath expr="//group[1]/group[1]" position="after">
                 <field name="allow_manual_reservation" invisible="1"/>
                 <group name="create_move_line" attrs="{'invisible':[('allow_manual_reservation','=',False)]}">
+                    <field name="state"/>
                     <field name="quant_ids" widget="many2many_tags" domain="[('product_id','=',product_id),('location_id','=',location_id)]"/>
                     <field name="has_quant" invisible="1"/>
                     <button
