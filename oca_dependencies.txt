@@ -19,4 +19,4 @@
 # commit SHA to select:
 # sale-workflow https://github.com/OCA/sale-workflow branchname f848e37
 
-rpl-oca git@github.com:qrtl/rpl-oca.git st1
+rpl-oca https://github.com/qrtl/rpl-oca.git st1
