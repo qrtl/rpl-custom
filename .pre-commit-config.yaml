@@ -14,42 +14,9 @@ exclude: |
   ^\.travis\.yml$|
   ^pyproject\.toml$|
   # For v12.0 of before, exclude all oca modules
-  account_invoice_comment_template/|
-  account_payment_term_extension/|
-  auditlog/|
-  base_comment_template/|
-  base_country_state_translatable/|
-  base_technical_features/|
-  base_user_role/|
-  bi_sql_editor/|
-  dbfilter_from_header/|
-  l10n_ch_states/|
-  l10n_de_country_states/|
-  l10n_fr_state/|
-  l10n_jp_country_state/|
   l10n_jp_partner_title_qweb/|
-  mrp_subcontracting/|
-  purchase_allowed_product/|
-  queue_job/|
-  report_csv/|
-  report_py3o/|
-  sale_comment_template/|
-  sale_automatic_workflow/|
-  sale_order_incoterm_place/|
-  sale_order_invoicing_queued/|
-  sequence_reset_period/|
-  sql_request_abstract/|
-  stock_picking_auto_create_lot/|
-  stock_picking_back2draft /|
-  stock_picking_comment_template/|
-  stock_picking_report_valued/|
-  web_environment_ribbon/|
-  web_favicon/|
-  website_no_crawler/|
-  web_m2x_options/|
   website_sale_charge_payment_fee/|
-  website_sale_delivery_charge_payment_fee/|
-  website_sale_hide_price/
+  website_sale_delivery_charge_payment_fee/
 default_language_version:
   python: python3
   node: "14.13.0"
