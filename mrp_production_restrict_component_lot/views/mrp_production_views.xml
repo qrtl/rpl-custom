@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="mrp_production_form_view" model="ir.ui.view">
+        <field name="name">mrp.production.form</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_assign']" position="before">
+                <field name="show_action_assign" invisible="1"/>
+            </xpath>
+            <xpath expr="//button[@name='action_assign']" position="attributes">
+                <field name="attrs">{'invisible':['|','|',('availability','in',('assigned','none')),('is_locked','=',False),('show_action_assign','=',False)]}"</field>
+            </xpath>
+            <xpath expr="//field[@name='production_location_id']" position="after">
+                <field name="need_component_lot_filter" invisible="1" />
+                <field name="component_lot_filter" attrs="{'invisible':[('need_component_lot_filter','=',False)],'required':[('need_component_lot_filter','=',True)]}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
