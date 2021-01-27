@@ -5,11 +5,11 @@
         <field name="model">mrp.production</field>
         <field name="inherit_id" ref="mrp.mrp_production_form_view" />
         <field name="arch" type="xml">
-            <xpath expr="//button[@name='action_assign']" position="before">
+            <xpath expr="//field[@name='consumed_less_than_planned']" position="after">
                 <field name="show_action_assign" invisible="1"/>
             </xpath>
             <xpath expr="//button[@name='action_assign']" position="attributes">
-                <field name="attrs">{'invisible':['|','|',('availability','in',('assigned','none')),('is_locked','=',False),('show_action_assign','=',False)]}"</field>
+                <attribute name="attrs">{'invisible':['|','|',('availability','in',('assigned','none')),('is_locked','=',False),('show_action_assign','=',False)]}</attribute>
             </xpath>
             <xpath expr="//field[@name='production_location_id']" position="after">
                 <field name="need_component_lot_filter" invisible="1" />

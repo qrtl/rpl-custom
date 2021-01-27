@@ -22,7 +22,7 @@ class MrpProduction(models.Model):
         for production in self:
             show_action_assign = True
             for move in production.move_raw_ids.filtered(lambda x: x.product_id.lot_restriction):
-                if not float_is_zero(move.quantity_done - move.product_uom_qty, precision_digits=precision):
+                if not float_is_zero(move.product_uom_qty - move.reserved_availability, precision_digits=precision):
                     show_action_assign = False
                     break
             production.show_action_assign = show_action_assign
