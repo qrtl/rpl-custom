@@ -11,7 +11,9 @@ class AssignManualQuants(models.TransientModel):
     def _domain_for_available_quants(self, move):
         domain = super()._domain_for_available_quants(move)
         production = move.raw_material_production_id
-        if production and production.component_lot_filter:
+        if not production:
+            return domain
+        if production.component_lot_filter and move.lot_restriction:
             lots = self.env["stock.production.lot"].search([
                 ("product_id", "=", move.product_id.id),
                 ("ref", "=ilike", production.component_lot_filter + "%"),

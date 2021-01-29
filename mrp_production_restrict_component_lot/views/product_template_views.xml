@@ -7,7 +7,6 @@
         <field name="arch" type="xml">
             <xpath expr="//group[@name='traceability']" position="inside">
                 <field name="lot_restriction" attrs="{'invisible':[('tracking','=','none')]}"/>
-                <field name="filter_length" attrs="{'invisible':[('lot_restriction','=',False)]}"/>
             </xpath>
         </field>
     </record>
