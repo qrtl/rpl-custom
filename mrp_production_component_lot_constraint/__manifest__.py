@@ -9,8 +9,5 @@
     "license": "AGPL-3",
     "installable": True,
     "depends": ["mrp_production_quant_manual_assign"],
-    "data": [
-        "views/mrp_production_views.xml",
-        "views/product_template_views.xml",
-    ],
+    "data": ["views/mrp_production_views.xml", "views/product_template_views.xml"],
 }
