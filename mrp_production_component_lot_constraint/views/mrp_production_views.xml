@@ -11,9 +11,12 @@
             <xpath expr="//button[@name='action_assign']" position="attributes">
                 <attribute name="attrs">{'invisible':['|','|',('availability','in',('assigned','none')),('is_locked','=',False),('show_action_assign','=',False)]}</attribute>
             </xpath>
+            <xpath expr="//sheet/group/group/div[@class='o_row']" position="inside">
+                <span>Suggested Quantity:</span>
+                <field name="suggested_qty" />
+            </xpath>
             <xpath expr="//field[@name='production_location_id']" position="after">
                 <field name="need_component_lot_filter" invisible="1" />
-                <!-- <field name="component_lot_filter" attrs="{'invisible':[('need_component_lot_filter','=',False)],'required':[('need_component_lot_filter','=',True)]}"/> -->
                 <field name="component_lot_filter" attrs="{'invisible':[('need_component_lot_filter','=',False)]}"/>
             </xpath>
             <xpath

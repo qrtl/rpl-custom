@@ -1,7 +1,7 @@
 # Copyright 2021 Quartile Limited
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 {
-    "name": "MRP Production Restrict Component Lot",
+    "name": "MRP Production Component Lot Constraint",
     "version": "12.0.1.0.0",
     "category": "Manufacturing",
     "website": "https://www.quartile.co/",
