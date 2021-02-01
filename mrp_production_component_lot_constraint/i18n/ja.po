@@ -1,0 +1,106 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* mrp_production_component_lot_constraint
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-02-01 06:55+0000\n"
+"PO-Revision-Date: 2021-02-01 06:55+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: mrp_production_component_lot_constraint
+#: model_terms:ir.ui.view,arch_db:mrp_production_component_lot_constraint.mrp_production_form_view
+msgid "<span>Suggested Quantity:</span>"
+msgstr "<span>提案数:</span>"
+
+#. module: mrp_production_component_lot_constraint
+#: model:ir.model,name:mrp_production_component_lot_constraint.model_assign_manual_quants
+msgid "Assign Manual Quants"
+msgstr "保管ロット手動割当"
+
+#. module: mrp_production_component_lot_constraint
+#: model:ir.model.fields,field_description:mrp_production_component_lot_constraint.field_mrp_production__component_lot_filter
+msgid "Component Lot Filter"
+msgstr "構成品ロットフィルタ"
+
+#. module: mrp_production_component_lot_constraint
+#: code:addons/mrp_production_component_lot_constraint/models/mrp_production.py:95
+#, python-format
+msgid "Component Lot Filter must be {}-character long."
+msgstr "構成品ロットフィルタは{}文字としてください。"
+
+#. module: mrp_production_component_lot_constraint
+#: code:addons/mrp_production_component_lot_constraint/models/mrp_production.py:128
+#, python-format
+msgid "It is not allowed to use more than one lot per component line: {}"
+msgstr "構成品明細へのロット割当は1つまでとしてください: {}"
+
+#. module: mrp_production_component_lot_constraint
+#: model:ir.model.fields,field_description:mrp_production_component_lot_constraint.field_product_product__lot_restriction
+#: model:ir.model.fields,field_description:mrp_production_component_lot_constraint.field_product_template__lot_restriction
+#: model:ir.model.fields,field_description:mrp_production_component_lot_constraint.field_stock_move__lot_restriction
+msgid "Lot Restriction"
+msgstr "ロット制約"
+
+#. module: mrp_production_component_lot_constraint
+#: model:ir.model.fields,field_description:mrp_production_component_lot_constraint.field_mrp_production__need_component_lot_filter
+msgid "Need Component Lot Filter"
+msgstr "ロットフィルタ必須"
+
+#. module: mrp_production_component_lot_constraint
+#: code:addons/mrp_production_component_lot_constraint/models/mrp_production.py:115
+#, python-format
+msgid "Please select lots according to the Component Lot Filter"
+msgstr "構成品ロットフィルタにもとづきロットを選択してください。"
+
+#. module: mrp_production_component_lot_constraint
+#: code:addons/mrp_production_component_lot_constraint/models/mrp_production.py:106
+#, python-format
+msgid "Please set the Component Lot Filter and select lots accordingly"
+msgstr "構成品ロットフィルタを設定し、ロットを選択してください。"
+
+#. module: mrp_production_component_lot_constraint
+#: model:ir.model,name:mrp_production_component_lot_constraint.model_product_template
+msgid "Product Template"
+msgstr "プロダクトテンプレート"
+
+#. module: mrp_production_component_lot_constraint
+#: model:ir.model,name:mrp_production_component_lot_constraint.model_mrp_production
+msgid "Production Order"
+msgstr "製造オーダ"
+
+#. module: mrp_production_component_lot_constraint
+#: model:ir.model.fields,help:mrp_production_component_lot_constraint.field_product_product__lot_restriction
+#: model:ir.model.fields,help:mrp_production_component_lot_constraint.field_product_template__lot_restriction
+#: model:ir.model.fields,help:mrp_production_component_lot_constraint.field_stock_move__lot_restriction
+msgid "Select this in case lot restriction should be applied to this product (as a component) in manufacturing orders."
+msgstr "製造オーダにてこのプロダクト(構成品)に制約を適用したい場合、この項目を選択してください。"
+
+#. module: mrp_production_component_lot_constraint
+#: model:ir.model.fields,field_description:mrp_production_component_lot_constraint.field_mrp_production__show_action_assign
+msgid "Show Action Assign"
+msgstr "利用可能確認を表示"
+
+#. module: mrp_production_component_lot_constraint
+#: model:ir.model,name:mrp_production_component_lot_constraint.model_stock_move
+msgid "Stock Move"
+msgstr "在庫移動"
+
+#. module: mrp_production_component_lot_constraint
+#: model:ir.model.fields,field_description:mrp_production_component_lot_constraint.field_mrp_production__suggested_qty
+msgid "Suggested Qty"
+msgstr "提案数"
+
+#. module: mrp_production_component_lot_constraint
+#: code:addons/mrp_production_component_lot_constraint/models/mrp_production.py:120
+#, python-format
+msgid "There is an inconsistency between the Component Lot Filter and selected lot."
+msgstr "構成品ロットフィルタと選択されたロットに不整合があります。"
+
