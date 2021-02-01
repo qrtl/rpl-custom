@@ -125,8 +125,7 @@ class MrpProduction(models.Model):
                 raise UserError(
                     _(
                         "It is not allowed to use more than one lot per "
-                        "component line: %s"
-                    )
-                    % (move.product_id.display_name)
+                        "component line: {}"
+                    ).format(move.product_id.display_name)
                 )
         return super().open_produce_product()
