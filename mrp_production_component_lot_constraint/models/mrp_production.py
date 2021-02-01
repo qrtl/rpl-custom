@@ -92,7 +92,9 @@ class MrpProduction(models.Model):
                 and len(production.component_lot_filter) != filter_length
             ):
                 raise ValidationError(
-                    _("Component Lot Filter must be 8-character long.")
+                    _("Component Lot Filter must be {}-character long.").format(
+                        filter_length
+                    )
                 )
 
     @api.multi
