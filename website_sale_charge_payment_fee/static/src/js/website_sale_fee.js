@@ -5,7 +5,7 @@ odoo.define("website_sale_change_payment_fee.website_sale_fee", function(require
     require("web.ajax");
     require("web.core");
 
-    $(".o_payment_form").each(function() {
+    $(".oe_website_sale .o_payment_form").each(function() {
         var selected_acquirer = $('input[name="pm_id"][checked="True"]')[0].value;
 
         $(this).on("click", 'input[name="pm_id"]', function() {
