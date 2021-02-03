@@ -48,7 +48,6 @@ class SaleOrder(models.Model):
                 )
 
     def update_fee_line(self, acquirer):
-        print("update_fee_line")
         self.ensure_one()
         for line in self.order_line:
             if line.payment_fee_line:
