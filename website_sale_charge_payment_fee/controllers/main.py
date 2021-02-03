@@ -38,12 +38,27 @@ class WebsiteSaleFee(WebsiteSale):
             return request.render("website_sale.payment", values)
         return res
 
-    @http.route(['/shop/payment/transaction/',
-        '/shop/payment/transaction/<int:so_id>',
-        '/shop/payment/transaction/<int:so_id>/<string:access_token>'], type='json', auth="public", website=True)
-    def payment_transaction(self, acquirer_id, save_token=False, so_id=None, access_token=None, token=None, **kwargs):
+    @http.route(
+        [
+            "/shop/payment/transaction/",
+            "/shop/payment/transaction/<int:so_id>",
+            "/shop/payment/transaction/<int:so_id>/<string:access_token>",
+        ],
+        type="json",
+        auth="public",
+        website=True,
+    )
+    def payment_transaction(
+        self,
+        acquirer_id,
+        save_token=False,
+        so_id=None,
+        access_token=None,
+        token=None,
+        **kwargs
+    ):
         # Borrow the logic from standard Odoo to check against acquirer_id and order
-        # https://github.com/odoo/odoo/blob/aba9056e7baa58decf147313678ad9d1f4522dee/addons/website_sale/controllers/main.py#L887-L910
+        # https://github.com/odoo/odoo/blob/aba9056e7baa58decf147313678ad9d1f4522dee/addons/website_sale/controllers/main.py#L887-L910 # noqa
         # Ensure a payment acquirer is selected
         if not acquirer_id:
             return False
@@ -55,11 +70,11 @@ class WebsiteSaleFee(WebsiteSale):
 
         # Retrieve the sale order
         if so_id:
-            env = request.env['sale.order']
-            domain = [('id', '=', so_id)]
+            env = request.env["sale.order"]
+            domain = [("id", "=", so_id)]
             if access_token:
                 env = env.sudo()
-                domain.append(('access_token', '=', access_token))
+                domain.append(("access_token", "=", access_token))
             order = env.search(domain, limit=1)
         else:
             order = request.website.sale_get_order()
@@ -73,4 +88,11 @@ class WebsiteSaleFee(WebsiteSale):
         # Update payment fee line
         payment_acquirer = request.env["payment.acquirer"].browse(acquirer_id)
         order.sudo().update_fee_line(payment_acquirer.sudo())
-        return super(WebsiteSaleFee, self).payment_transaction(acquirer_id, save_token=save_token, so_id=so_id, access_token=access_token, token=token, **kwargs)
+        return super(WebsiteSaleFee, self).payment_transaction(
+            acquirer_id,
+            save_token=save_token,
+            so_id=so_id,
+            access_token=access_token,
+            token=token,
+            **kwargs
+        )
