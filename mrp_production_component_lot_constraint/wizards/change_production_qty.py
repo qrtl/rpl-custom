@@ -10,5 +10,4 @@ class ChangeProductionQty(models.TransientModel):
     @api.multi
     def change_prod_qty(self):
         self = self.with_context(skip_action_assign=True)
-        super().change_prod_qty()
-        return {}
+        return super().change_prod_qty()
