@@ -78,3 +78,10 @@ class SaleOrder(models.Model):
                     "product_uom_qty": 1,
                 }
             )
+
+    @api.multi
+    def _create_payment_transaction(self, vals):
+        payment_acquirer = self.env["payment.acquirer"].browse(vals['acquirer_id'])
+        for order in self:
+            order.sudo().update_fee_line(payment_acquirer.sudo())
+        return super(SaleOrder, self)._create_payment_transaction(vals)
