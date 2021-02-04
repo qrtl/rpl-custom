@@ -27,6 +27,9 @@ This module does the following:
 * Disallow reservation of more than one lot per component line.
 * Suggests the maximum producible quantity according to the lots selected for
   the component lines.
+* Skip the stock reservation that is triggered in vanilla Odoo when production
+  quantity is changed through the wizard, since it messes up the lot assignment
+  done manually by the user.
 
 **Table of contents**
 

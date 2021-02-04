@@ -119,8 +119,8 @@ class MrpProduction(models.Model):
                     raise UserError(
                         _(
                             "There is an inconsistency between the Component "
-                            "Lot Filter and selected lot."
-                        )
+                            "Lot Filter and selected lot:\n{} ({})"
+                        ).format(lot.product_id.display_name, lot.ref)
                     )
         for move in self.move_raw_ids:
             if len(move.move_line_ids) > 1:
