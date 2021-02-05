@@ -114,14 +114,19 @@ class MrpProduction(models.Model):
                 raise UserError(
                     _("Please select lots according to the Component Lot Filter")
                 )
+            conflicts = ""
             for lot in lots:
                 if lot.ref[:filter_length] != self.component_lot_filter:
-                    raise UserError(
-                        _(
-                            "There is an inconsistency between the Component "
-                            "Lot Filter and selected lot:\n{} ({})"
-                        ).format(lot.product_id.display_name, lot.ref)
+                    conflicts += "\n{} - {}".format(
+                        lot.product_id.display_name, lot.ref
                     )
+            if conflicts:
+                raise UserError(
+                    _(
+                        "There is an inconsistency between the Component "
+                        "Lot Filter and selected lot: {}"
+                    ).format(conflicts)
+                )
         for move in self.move_raw_ids:
             if len(move.move_line_ids) > 1:
                 raise UserError(
