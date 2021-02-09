@@ -45,6 +45,7 @@ class MrpProduction(models.Model):
                     break
             production.show_action_assign = show_action_assign
 
+    @api.depends("move_raw_ids.move_line_ids")
     def _compute_suggested_qty(self):
         precision = self.env["decimal.precision"].precision_get(
             "Product Unit of Measure"
@@ -114,14 +115,19 @@ class MrpProduction(models.Model):
                 raise UserError(
                     _("Please select lots according to the Component Lot Filter")
                 )
+            conflicts = ""
             for lot in lots:
                 if lot.ref[:filter_length] != self.component_lot_filter:
-                    raise UserError(
-                        _(
-                            "There is an inconsistency between the Component "
-                            "Lot Filter and selected lot."
-                        )
+                    conflicts += "\n{} - {}".format(
+                        lot.product_id.display_name, lot.ref
                     )
+            if conflicts:
+                raise UserError(
+                    _(
+                        "There is an inconsistency between the Component "
+                        "Lot Filter and selected lot: {}"
+                    ).format(conflicts)
+                )
         for move in self.move_raw_ids:
             if len(move.move_line_ids) > 1:
                 raise UserError(
