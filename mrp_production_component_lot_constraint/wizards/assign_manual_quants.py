@@ -3,9 +3,22 @@
 
 from odoo import api, models
 
+from ..models.mrp_production import filter_length
+
 
 class AssignManualQuants(models.TransientModel):
     _inherit = "assign.manual.quants"
+
+    @api.multi
+    def assign_quants(self):
+        res = super().assign_quants()
+        move = self.move_id
+        production = move.raw_material_production_id
+        if move.lot_restriction and production and not production.component_lot_filter:
+            selected_lot = move.move_line_ids.mapped("lot_id")[:1]
+            if selected_lot:
+                production.component_lot_filter = selected_lot.ref[:filter_length]
+        return res
 
     @api.model
     def _domain_for_available_quants(self, move):

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-01 06:55+0000\n"
-"PO-Revision-Date: 2021-02-01 06:55+0000\n"
+"POT-Creation-Date: 2021-02-05 13:28+0000\n"
+"PO-Revision-Date: 2021-02-05 13:28+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -26,6 +26,11 @@ msgid "Assign Manual Quants"
 msgstr "保管ロット手動割当"
 
 #. module: mrp_production_component_lot_constraint
+#: model:ir.model,name:mrp_production_component_lot_constraint.model_change_production_qty
+msgid "Change Production Qty"
+msgstr "生産数量を変更"
+
+#. module: mrp_production_component_lot_constraint
 #: model:ir.model.fields,field_description:mrp_production_component_lot_constraint.field_mrp_production__component_lot_filter
 msgid "Component Lot Filter"
 msgstr "構成品ロットフィルタ"
@@ -37,7 +42,7 @@ msgid "Component Lot Filter must be {}-character long."
 msgstr "構成品ロットフィルタは{}文字としてください。"
 
 #. module: mrp_production_component_lot_constraint
-#: code:addons/mrp_production_component_lot_constraint/models/mrp_production.py:128
+#: code:addons/mrp_production_component_lot_constraint/models/mrp_production.py:133
 #, python-format
 msgid "It is not allowed to use more than one lot per component line: {}"
 msgstr "構成品明細へのロット割当は1つまでとしてください: {}"
@@ -99,8 +104,8 @@ msgid "Suggested Qty"
 msgstr "提案数"
 
 #. module: mrp_production_component_lot_constraint
-#: code:addons/mrp_production_component_lot_constraint/models/mrp_production.py:120
+#: code:addons/mrp_production_component_lot_constraint/models/mrp_production.py:125
 #, python-format
-msgid "There is an inconsistency between the Component Lot Filter and selected lot."
-msgstr "構成品ロットフィルタと選択されたロットに不整合があります。"
+msgid "There is an inconsistency between the Component Lot Filter and selected lot: {}"
+msgstr "構成品ロットフィルタと選択されたロットに不整合があります: {}"
 
