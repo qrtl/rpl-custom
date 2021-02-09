@@ -20,7 +20,9 @@ class ChangeProductionQty(models.TransientModel):
                 vals = assign_manual_quants.with_context(active_id=move.id).default_get(
                     fields_list
                 )
-                assign_quant_rec = assign_manual_quants.with_context(active_id=move.id).create(vals)
+                assign_quant_rec = assign_manual_quants.with_context(
+                    active_id=move.id
+                ).create(vals)
                 for line in assign_quant_rec.quants_lines.filtered(
                     lambda x: x.selected
                 ):

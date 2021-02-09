@@ -1,14 +1,12 @@
 # Copyright 2021 Quartile Limited
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
-from odoo.tests import Form
-from odoo.tests import SavepointCase, tagged
 from odoo.exceptions import UserError
+from odoo.tests import SavepointCase, tagged
 
 
 @tagged("post_install", "-at_install")
 class TestComponentLotConstraint(SavepointCase):
-
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -22,6 +20,7 @@ class TestComponentLotConstraint(SavepointCase):
                     "lot_restriction": lot_restriction,
                 }
             )
+
         cls.product_1 = _create_product("product 1", "product", "lot", False)
         cls.product_2 = _create_product("product 2", "product", "lot", True)
         cls.product_3 = _create_product("product 3", "product", "lot", True)
@@ -36,20 +35,17 @@ class TestComponentLotConstraint(SavepointCase):
                 "bom_line_ids": [
                     (0, 0, {"product_id": cls.product_2.id, "product_qty": 1.0}),
                     (0, 0, {"product_id": cls.product_3.id, "product_qty": 2.0}),
-                ]
+                ],
             }
         )
 
         cls.location = cls.env.ref("stock.warehouse0").lot_stock_id
-        
+
         def _create_lot(name, ref, product):
             return cls.env["stock.production.lot"].create(
-                {
-                    "name": name,
-                    "ref": ref,
-                    "product_id": product.id,
-                }
+                {"name": name, "ref": ref, "product_id": product.id}
             )
+
         # Here we set the same values to both name and ref fields for a
         # reason - when stock_lot_reference_rpl is installed, ref field
         # becomes a compute field.
@@ -67,6 +63,7 @@ class TestComponentLotConstraint(SavepointCase):
                     "quantity": quantity,
                 }
             )
+
         cls.quant_1 = _create_quant(cls.product_2, cls.lot_1, 100.0)
         cls.quant_2 = _create_quant(cls.product_2, cls.lot_2, 100.0)
         cls.quant_3 = _create_quant(cls.product_2, cls.lot_3, 100.0)
@@ -81,20 +78,33 @@ class TestComponentLotConstraint(SavepointCase):
                 "bom_id": cls.bom_1.id,
             }
         )
-        cls.move_1 = cls.mo_1.move_raw_ids.filtered(lambda x: x.product_id == cls.product_2)[:1]
-        cls.move_2 = cls.mo_1.move_raw_ids.filtered(lambda x: x.product_id == cls.product_3)[:1]
+        cls.move_1 = cls.mo_1.move_raw_ids.filtered(
+            lambda x: x.product_id == cls.product_2
+        )[:1]
+        cls.move_2 = cls.mo_1.move_raw_ids.filtered(
+            lambda x: x.product_id == cls.product_3
+        )[:1]
 
     def test_01_component_lot_filter_quant_domain(self):
-        wizard = self.env["assign.manual.quants"].with_context(
-            active_id=self.move_1.id).create({})
+        wizard = (
+            self.env["assign.manual.quants"]
+            .with_context(active_id=self.move_1.id)
+            .create({})
+        )
         self.assertEqual(len(wizard.quants_lines), 3)
         self.mo_1.write({"component_lot_filter": "AAAA0001"})
-        wizard = self.env["assign.manual.quants"].with_context(
-            active_id=self.move_1.id).create({})
+        wizard = (
+            self.env["assign.manual.quants"]
+            .with_context(active_id=self.move_1.id)
+            .create({})
+        )
         self.assertEqual(len(wizard.quants_lines), 2)
         self.mo_1.write({"component_lot_filter": "AAAA0002"})
-        wizard = self.env["assign.manual.quants"].with_context(
-            active_id=self.move_1.id).create({})
+        wizard = (
+            self.env["assign.manual.quants"]
+            .with_context(active_id=self.move_1.id)
+            .create({})
+        )
         self.assertEqual(len(wizard.quants_lines), 1)
 
     def test_02_component_lot_filter_constraint(self):
@@ -104,14 +114,16 @@ class TestComponentLotConstraint(SavepointCase):
             self.mo_1.open_produce_product()
 
         # Create a move line with lot 'AAAA0002'.
-        self.env["stock.move.line"].create({
-            "move_id": self.move_1.id,
-            "location_id": self.move_1.location_id.id,
-            "location_dest_id": self.move_1.location_dest_id.id,
-            "product_id": self.move_1.product_id.id,
-            "product_uom_id": self.move_1.product_uom.id,
-            "lot_id": self.lot_3.id,
-        })
+        self.env["stock.move.line"].create(
+            {
+                "move_id": self.move_1.id,
+                "location_id": self.move_1.location_id.id,
+                "location_dest_id": self.move_1.location_dest_id.id,
+                "product_id": self.move_1.product_id.id,
+                "product_uom_id": self.move_1.product_uom.id,
+                "lot_id": self.lot_3.id,
+            }
+        )
         self.mo_1.write({"component_lot_filter": "AAAA0001"})
         with self.assertRaises(UserError):
             self.mo_1.open_produce_product()
@@ -120,62 +132,67 @@ class TestComponentLotConstraint(SavepointCase):
 
     def test_03_select_multi_lots_per_move(self):
         self.mo_1.write({"component_lot_filter": "AAAA0001"})
-        self.env["stock.move.line"].create({
-            "move_id": self.move_1.id,
-            "location_id": self.move_1.location_id.id,
-            "location_dest_id": self.move_1.location_dest_id.id,
-            "product_id": self.move_1.product_id.id,
-            "product_uom_id": self.move_1.product_uom.id,
-            "lot_id": self.lot_1.id,
-        })
-        self.env["stock.move.line"].create({
-            "move_id": self.move_1.id,
-            "location_id": self.move_1.location_id.id,
-            "location_dest_id": self.move_1.location_dest_id.id,
-            "product_id": self.move_1.product_id.id,
-            "product_uom_id": self.move_1.product_uom.id,
-            "lot_id": self.lot_2.id,
-        })
+        self.env["stock.move.line"].create(
+            {
+                "move_id": self.move_1.id,
+                "location_id": self.move_1.location_id.id,
+                "location_dest_id": self.move_1.location_dest_id.id,
+                "product_id": self.move_1.product_id.id,
+                "product_uom_id": self.move_1.product_uom.id,
+                "lot_id": self.lot_1.id,
+            }
+        )
+        self.env["stock.move.line"].create(
+            {
+                "move_id": self.move_1.id,
+                "location_id": self.move_1.location_id.id,
+                "location_dest_id": self.move_1.location_dest_id.id,
+                "product_id": self.move_1.product_id.id,
+                "product_uom_id": self.move_1.product_uom.id,
+                "lot_id": self.lot_2.id,
+            }
+        )
         # Not allowed to use more than one lot per component line
         with self.assertRaises(UserError):
             self.mo_1.open_produce_product()
 
     def test_04_suggested_quantity(self):
-        self.env["stock.move.line"].create({
-            "move_id": self.move_1.id,
-            "location_id": self.move_1.location_id.id,
-            "location_dest_id": self.move_1.location_dest_id.id,
-            "product_id": self.move_1.product_id.id,
-            "product_uom_id": self.move_1.product_uom.id,
-            "lot_id": self.lot_1.id,
-        })
+        self.env["stock.move.line"].create(
+            {
+                "move_id": self.move_1.id,
+                "location_id": self.move_1.location_id.id,
+                "location_dest_id": self.move_1.location_dest_id.id,
+                "product_id": self.move_1.product_id.id,
+                "product_uom_id": self.move_1.product_uom.id,
+                "lot_id": self.lot_1.id,
+            }
+        )
         self.assertEqual(self.mo_1.suggested_qty, 100.0)
-        self.env["stock.move.line"].create({
-            "move_id": self.move_2.id,
-            "location_id": self.move_2.location_id.id,
-            "location_dest_id": self.move_2.location_dest_id.id,
-            "product_id": self.move_2.product_id.id,
-            "product_uom_id": self.move_2.product_uom.id,
-            "lot_id": self.lot_4.id,
-        })
+        self.env["stock.move.line"].create(
+            {
+                "move_id": self.move_2.id,
+                "location_id": self.move_2.location_id.id,
+                "location_dest_id": self.move_2.location_dest_id.id,
+                "product_id": self.move_2.product_id.id,
+                "product_uom_id": self.move_2.product_uom.id,
+                "lot_id": self.lot_4.id,
+            }
+        )
         self.assertEqual(self.mo_1.suggested_qty, 50.0)
 
     def test_05_production_qty_change(self):
-        wizard = self.env["assign.manual.quants"].with_context(
-            active_id=self.move_1.id).create({})
-        quant_line = wizard.quants_lines.filtered(lambda x: x.lot_id == self.lot_1)[:1]
-        quant_line.write(
-            {
-                "selected": True,
-                "qty": 10
-            }
+        wizard = (
+            self.env["assign.manual.quants"]
+            .with_context(active_id=self.move_1.id)
+            .create({})
         )
+        quant_line = wizard.quants_lines.filtered(lambda x: x.lot_id == self.lot_1)[:1]
+        quant_line.write({"selected": True, "qty": 10})
         wizard.assign_quants()
         # Change MO quantity from 10 to 20.
-        update_quantity_wizard = self.env['change.production.qty'].create({
-            'mo_id': self.mo_1.id,
-            'product_qty': 20.0,
-        })
+        update_quantity_wizard = self.env["change.production.qty"].create(
+            {"mo_id": self.mo_1.id, "product_qty": 20.0}
+        )
         update_quantity_wizard.change_prod_qty()
         move_line = self.move_1.move_line_ids[:1]
         self.assertEqual(move_line.product_qty, 20.0)
