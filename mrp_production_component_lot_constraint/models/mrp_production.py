@@ -45,6 +45,7 @@ class MrpProduction(models.Model):
                     break
             production.show_action_assign = show_action_assign
 
+    @api.depends("move_raw_ids.move_line_ids")
     def _compute_suggested_qty(self):
         precision = self.env["decimal.precision"].precision_get(
             "Product Unit of Measure"
