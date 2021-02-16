@@ -47,4 +47,14 @@
             <attribute name="type">hidden</attribute>
         </xpath>
     </template>
+
+    <template id="total" inherit_id="website_sale.total">
+        <xpath expr="//div[@id='cart_total']//table/tr[last()]" position="after">
+            <tr t-if="website_sale_order.note">
+                <td colspan="3" class="text-left noborder">
+                    <small t-field="website_sale_order.note"/>
+                </td>
+            </tr>
+        </xpath>
+    </template>
 </odoo>
