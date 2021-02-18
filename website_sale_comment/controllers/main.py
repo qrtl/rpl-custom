@@ -3,6 +3,7 @@
 
 from odoo import _, http
 from odoo.http import request
+from odoo.tools import html2plaintext, plaintext2html
 
 from odoo.addons.website_sale.controllers.main import WebsiteSaleForm
 
@@ -17,11 +18,18 @@ class WebsiteSaleForm(WebsiteSaleForm):
     )
     def website_form_saleorder(self, **kwargs):
         order = request.website.sale_get_order()
+        request.session["Give us your feedback"] = kwargs.get("Give us your feedback")
         note_list = []
         if kwargs.get("increase_refrigerant") and order:
             note_list.append(_("Increase Refrigerant: True"))
         if kwargs.get("Give us your feedback") and order:
             remarks = kwargs.get("Give us your feedback")
             note_list.append(_("Customer Remarks: ") + remarks)
-        order.write({"note2": "<br>".join(note_list)})
+        note2 = "<br>".join(note_list)
+        if request.env["sale.order"]._default_note():
+            note_list.insert(
+                0, (plaintext2html(request.env["sale.order"]._default_note()))
+            )
+        note = "<br>".join(note_list)
+        order.write({"note": html2plaintext(note), "note2": note2})
         return super(WebsiteSaleForm, self).website_form_saleorder(**kwargs)
