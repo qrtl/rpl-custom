@@ -3,19 +3,17 @@
     <record id="view_company_form" model="ir.ui.view">
         <field name="name">view.company.form</field>
         <field name="model">res.company</field>
-        <field name="inherit_id" ref="base.view_company_form" />
+        <field name="inherit_id" ref="base_company_reporting.view_company_form" />
         <field name="arch" type="xml">
             <field name="phone" position="after">
                 <field name="fax" />
             </field>
-            <notebook position="inside">
-                <page string="Reporting" name="reporting" groups="base.group_system">
-                    <group string="Common" name="common">
-                        <field name="ceo" />
-                        <field name="company_chop" widget='image' class="oe_avatar" />
-                    </group>
-                </page>
-            </notebook>
+            <page name="reporting" position="inside">
+                <group string="Common" name="common">
+                    <field name="ceo" />
+                    <field name="company_chop" widget='image' class="oe_avatar" />
+                </group>
+            </page>
         </field>
     </record>
 </odoo>

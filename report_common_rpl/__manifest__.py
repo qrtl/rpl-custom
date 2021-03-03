@@ -6,7 +6,7 @@
     "category": "Reporting",
     "license": "AGPL-3",
     "author": "Quartile Limited",
-    "depends": ["base", "report_py3o"],
+    "depends": ["base_company_reporting", "report_py3o"],
     "data": ["views/res_company_views.xml", "views/res_partner_views.xml"],
     "installable": True,
 }
