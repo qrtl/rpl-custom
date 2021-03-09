@@ -46,7 +46,7 @@ class TestUi(odoo.tests.HttpCase):
         # Compare the SaleOrder Note2 Value which is create by tour test-case
         self.assertEqual(
             sale_order.note2,
-            "<p>Customer Remarks: Test Feedback Comment</p>",
+            "<p>Test Feedback Comment</p>",
             "Sale Order Note2 does not Match with the value.",
         )
 
@@ -70,7 +70,7 @@ class TestUi(odoo.tests.HttpCase):
             # `website_form_saleorder`
             self.WebsiteSaleController.website_form_saleorder(**values)
             self.assertEqual(
-                so.note2, "<p>Customer Remarks: test-comment</p>",
+                so.note2, "<p>test-comment</p>",
             )
 
     def _create_so(self, partner_id=None):
