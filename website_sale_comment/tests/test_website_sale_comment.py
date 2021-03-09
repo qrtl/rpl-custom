@@ -3,7 +3,8 @@
 import odoo.tests
 
 from odoo.addons.website.tools import MockRequest
-from odoo.addons.website_sale_comment.controllers.main import WebsiteSaleForm
+
+from ..controllers.main import WebsiteSaleForm
 
 
 @odoo.tests.tagged("post_install", "-at_install")

@@ -11,7 +11,13 @@
             <label class="col-form-label" for="Give us your feedback">Remarks</label>
         </xpath>
         <xpath expr="//textarea[@name='Give us your feedback']" position="replace">
-            <textarea class="form-control o_website_form_input" rows="8" name="Give us your feedback" ><t t-esc="order.get_note_plaintext()"/></textarea>
+            <textarea
+                class="form-control o_website_form_input"
+                rows="8"
+                name="Give us your feedback"
+            >
+                <t t-esc="order.get_note_plaintext()" />
+            </textarea>
         </xpath>
         <xpath expr="//input[@name='client_order_ref']" position="attributes">
             <attribute name="type">hidden</attribute>
