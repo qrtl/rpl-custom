@@ -72,48 +72,6 @@ class TestUi(odoo.tests.HttpCase):
                 so.note2, "<p>Customer Remarks: test-comment</p>",
             )
 
-    def test_03_input_increase_refrigerant_order_note2(self):
-        partner = self.env.user.partner_id
-        so = self._create_so(partner.id)
-        with MockRequest(
-            self.env, website=self.website, sale_order_id=so.id
-        ) as request:
-            httprequest = request.httprequest
-            httprequest.update({"headers": {"environ": {}}})
-            # Update the httprequest with request Object
-            request.update({"httprequest": httprequest})
-            values = {"increase_refrigerant": True}
-
-            # Call the Controller Method for pass the feedback values.
-            # `website_form_saleorder`
-            self.WebsiteSaleController.website_form_saleorder(**values)
-            self.assertEqual(
-                so.note2, "<p>Increase Refrigerant: True</p>",
-            )
-
-    def test_04_input_comment_increase_refrigerant_order_note2(self):
-        partner = self.env.user.partner_id
-        so = self._create_so(partner.id)
-        with MockRequest(
-            self.env, website=self.website, sale_order_id=so.id
-        ) as request:
-            httprequest = request.httprequest
-            httprequest.update({"headers": {"environ": {}}})
-            # Update the httprequest with request Object
-            request.update({"httprequest": httprequest})
-            values = {
-                "increase_refrigerant": True,
-                "Give us your feedback": "test-comment",
-            }
-
-            # Call the Controller Method for pass the feedback values.
-            # `website_form_saleorder`
-            self.WebsiteSaleController.website_form_saleorder(**values)
-            self.assertEqual(
-                so.note2,
-                "<p>Increase Refrigerant: True<br>Customer Remarks: test-comment</p>",
-            )
-
     def _create_so(self, partner_id=None):
         return self.env["sale.order"].create(
             {

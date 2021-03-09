@@ -11,7 +11,6 @@
     "installable": True,
     "depends": ["website_sale", "sale_comment_template"],
     "data": [
-        "views/res_country_views.xml",
         "views/templates.xml",
         "views/website_sale_template.xml",
     ],
