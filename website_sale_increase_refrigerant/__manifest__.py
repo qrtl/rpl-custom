@@ -10,8 +10,10 @@
     "installable": True,
     "depends": ["website_sale"],
     "data": [
+        "views/report_picking.xml",
         "views/res_country_views.xml",
         "views/sale_order_views.xml",
+        "views/stock_picking_views.xml",
         "views/templates.xml",
     ],
 }

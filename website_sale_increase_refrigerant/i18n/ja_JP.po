@@ -1,13 +1,13 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* website_sale_comment
+#	* website_sale_increase_refrigerant
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-24 08:16+0000\n"
-"PO-Revision-Date: 2020-08-24 08:16+0000\n"
+"POT-Creation-Date: 2021-03-10 10:10+0000\n"
+"PO-Revision-Date: 2021-03-10 10:10+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -15,28 +15,49 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
 
-#. module: website_sale_comment
-#: model:ir.model,name:website_sale_comment.model_res_country
+#. module: website_sale_increase_refrigerant
+#: model_terms:ir.ui.view,arch_db:website_sale_increase_refrigerant.total
+msgid "<small>Increase Refrigerant</small>"
+msgstr "<small>保冷剤多め</small>"
+
+#. module: website_sale_increase_refrigerant
+#: model_terms:ir.ui.view,arch_db:website_sale_increase_refrigerant.report_picking_document_comments
+msgid "<span>Increase Refrigerant</span>"
+msgstr "<span>保冷剤多め</span>"
+
+#. module: website_sale_increase_refrigerant
+#: model:ir.model,name:website_sale_increase_refrigerant.model_res_country
 msgid "Country"
 msgstr "国"
 
-#. module: website_sale_comment
-#: model_terms:ir.ui.view,arch_db:website_sale_comment.extra_info
+#. module: website_sale_increase_refrigerant
+#: model:ir.model.fields,field_description:website_sale_increase_refrigerant.field_sale_order__increase_refrigerant
+#: model:ir.model.fields,field_description:website_sale_increase_refrigerant.field_stock_picking__increase_refrigerant
 msgid "Increase Refrigerant"
 msgstr "保冷剤多め"
 
-#. module: website_sale_comment
-#: model_terms:ir.ui.view,arch_db:website_sale_comment.extra_info
+#. module: website_sale_increase_refrigerant
+#: model_terms:ir.ui.view,arch_db:website_sale_increase_refrigerant.extra_info
 msgid "Increase due to refrigerant (the box to be used for shipping will be one size larger)"
 msgstr "保冷剤多め (配送でひとつ大きいサイズの箱を使用します)"
 
-#. module: website_sale_comment
-#: model:ir.model,name:website_sale_comment.model_sale_order
+#. module: website_sale_increase_refrigerant
+#: model:ir.model,name:website_sale_increase_refrigerant.model_sale_order
 msgid "Sale Order"
 msgstr "販売オーダ"
 
-#. module: website_sale_comment
-#: model:ir.model.fields,field_description:website_sale_comment.field_res_country__increase_refrigerant_visible
+#. module: website_sale_increase_refrigerant
+#: model:ir.model.fields,field_description:website_sale_increase_refrigerant.field_res_country__increase_refrigerant_visible
 msgid "Show \"Increase Refrigerant\" option in eCommerce checkout"
 msgstr "eコマースチェックアウト時に「保冷剤多め」オプションを表示"
+
+#. module: website_sale_increase_refrigerant
+#: model:ir.model,name:website_sale_increase_refrigerant.model_stock_move
+msgid "Stock Move"
+msgstr "在庫移動"
+
+#. module: website_sale_increase_refrigerant
+#: model:ir.model,name:website_sale_increase_refrigerant.model_stock_picking
+msgid "Transfer"
+msgstr "運送"
 
