@@ -9,8 +9,5 @@
     "license": "LGPL-3",
     "installable": True,
     "depends": ["sale_stock_refrigerant_instruction", "website_sale"],
-    "data": [
-        "views/res_country_views.xml",
-        "views/templates.xml",
-    ],
+    "data": ["views/res_country_views.xml", "views/templates.xml"],
 }

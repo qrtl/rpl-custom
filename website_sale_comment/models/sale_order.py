@@ -10,4 +10,4 @@ class SaleOrder(models.Model):
 
     def get_note_plaintext(self):
         self.ensure_one()
-        return html2plaintext(self.note2)
+        return html2plaintext(self.note2) if self.note2 else ""
