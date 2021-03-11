@@ -9,9 +9,9 @@ from ..controllers.main import WebsiteSaleForm
 
 
 @odoo.tests.tagged("post_install", "-at_install")
-class TestWebsiteSaleIncreaseRefrigerant(odoo.tests.HttpCase):
+class TestWebsiteSaleRefrigerantInstruction(odoo.tests.HttpCase):
     def setUp(self):
-        super(TestWebsiteSaleIncreaseRefrigerant, self).setUp()
+        super(TestWebsiteSaleRefrigerantInstruction, self).setUp()
         self.website = self.env["website"].browse(1)
         self.WebsiteSaleController = WebsiteSaleForm()
 
