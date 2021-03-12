@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="extra_info" inherit_id="website_sale.extra_info">
+        <xpath expr="//label[@for='client_order_ref']/../.." position="before">
+            <div
+                t-if="website_sale_order.partner_shipping_id.country_id.increase_refrigerant_visible"
+                class="form-group row form-field o_website_form_custom"
+            >
+                <div
+                    class="col-lg-3 col-md-4 text-md-right"
+                    style="align-self: center;"
+                >
+                    <label
+                        class="o_switch col-form-label"
+                        for="increase_refrigerant"
+                        style="display: inline-block !important;"
+                    >
+                        <input
+                            type="checkbox"
+                            name="increase_refrigerant"
+                            id="increase_refrigerant"
+                            t-att-checked="order.increase_refrigerant"
+                        />
+                        <span />
+                    </label>
+                </div>
+                <div class="col-lg-9 col-md-8">
+                    <label
+                        class="col-form-label"
+                        for="increase_refrigerant"
+                    >Increase due to refrigerant (the box to be used for shipping will be one size larger)</label>
+                </div>
+            </div>
+        </xpath>
+    </template>
+    <template id="total" inherit_id="website_sale.total">
+        <xpath expr="//div[@id='cart_total']//table/tr[last()]" position="after">
+            <tr t-if="website_sale_order.increase_refrigerant">
+                <td colspan="3" class="text-left noborder">
+                    <small>Increase Refrigerant</small>
+                </td>
+            </tr>
+        </xpath>
+    </template>
+</odoo>

@@ -20,16 +20,13 @@ class WebsiteSaleForm(WebsiteSaleForm):
         order = request.website.sale_get_order()
         request.session["Give us your feedback"] = kwargs.get("Give us your feedback")
         note_list = []
-        if kwargs.get("increase_refrigerant") and order:
-            note_list.append(_("Increase Refrigerant: True"))
         if kwargs.get("Give us your feedback") and order:
             remarks = kwargs.get("Give us your feedback")
             note_list.append(_("Customer Remarks: ") + remarks)
-        note2 = "<br>".join(note_list)
         if request.env["sale.order"]._default_note():
             note_list.insert(
                 0, (plaintext2html(request.env["sale.order"]._default_note()))
             )
         note = "<br>".join(note_list)
-        order.write({"note": html2plaintext(note), "note2": note2})
+        order.write({"note": html2plaintext(note), "note2": remarks})
         return super(WebsiteSaleForm, self).website_form_saleorder(**kwargs)

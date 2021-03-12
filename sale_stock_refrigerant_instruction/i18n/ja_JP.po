@@ -1,0 +1,43 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* sale_stock_refrigerant_instruction
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-03-11 09:05+0000\n"
+"PO-Revision-Date: 2021-03-11 09:05+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_stock_refrigerant_instruction
+#: model_terms:ir.ui.view,arch_db:sale_stock_refrigerant_instruction.report_picking_document_comments
+msgid "<span>Increase Refrigerant</span>"
+msgstr "<span>保冷剤多め</span>"
+
+#. module: sale_stock_refrigerant_instruction
+#: model:ir.model.fields,field_description:sale_stock_refrigerant_instruction.field_sale_order__increase_refrigerant
+#: model:ir.model.fields,field_description:sale_stock_refrigerant_instruction.field_stock_picking__increase_refrigerant
+msgid "Increase Refrigerant"
+msgstr "保冷剤多め"
+
+#. module: sale_stock_refrigerant_instruction
+#: model:ir.model,name:sale_stock_refrigerant_instruction.model_sale_order
+msgid "Sale Order"
+msgstr "販売オーダ"
+
+#. module: sale_stock_refrigerant_instruction
+#: model:ir.model,name:sale_stock_refrigerant_instruction.model_stock_move
+msgid "Stock Move"
+msgstr "在庫移動"
+
+#. module: sale_stock_refrigerant_instruction
+#: model:ir.model,name:sale_stock_refrigerant_instruction.model_stock_picking
+msgid "Transfer"
+msgstr "運送"
+
