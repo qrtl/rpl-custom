@@ -20,6 +20,7 @@ class WebsiteSaleForm(WebsiteSaleForm):
         order = request.website.sale_get_order()
         request.session["Give us your feedback"] = kwargs.get("Give us your feedback")
         note_list = []
+        remarks = False
         if kwargs.get("Give us your feedback") and order:
             remarks = kwargs.get("Give us your feedback")
             note_list.append(_("Customer Remarks: ") + remarks)
