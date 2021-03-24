@@ -17,6 +17,6 @@ class WebsiteSaleForm(WebsiteSaleForm):
     )
     def website_form_saleorder(self, **kwargs):
         order = request.website.sale_get_order()
-        if kwargs.get("increase_refrigerant") and order:
+        if order:
             order.write({"increase_refrigerant": kwargs.get("increase_refrigerant")})
         return super(WebsiteSaleForm, self).website_form_saleorder(**kwargs)
