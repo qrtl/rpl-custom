@@ -16,31 +16,10 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: website_sale_comment
-#: model:ir.model,name:website_sale_comment.model_res_country
-msgid "Country"
-msgstr "国"
-
-#. module: website_sale_comment
 #: code:addons/website_sale_comment/controllers/main.py:25
 #, python-format
 msgid "Customer Remarks: "
 msgstr "お客様備考: "
-
-#. module: website_sale_comment
-#: model_terms:ir.ui.view,arch_db:website_sale_comment.extra_info
-msgid "Increase Refrigerant"
-msgstr "保冷剤多め"
-
-#. module: website_sale_comment
-#: code:addons/website_sale_comment/controllers/main.py:22
-#, python-format
-msgid "Increase Refrigerant: True"
-msgstr "保冷剤多め: True"
-
-#. module: website_sale_comment
-#: model_terms:ir.ui.view,arch_db:website_sale_comment.extra_info
-msgid "Increase due to refrigerant (the box to be used for shipping will be one size larger)"
-msgstr "保冷剤多め (配送でひとつ大きいサイズの箱を使用します)"
 
 #. module: website_sale_comment
 #: model_terms:ir.ui.view,arch_db:website_sale_comment.extra_info
@@ -51,9 +30,4 @@ msgstr "備考"
 #: model:ir.model,name:website_sale_comment.model_sale_order
 msgid "Sale Order"
 msgstr "販売オーダ"
-
-#. module: website_sale_comment
-#: model:ir.model.fields,field_description:website_sale_comment.field_res_country__increase_refrigerant_visible
-msgid "Show \"Increase Refrigerant\" option in eCommerce checkout"
-msgstr "eコマースチェックアウト時に「保冷剤多め」オプションを表示"
 

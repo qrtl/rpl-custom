@@ -1,36 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <template id="extra_info" inherit_id="website_sale.extra_info">
-        <xpath expr="//label[@for='client_order_ref']/../.." position="before">
-            <div
-                t-if="website_sale_order.partner_shipping_id.country_id.increase_refrigerant_visible"
-                class="form-group row form-field o_website_form_custom"
-            >
-                <div
-                    class="col-lg-3 col-md-4 text-md-right"
-                    style="align-self: center;"
-                >
-                    <label
-                        class="o_switch col-form-label"
-                        for="increase_refrigerant"
-                        style="display: inline-block !important;"
-                    >
-                        <input
-                            type="checkbox"
-                            name="increase_refrigerant"
-                            id="increase_refrigerant"
-                        />
-                        <span />
-                    </label>
-                </div>
-                <div class="col-lg-9 col-md-8">
-                    <label
-                        class="col-form-label"
-                        for="increase_refrigerant"
-                    >Increase due to refrigerant (the box to be used for shipping will be one size larger)</label>
-                </div>
-            </div>
-        </xpath>
         <xpath expr="//label[@for='client_order_ref']" position="attributes">
             <attribute name="style">display: none;</attribute>
         </xpath>
@@ -39,6 +9,13 @@
         </xpath>
         <xpath expr="//label[@for='Give us your feedback']" position="replace">
             <label class="col-form-label" for="Give us your feedback">Remarks</label>
+        </xpath>
+        <xpath expr="//textarea[@name='Give us your feedback']" position="replace">
+            <textarea
+                class="form-control o_website_form_input"
+                rows="8"
+                name="Give us your feedback"
+            ><t t-esc="order.get_note_plaintext()" /></textarea>
         </xpath>
         <xpath expr="//input[@name='client_order_ref']" position="attributes">
             <attribute name="type">hidden</attribute>
