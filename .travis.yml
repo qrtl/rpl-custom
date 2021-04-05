@@ -44,10 +44,7 @@ jobs:
       env:
         # add MAKEPOT="1" to a TEST line to export .pot files from
         # the test database after test success
-        - TESTS="1" ODOO_REPO="odoo/odoo" MAKEPOT="1"
-    - stage: test
-      env:
-        - TESTS="1" ODOO_REPO="OCA/OCB"
+        - TESTS="1" ODOO_REPO="odoo/odoo" MAKEPOT="0"
     # Other env possibilities:
     # use this to install a standalone database to export .pot files
     # - MAKEPOT="1"
