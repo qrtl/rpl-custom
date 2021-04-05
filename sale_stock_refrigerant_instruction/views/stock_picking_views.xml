@@ -6,7 +6,11 @@
         <field name="inherit_id" ref="stock.view_picking_form" />
         <field name="arch" type="xml">
             <field name="origin" position="after">
-                <field name="increase_refrigerant" />
+                <field name="display_packing_box" invisible="1" />
+                <field
+                    name="increase_refrigerant"
+                    attrs="{'invisible':[('display_packing_box', '=', False)]}"
+                />
             </field>
         </field>
     </record>
