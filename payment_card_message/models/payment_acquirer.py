@@ -5,10 +5,11 @@ from odoo import fields, models
 
 
 class PaymentAcquirer(models.Model):
-    _inherit="payment.acquirer"
+    _inherit = "payment.acquirer"
 
     card_msg = fields.Html(
-        "Card Message", translate=True,
+        "Card Message",
+        translate=True,
         help="Message displayed on the payment card in portal/eCommerce "
-        "checkout screen."
+        "checkout screen.",
     )

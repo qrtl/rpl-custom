@@ -9,8 +9,5 @@
     "license": "LGPL-3",
     "installable": True,
     "depends": ["payment"],
-    "data": [
-        "views/payment_views.xml",
-        "views/payment_templates.xml",
-    ],
+    "data": ["views/payment_views.xml", "views/payment_templates.xml"],
 }
