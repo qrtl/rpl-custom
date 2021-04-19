@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="payment_tokens_list" inherit_id="payment.payment_tokens_list">
+        <xpath expr="//div[@class='card-body']" position="inside">
+            <t t-if="acq.card_msg">
+                <div t-field="acq.card_msg" class="mt8" />
+            </t>
+        </xpath>
+    </template>
+</odoo>
