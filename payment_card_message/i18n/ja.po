@@ -1,0 +1,32 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* payment_card_message
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-04-15 07:08+0000\n"
+"PO-Revision-Date: 2021-04-15 07:08+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: payment_card_message
+#: model:ir.model.fields,field_description:payment_card_message.field_payment_acquirer__card_msg
+msgid "Card Message"
+msgstr "カードメッセージ"
+
+#. module: payment_card_message
+#: model:ir.model.fields,help:payment_card_message.field_payment_acquirer__card_msg
+msgid "Message displayed on the payment card in portal/eCommerce checkout screen."
+msgstr "このメッセージはポータル/eコマースチェックアウト画面の支払カードに表示されます。"
+
+#. module: payment_card_message
+#: model:ir.model,name:payment_card_message.model_payment_acquirer
+msgid "Payment Acquirer"
+msgstr "決済サービス"
+
