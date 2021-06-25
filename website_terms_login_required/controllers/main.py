@@ -6,7 +6,6 @@ from odoo import http
 from odoo.addons.website_sale.controllers.main import WebsiteSale
 
 
-# class WebsiteForum(WebsiteForum):
 class WebsiteSale(WebsiteSale):
     @http.route(["/shop/terms"], type="http", auth="user", website=True)
     def terms(self, **kwargs):
