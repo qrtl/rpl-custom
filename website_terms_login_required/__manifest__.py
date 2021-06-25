@@ -8,6 +8,5 @@
     "category": "Website",
     "license": "AGPL-3",
     "depends": ["website_sale"],
-    "data": [],
     "installable": True,
 }
