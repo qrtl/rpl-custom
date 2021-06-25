@@ -7,7 +7,6 @@
     "website": "https://www.quartile.co",
     "category": "Website",
     "license": "AGPL-3",
-    "summary": "",
     "depends": ["website_sale"],
     "data": [],
     "installable": True,
