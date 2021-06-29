@@ -10,5 +10,6 @@ class PickingType(models.Model):
     alt_location_dest_id = fields.Many2one(
         "stock.location",
         "Alt. Destination Location",
-        help="This location may be proposed as the destination location in a manufacturing order if it's indicated to do so in the produced product."
+        help="This location may be proposed as the destination location in a "
+        "manufacturing order if it's indicated to do so in the produced product.",
     )

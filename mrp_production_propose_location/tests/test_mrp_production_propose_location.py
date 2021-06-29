@@ -15,7 +15,7 @@ class TestMrpProductionProposeLocation(SavepointCase):
                 {
                     "name": name,
                     "type": "product",
-                    "use_alt_location_dest": use_alt_location_dest
+                    "use_alt_location_dest": use_alt_location_dest,
                 }
             )
 
@@ -40,9 +40,16 @@ class TestMrpProductionProposeLocation(SavepointCase):
         cls.bom_fp01 = _create_bom(cls.prod_fp01, cls.prod_rm, 1.0)
         cls.bom_fp02 = _create_bom(cls.prod_fp02, cls.prod_rm, 1.0)
 
-        cls.pick_type = cls.env["stock.picking.type"].search([("code", "=", "mrp_operation")])[:1]
+        cls.pick_type = cls.env["stock.picking.type"].search(
+            [("code", "=", "mrp_operation")]
+        )[:1]
         cls.default_location_dest = cls.pick_type.default_location_dest_id
-        cls.alt_location_dest = cls.env["stock.location"].create({"name": "alt location dest", "location_id": cls.default_location_dest.location_id.id})
+        cls.alt_location_dest = cls.env["stock.location"].create(
+            {
+                "name": "alt location dest",
+                "location_id": cls.default_location_dest.location_id.id,
+            }
+        )
 
     def test_01_onchange_picking_type(self):
         mo = self.env["mrp.production"].create(

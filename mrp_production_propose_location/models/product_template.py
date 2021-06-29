@@ -9,5 +9,6 @@ class ProductTemplate(models.Model):
 
     use_alt_location_dest = fields.Boolean(
         "Use Alt. Destination Location",
-        help="If selected, destination location will be proposed from the alternative destinaton location of the relevant operation type."
+        help="If selected, destination location will be proposed from the "
+        "alternative destinaton location of the relevant operation type.",
     )
