@@ -8,8 +8,6 @@
     "category": "Manufacturing",
     "license": "LGPL-3",
     "depends": ["stock"],
-    "data": [
-        "views/stock_scrap_views.xml",
-    ],
+    "data": ["views/stock_scrap_views.xml"],
     "installable": True,
 }
