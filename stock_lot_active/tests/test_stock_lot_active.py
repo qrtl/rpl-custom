@@ -53,6 +53,6 @@ class TestStockLotActive(SavepointCase):
         self.picking.move_line_ids[0].qty_done = 1.0
         self.picking.button_validate()
         self.assertEqual(len(self.lot.quant_ids), 2)
-        # Error should be raised when there is there is a quant linked to the lot.
+        # Error should be raised when there is a quant linked to the lot.
         with self.assertRaises(ValidationError):
             self.lot.active = False
