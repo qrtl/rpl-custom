@@ -7,7 +7,7 @@
     "website": "https://www.quartile.co",
     "category": "Manufacturing",
     "license": "LGPL-3",
-    "depends": ["mrp", "stock_move_assigned_lot"],
+    "depends": ["mrp", "stock_move_assigned_lot", "mrp.production"],
     "data": ["views/mrp_production_views.xml"],
     "installable": True,
 }

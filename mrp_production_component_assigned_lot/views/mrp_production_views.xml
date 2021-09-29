@@ -13,4 +13,18 @@
             </xpath>
         </field>
     </record>
+    <record id="mrp_production_tree_view" model="ir.ui.view">
+        <field name="name">mrp.production.tree</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_tree_view" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//field[@name='availability']"
+                position="after"
+            >
+                <field name="mrp.production.new_lot_id" />
+                <field name="mrp.production.need_new_lot" />
+            </xpath>
+        </field>
+    </record>
 </odoo>
