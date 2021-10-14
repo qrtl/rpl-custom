@@ -10,25 +10,32 @@ class ChangeProductionQty(models.TransientModel):
     def _get_move_lot_quants(self):
         self.ensure_one()
         res = {}
-        for move in self.mo_id.move_raw_ids.filtered(lambda x: x.needs_lots):
-            lots = move.move_line_ids.mapped("lot_id")
-            move._do_unreserve()
-            quants = self.env["stock.quant"].search(
-                [
-                    ("location_id", "child_of", move.location_id.id),
-                    ("product_id", "=", move.product_id.id),
-                    ("quantity", ">", 0),
-                    ("lot_id", "in", lots.ids),
-                ]
-            )
-            res[move.id] = quants
+        for move in self.mo_id.move_raw_ids:
+            if move.needs_lots:
+                lots = move.move_line_ids.mapped("lot_id")
+                quants = self.env["stock.quant"].search(
+                    [
+                        ("location_id", "child_of", move.location_id.id),
+                        ("product_id", "=", move.product_id.id),
+                        ("quantity", ">", 0),
+                        ("lot_id", "in", lots.ids),
+                    ]
+                )
+                res[move.id] = quants
         return res
+
+    @api.model
+    def _refresh_quant_line_qty(self, quant_line):
+        quant_line.selected = False
+        quant_line._onchange_selected()
+        quant_line.selected = True
+        quant_line._onchange_selected()
 
     @api.multi
     def change_prod_qty(self):
         self.ensure_one()
-        # Form a dict of the moves and the assigned quants before the quants are
-        # unreserved in the process of change_prod_qty()
+        # For later processing, form a dict of the moves and the assigned quants before
+        # the moves are unreserved, while unreserving them.
         move_lot_quants = self._get_move_lot_quants()
         # Prevent assigning unwanted quants with skip_action_assign context.
         self = self.with_context(skip_action_assign=True)
@@ -50,17 +57,13 @@ class ChangeProductionQty(models.TransientModel):
                         for line in assign_quant_rec.quants_lines.filtered(
                             lambda x: x.quant_id == quant
                         ):
-                            line.selected = True
-                            line._onchange_selected()
+                            self._refresh_quant_line_qty(line)
                 else:
                     # Taking following steps since move._action_assign() does not seem
                     # to work here.
                     line = assign_quant_rec.quants_lines[:1]
                     if line:
-                        line.selected = False
-                        line._onchange_selected()
-                        line.selected = True
-                        line._onchange_selected()
+                        self._refresh_quant_line_qty(line)
                 assign_quant_rec.assign_quants()
             else:
                 # For 'consu' type.
