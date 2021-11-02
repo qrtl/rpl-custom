@@ -22,7 +22,7 @@ exclude: |
   website_sale_charge_payment_fee/|
   website_sale_delivery_charge_payment_fee/
 default_language_version:
-  python: python3
+  python: python3.6
   node: "14.13.0"
 repos:
   - repo: https://github.com/psf/black
