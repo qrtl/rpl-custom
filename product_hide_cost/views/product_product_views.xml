@@ -5,19 +5,13 @@
         <field name="model">product.product</field>
         <field name="inherit_id" ref="product.product_product_tree_view" />
         <field name="arch" type="xml">
-            <field
-                name="standard_price"
-                attrs="{'invisible': [(1, '=', 1)]}"
-            />
+            <field name="standard_price" attrs="{'invisible': [(1, '=', 1)]}" />
         </field>
     </record>
     <record id="product_product_tree_stock_user" model="ir.ui.view">
         <field name="name">product.product.tree.inherit</field>
         <field name="model">product.product</field>
-        <field
-            name="inherit_id"
-            ref="product_hide_cost.product_product_tree"
-        />
+        <field name="inherit_id" ref="product_hide_cost.product_product_tree" />
         <field name="groups_id" eval="[(6,0,[ref('stock.group_stock_manager')])]" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='standard_price']" position="attributes">
