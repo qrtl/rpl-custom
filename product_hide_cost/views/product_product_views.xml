@@ -1,17 +1,27 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <record id="product_product_tree" model="ir.ui.view">
-        <field name="name">product.product.tree</field>
+        <field name="name">product.product.tree.inherit</field>
         <field name="model">product.product</field>
-        <field name="priority">5</field>
         <field name="inherit_id" ref="product.product_product_tree_view" />
+        <field name="arch" type="xml">
+            <field
+                name="standard_price"
+                attrs="{'invisible': [(1, '=', 1)]}"
+            />
+        </field>
+    </record>
+    <record id="product_product_tree_stock_user" model="ir.ui.view">
+        <field name="name">product.product.tree.inherit</field>
+        <field name="model">product.product</field>
+        <field
+            name="inherit_id"
+            ref="product_hide_cost.product_product_tree"
+        />
         <field name="groups_id" eval="[(6,0,[ref('stock.group_stock_manager')])]" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='standard_price']" position="attributes">
-                <attribute name="readonly">0</attribute>
-                <!-- <attribute name="attrs"> -->
-                    <!-- {'invisible': [('groups_id','=','stock.group_stock_user')]} -->
-                <!-- </attribute> -->
+                <attribute name="invisible">0</attribute>
             </xpath>
         </field>
     </record>
