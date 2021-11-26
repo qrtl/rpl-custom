@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-    <record id="action_stock_picking_type_kanban_action" model="ir.actions.act_window">
+    <record id="stock_picking_type_kanban_action" model="ir.actions.act_window">
         <field name="name">Stock Picking Type Kanban Action</field>
-        <field name="res_model">stock.picking.ype.kanban.action</field>
+        <field name="res_model">stock.picking.type</field>
         <field name="type">ir.actions.act_window</field>
-        <field name="view_type">form</field>
-        <field name="view_mode">tree</field>
+        <field name="inherit_id" ref="stock.stock_picking_type_action" />
+        <!-- <field name="view_type">list</field> -->
+        <field name="view_mode">kanban</field>
         <field name="context">{"search_default_groupby_warehouse_id": 1}</field>
     </record>
     <menuitem
-        action="action_stock_picking_type_kanban_action"
+        action="stock_picking_type_kanban_action"
         id="stock_picking_type_kanban_action"
     />
 </odoo>
