@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* stock_picking_delivery_info
+#	* stock_picking_partner_info
 #
 msgid ""
 msgstr ""
@@ -15,13 +15,12 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
 
-#. module: stock_picking_delivery_info
-#: model:ir.model.fields,field_description:stock_picking_delivery_info.field_stock_picking__phone
+#. module: stock_picking_partner_info
+#: model:ir.model.fields,field_description:stock_picking_partner_info.field_stock_picking__phone
 msgid "Phone"
 msgstr "電話"
 
-#. module: stock_picking_delivery_info
-#: model:ir.model,name:stock_picking_delivery_info.model_stock_picking
+#. module: stock_picking_partner_info
+#: model:ir.model,name:stock_picking_partner_info.model_stock_picking
 msgid "Transfer"
 msgstr "運送"
-
