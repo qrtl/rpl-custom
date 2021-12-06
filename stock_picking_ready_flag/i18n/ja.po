@@ -23,7 +23,7 @@ msgstr "ピッキングタイプ"
 #. module: stock_picking_ready_flag
 #: model:ir.model.fields,help:stock_picking_ready_flag.field_stock_picking__is_ready
 msgid "Please select this when the delivery is ready to be processed."
-msgstr "こちらが選択されていると配送処理の準備が整っていることを示します。"
+msgstr "こちらを選択することで配送処理の準備が整ったことを示します。"
 
 #. module: stock_picking_ready_flag
 #: model:ir.model.fields,field_description:stock_picking_ready_flag.field_stock_picking__is_ready
@@ -34,7 +34,7 @@ msgstr "出荷準備"
 #: model:ir.actions.act_window,name:stock_picking_ready_flag.action_picking_tree_ready_to_ship
 #: model_terms:ir.ui.view,arch_db:stock_picking_ready_flag.view_picking_internal_search
 msgid "Ready to Shipping"
-msgstr "出荷加納"
+msgstr "出荷可能"
 
 #. module: stock_picking_ready_flag
 #: model:ir.model,name:stock_picking_ready_flag.model_stock_picking
