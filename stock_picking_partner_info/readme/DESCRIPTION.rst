@@ -1,3 +1,3 @@
 This module does the following:
 
-* Display address in partner field and add phone field to the transfer order form.
+* Displays the partner address and phone in the transfer form for outgoing deliveries.
