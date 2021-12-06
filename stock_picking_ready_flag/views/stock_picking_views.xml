@@ -31,7 +31,7 @@
             <xpath expr="//filter[@name='late']" position="before">
                 <filter
                     string="Ready to Shipping"
-                    name="is_ready"
+                    name="ready_to_ship"
                     domain="[('is_ready', '=', True)]"
                 />
             </xpath>

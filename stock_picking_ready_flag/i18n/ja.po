@@ -1,13 +1,13 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* stock_picking_shipping_flag
+#	* stock_picking_ready_flag
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-03 12:11+0000\n"
-"PO-Revision-Date: 2021-12-03 12:11+0000\n"
+"POT-Creation-Date: 2021-12-06 07:33+0000\n"
+"PO-Revision-Date: 2021-12-06 07:33+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -15,23 +15,29 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
 
-#. module: stock_picking_shipping_flag
-#: model:ir.model,name:stock_picking_shipping_flag.model_stock_picking_type
+#. module: stock_picking_ready_flag
+#: model:ir.model,name:stock_picking_ready_flag.model_stock_picking_type
 msgid "Picking Type"
 msgstr "ピッキングタイプ"
 
-#. module: stock_picking_shipping_flag
-#: model:ir.actions.act_window,name:stock_picking_shipping_flag.action_picking_tree_ready_to_ship
-#: model_terms:ir.ui.view,arch_db:stock_picking_shipping_flag.view_picking_internal_search
-msgid "Ready to Shipping"
-msgstr "出荷可能"
+#. module: stock_picking_ready_flag
+#: model:ir.model.fields,help:stock_picking_ready_flag.field_stock_picking__is_ready
+msgid "Please select this when the delivery is ready to be processed."
+msgstr "こちらが選択されていると配送処理の準備が整っていることを示します。"
 
-#. module: stock_picking_shipping_flag
-#: model:ir.model,name:stock_picking_shipping_flag.model_stock_picking
+#. module: stock_picking_ready_flag
+#: model:ir.model.fields,field_description:stock_picking_ready_flag.field_stock_picking__is_ready
+msgid "Ready"
+msgstr "出荷準備"
+
+#. module: stock_picking_ready_flag
+#: model:ir.actions.act_window,name:stock_picking_ready_flag.action_picking_tree_ready_to_ship
+#: model_terms:ir.ui.view,arch_db:stock_picking_ready_flag.view_picking_internal_search
+msgid "Ready to Shipping"
+msgstr "出荷加納"
+
+#. module: stock_picking_ready_flag
+#: model:ir.model,name:stock_picking_ready_flag.model_stock_picking
 msgid "Transfer"
 msgstr "運送"
 
-#. module: stock_picking_shipping_flag
-#: model:ir.model.fields,field_description:stock_picking_shipping_flag.field_stock_picking__ready_to_shipping
-msgid "shipping flag"
-msgstr "出荷許可"
