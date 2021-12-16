@@ -8,6 +8,6 @@
     "category": "Stock",
     "license": "AGPL-3",
     "depends": ["delivery", "stock_move_location"],
-    "data": ["views/stock_picking_views.xml", "views/stock_move_location_views.xml"],
+    "data": ["views/stock_picking_views.xml", "wizard/stock_move_location.xml"],
     "installable": True,
 }
