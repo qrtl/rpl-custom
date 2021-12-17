@@ -12,16 +12,14 @@
             </xpath>
             <xpath expr="//field[@name='partner_id']" position="after">
                 <field
-                    name="phone"
-                    widget="phone"
-                    attrs="{'invisible': [('picking_type_code', '!=', 'outgoing')]}"
-                />
-            </xpath>
-            <xpath expr="//field[@name='partner_id']" position="after">
-                <field
                     name="partner_id"
                     context="{'show_address': 1}"
                     options="{'always_reload': 1}"
+                    attrs="{'invisible': [('picking_type_code', '!=', 'outgoing')]}"
+                />
+                <field
+                    name="phone"
+                    widget="phone"
                     attrs="{'invisible': [('picking_type_code', '!=', 'outgoing')]}"
                 />
             </xpath>
