@@ -21,7 +21,7 @@ Stock Picking Partner Info
 
 This module does the following:
 
-* Displays the partner address and phone in the transfer form for outgoing deliveries.
+* Displays the partner address and phone in the transfer form.
 
 **Table of contents**
 
