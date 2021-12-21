@@ -1,0 +1,20 @@
+<?xml version="1.0" ?>
+<odoo>
+    <template id="payment_sale_note">
+        <field name="Accept Terms &amp; Conditions"><web_sale class="temlate"></web_sale></field>
+        <field name="model">web_sale</field>
+        <field name="inherit_id" ref="web_sale.view_template" />
+        <field name="arch" type="xml">
+        <xpath expr="//div[@id='payment_method'][hasclass('js_payment')]" position="after">
+            <!-- <div class="custom-control custom-checkbox float-right mt-2 oe_accept_cgv_button"> -->
+                <!-- <input type="checkbox" id="checkbox_cgv" class="custom-control-input"/> -->
+                <label for="checkbox_cgv" class="custom-control-label">
+                    We agree to the <a target="_BLANK" href="/shop/terms">terms &amp; conditions</a>
+                    <br/>
+                    according to the current agreement.
+                </label>
+            <!-- </div> -->
+        </xpath>
+        </field>
+    </template>
+</odoo>
