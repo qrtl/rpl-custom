@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_order_display_country
+#	* sale_order_country
 #
 msgid ""
 msgstr ""
@@ -15,35 +15,35 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
 
-#. module: sale_order_display_country
-#: model:ir.model.fields,field_description:sale_order_display_country.field_sale_order__country
+#. module: sale_order_country
+#: model:ir.model.fields,field_description:sale_order_country.field_sale_order__country
 msgid "Country"
 msgstr "国名"
 
-#. module: sale_order_display_country
-#: model_terms:ir.ui.view,arch_db:sale_order_display_country.view_sales_order_filter
+#. module: sale_order_country
+#: model_terms:ir.ui.view,arch_db:sale_order_country.view_sales_order_filter
 msgid "Japanese Customers"
 msgstr "国内顧客"
 
-#. module: sale_order_display_country
-#: model_terms:ir.ui.view,arch_db:sale_order_display_country.view_sales_order_filter
+#. module: sale_order_country
+#: model_terms:ir.ui.view,arch_db:sale_order_country.view_sales_order_filter
 msgid "Oversea Customers"
 msgstr "海外顧客"
 
-#. module: sale_order_display_country
-#: model:ir.model,name:sale_order_display_country.model_sale_order
+#. module: sale_order_country
+#: model:ir.model,name:sale_order_country.model_sale_order
 msgid "Sale Order"
 msgstr "販売オーダ"
 
-#. module: sale_order_display_country
-#: model:ir.model.fields,help:sale_order_display_country.field_sale_order__country_code
+#. module: sale_order_country
+#: model:ir.model.fields,help:sale_order_country.field_sale_order__country_code
 msgid "The ISO country code in two chars. \n"
 "You can use this field for quick search."
 msgstr "ISOの国別コードは2文字です。\n"
 "これを使ってクイックサーチできます。"
 
-#. module: sale_order_display_country
-#: model_terms:ir.ui.view,arch_db:sale_order_display_country.view_sales_order_filter
+#. module: sale_order_country
+#: model_terms:ir.ui.view,arch_db:sale_order_country.view_sales_order_filter
 msgid "countries"
 msgstr "国名"
 

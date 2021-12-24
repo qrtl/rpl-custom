@@ -6,7 +6,7 @@
         <field name="model">sale.order</field>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='partner_id']" position="after">
-                <field name="country" />
+                <field name="country_id" />
             </xpath>
         </field>
     </record>
@@ -16,7 +16,7 @@
         <field name="model">sale.order</field>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='partner_id']" position="after">
-                <field name="country" />
+                <field name="country_id" />
             </xpath>
         </field>
     </record>
@@ -32,8 +32,8 @@
                     domain="[('country_code', '=', 'JP')]"
                 />
                 <filter
-                    string="Oversea Customers"
-                    name="oversea"
+                    string="Overseas Customers"
+                    name="overseas"
                     domain="[('country_code', '!=', 'JP')]"
                 />
             </xpath>
@@ -41,8 +41,7 @@
                 <filter
                     string="countries"
                     name="by_country"
-                    domain="[]"
-                    context="{'group_by':'country'}"
+                    context="{'group_by':'country_id'}"
                 />
             </xpath>
         </field>

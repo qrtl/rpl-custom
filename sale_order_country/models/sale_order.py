@@ -7,7 +7,7 @@ from odoo import fields, models
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
-    country = fields.Many2one(
-        related="partner_id.country_id", readonly=True, store=True,
+    country_id = fields.Many2one(
+        related="partner_id.country_id", store=True,
     )
-    country_code = fields.Char(related="partner_id.country_id.code")
+    country_code = fields.Char(related="partner_id.country_id.code", store=True,)
