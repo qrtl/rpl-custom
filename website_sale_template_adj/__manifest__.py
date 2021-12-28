@@ -12,5 +12,5 @@
     "application": False,
     "installable": True,
     "depends": ["website_sale"],
-    "data": ["views/website_sale_templates_view_adj.xml"],
+    "data": ["views/website_sale_template_adj.xml"],
 }
