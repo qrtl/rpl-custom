@@ -1,1 +1,1 @@
-This module adjusts the view when customers pay on the website.
+This module makes adjustments to eCommerce templates.
