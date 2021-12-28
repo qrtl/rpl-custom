@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-    <template id="website_sale_templates_view_adj" inherit_id="website_sale.payment_sale_note">
+    <template
+        id="website_sale_templates_view_adj"
+        inherit_id="website_sale.payment_sale_note"
+    >
         <xpath expr="//label[hasclass('custom-control-label')]" position="after">
             <span>
-                <br/>
+                <br />
                 according to the current agreement.
             </span>
         </xpath>
     </template>
 </odoo>
-
