@@ -1,4 +1,4 @@
-# Copyright 2020 Quartile Limited
+# Copyright 2021 Quartile Limited
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 {
     "name": "eCommerce: View Adjustments",
