@@ -9,5 +9,6 @@ class StockMove(models.Model):
 
     def _get_new_picking_values(self):
         vals = super(StockMove, self)._get_new_picking_values()
-        vals["note2"] = self.sale_line_id.order_id.note2
+        if self.sale_line_id:
+            vals["note2"] = self.sale_line_id.order_id.note2
         return vals
