@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="acquirer_form" model="ir.ui.view">
+        <field name="name">payment.acquirer.form</field>
+        <field name="model">payment.acquirer</field>
+        <field name="inherit_id" ref="payment.acquirer_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='country_ids']" position="after">
+                <field
+                    name="partner_ids"
+                    widget="many2many_tags"
+                    attrs="{'invisible':['|',('specific_countries','=',False),('country_ids','!=',[])]}"
+                    domain="[('parent_id','=',False)]"
+                />
+                <field
+                    name="is_direct_debit"
+                    attrs="{'invisible':['|',('specific_countries','=',False),('country_ids','!=',[])]}"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
