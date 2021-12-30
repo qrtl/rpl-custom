@@ -1,5 +1,5 @@
 This module does the following:
 
 * Changes the string "Bottom Comments" to "Staff Memo".
-* Makes Staff Memo (note2) of picking a computed field, always mirroring the
-  content from the sales order.
+* Only when picking is created, the memo for sale_order is copied to one for picking as the initial value.
+* These contents are independent of each other.
