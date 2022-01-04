@@ -7,4 +7,4 @@ from odoo import fields, models
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
-    picking_ids = fields.Many2one('stock.picking', store=True,)
+    picking_ids = fields.Many2one("stock.picking", store=True,)
