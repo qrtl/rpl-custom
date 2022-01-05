@@ -1,4 +1,3 @@
 This module does the following:
 
-* Keep a history of changes to the product and quantity in the chatter.
-
+* Keep the change history of line products/quantities in the chatter.

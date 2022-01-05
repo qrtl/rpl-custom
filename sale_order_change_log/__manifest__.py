@@ -1,4 +1,4 @@
-# Copyright 2021 Quartile Limited
+# Copyright 2022 Quartile Limited
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 {
     "name": "Sale Order Change Log",
@@ -8,6 +8,5 @@
     "category": "Sales",
     "license": "AGPL-3",
     "depends": ["sale"],
-    # "data": ["views/sale_order_views.xml"],
     "installable": True,
 }
