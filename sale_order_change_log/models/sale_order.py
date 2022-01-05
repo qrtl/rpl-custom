@@ -16,42 +16,47 @@ class SaleOrder(models.Model):
 
     # origin from odoo>addons>sale>models>sale.py line220
     # amount_untaxed = fields.Monetary(string='Untaxed Amount', store=True, readonly=True, compute='_amount_all', track_visibility='onchange', track_sequence=5)
-    temp_product_id = fields.Char(string='Temp Product', store=True, readonly=True, compute='_change_result_product', track_visibility='onchange', track_sequence=5)
-    temp_product_uom_qty = fields.Float(string='Temp Ordered Quantity', store=True, readonly=True, compute='_change_result_qty', track_visibility='onchange', track_sequence=5)
+    temp_product_id = fields.Char(string='Temp Product', store=True, readonly=True, track_visibility='onchange', track_sequence=5)
+    temp_product_uom_qty = fields.Float(string='Temp Ordered Quantity', store=True, readonly=True, track_visibility='onchange', track_sequence=5)
+
+    # ↓compute部分を削除する前
+    # temp_product_id = fields.Char(string='Temp Product', store=True, readonly=True, compute='_change_result_product', track_visibility='onchange', track_sequence=5)
+    # temp_product_uom_qty = fields.Float(string='Temp Ordered Quantity', store=True, readonly=True, compute='_change_result_qty', track_visibility='onchange', track_sequence=5)
 
 
-    @api.depends('order_line.price_total')
-    def _change_result_product(self):
-        """
-        Compute the change result for the SO products.
-        """
-        for order in self:
-            amount_untaxed = amount_tax = 0.0
-            for line in order.order_line:
-                amount_untaxed += line.price_subtotal
-                amount_tax += line.price_tax
-            order.update({
-                'amount_untaxed': amount_untaxed,
-                'amount_tax': amount_tax,
-                'amount_total': amount_untaxed + amount_tax,
-            })
+    # @api.depends('order_line.price_total')
+    # def _change_result_product(self):
+    #     """
+    #     Compute the change result for the SO products.
+    #     """
+    #     for order in self:
+    #         amount_untaxed = amount_tax = 0.0
+    #         for line in order.order_line:
+    #             amount_untaxed += line.price_subtotal
+    #             amount_tax += line.price_tax
+    #         order.update({
+    #             'amount_untaxed': amount_untaxed,
+    #             'amount_tax': amount_tax,
+    #             'amount_total': amount_untaxed + amount_tax,
+    #         })
 
 
-    @api.depends('order_line.price_total')
-    def _change_result_qty(self):
-        """
-        Compute the change result for the SO qty.
-        """
-        for order in self:
-            amount_untaxed = amount_tax = 0.0
-            for line in order.order_line:
-                amount_untaxed += line.price_subtotal
-                amount_tax += line.price_tax
-            order.update({
-                'amount_untaxed': amount_untaxed,
-                'amount_tax': amount_tax,
-                'amount_total': amount_untaxed + amount_tax,
-            })
+    # @api.depends('order_line.price_total')
+    # def _change_result_qty(self):
+    #     """
+    #     Compute the change result for the SO qty.
+    #     """
+    #     for order in self:
+    #         amount_untaxed = amount_tax = 0.0
+    #         for line in order.order_line:
+    #             amount_untaxed += line.price_subtotal
+    #             amount_tax += line.price_tax
+    #         order.update({
+    #             'amount_untaxed': amount_untaxed,
+    #             'amount_tax': amount_tax,
+    #             'amount_total': amount_untaxed + amount_tax,
+    #         })
+
     # origin
     # @api.depends('order_line.price_total')
     # def _amount_all(self):
