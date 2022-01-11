@@ -8,4 +8,3 @@ class ResCompany(models.Model):
     _inherit = "res.company"
 
     bank_info = fields.Text("Bank Information", translate=True)
-
