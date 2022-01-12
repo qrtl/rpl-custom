@@ -13,6 +13,9 @@
                     <field name="ceo" />
                     <field name="company_chop" widget='image' class="oe_avatar" />
                 </group>
+                <group string="Accounting" name="accounting">
+                    <field name="bank_info" />
+                </group>
             </page>
         </field>
     </record>
