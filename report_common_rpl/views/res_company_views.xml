@@ -9,7 +9,7 @@
                 <field name="fax" />
             </field>
             <page name="reporting" position="inside">
-                <group string="Common" name="common">
+                <group string="General" name="general">
                     <field name="ceo" />
                     <field name="company_chop" widget='image' class="oe_avatar" />
                 </group>
