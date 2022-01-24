@@ -1,0 +1,59 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* report_common_rpl
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-01-12 02:03+0000\n"
+"PO-Revision-Date: 2022-01-12 02:03+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: report_common_rpl
+#: model_terms:ir.ui.view,arch_db:report_common_rpl.view_company_form
+msgid "Accounting"
+msgstr "会計"
+
+#. module: report_common_rpl
+#: model:ir.model.fields,field_description:report_common_rpl.field_res_company__bank_info
+msgid "Bank Information"
+msgstr "銀行情報"
+
+#. module: report_common_rpl
+#: model_terms:ir.ui.view,arch_db:report_common_rpl.view_company_form
+msgid "General"
+msgstr "一般"
+
+#. module: report_common_rpl
+#: model:ir.model,name:report_common_rpl.model_res_company
+msgid "Companies"
+msgstr "会社"
+
+#. module: report_common_rpl
+#: model:ir.model.fields,field_description:report_common_rpl.field_res_company__company_chop
+msgid "Company Chop Image"
+msgstr "会社印影画像"
+
+#. module: report_common_rpl
+#: model:ir.model,name:report_common_rpl.model_res_partner
+msgid "Contact"
+msgstr "連絡先"
+
+#. module: report_common_rpl
+#: model:ir.model.fields,field_description:report_common_rpl.field_res_company__fax
+#: model:ir.model.fields,field_description:report_common_rpl.field_res_partner__fax
+#: model:ir.model.fields,field_description:report_common_rpl.field_res_users__fax
+msgid "Fax"
+msgstr "FAX"
+
+#. module: report_common_rpl
+#: model:ir.model.fields,field_description:report_common_rpl.field_res_company__ceo
+msgid "Representative Director"
+msgstr "代表取締役"
+
