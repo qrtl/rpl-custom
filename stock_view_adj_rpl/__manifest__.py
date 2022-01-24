@@ -7,7 +7,7 @@
     "website": "https://www.quartile.co",
     "category": "Stock",
     "license": "AGPL-3",
-    "depends": ["delivery", "stock_move_location"],
+    "depends": ["delivery", "stock_move_location", "stock_lot_expiry_rpl"],
     "data": [
         "views/stock_picking_views.xml",
         "views/stock_production_lot_view.xml",
