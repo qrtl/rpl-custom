@@ -11,7 +11,7 @@
     "data": [
         "views/stock_picking_views.xml",
         "views/stock_production_lot_view.xml",
-        "wizard/stock_move_location.xml"
+        "wizard/stock_move_location.xml",
     ],
     "installable": True,
 }
