@@ -13,15 +13,14 @@ Stock Quant List View
 .. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
-.. |badge3| image:: https://img.shields.io/badge/github-OCA%2Frpl--custom-lightgray.png?logo=github
+.. |badge3| image:: https://img.shields.io/badge/github-qrtl%2Frpl--custom-lightgray.png?logo=github
     :target: https://github.com/qrtl/rpl-custom/tree/12.0/stock_quant_list_view
     :alt: qrtl/rpl-custom
-.. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/rpl-custom-12-0/rpl-custom-12-0-stock_quant_list_view
-    :alt: Translate me on Weblate
 
-|badge1| |badge2| |badge3| |badge4| 
+|badge1| |badge2| |badge3| 
 
+This module adds the menu item for the stock quant list view for users to be able to
+quickly check the inventory situation.
 
 **Table of contents**
 
@@ -49,4 +48,6 @@ Authors
 Maintainers
 ~~~~~~~~~~~
 
-This module is maintained by the Quartile Limited.
+This module is part of the `qrtl/rpl-custom <https://github.com/qrtl/rpl-custom/tree/12.0/stock_quant_list_view>`_ project on GitHub.
+
+You are welcome to contribute.
