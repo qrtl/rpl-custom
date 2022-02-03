@@ -1,0 +1,71 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* payment_acquirer_partner_link
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-12-30 15:12+0000\n"
+"PO-Revision-Date: 2021-12-30 15:12+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: payment_acquirer_partner_link
+#: model:ir.model.fields,field_description:payment_acquirer_partner_link.field_account_invoice__acquirer_id
+msgid "Acquirer"
+msgstr "決済サービス"
+
+#. module: payment_acquirer_partner_link
+#: model:ir.model.fields,field_description:payment_acquirer_partner_link.field_res_partner__acquirer_ids
+#: model:ir.model.fields,field_description:payment_acquirer_partner_link.field_res_users__acquirer_ids
+msgid "Acquirers"
+msgstr "決済サービス"
+
+#. module: payment_acquirer_partner_link
+#: model:ir.model,name:payment_acquirer_partner_link.model_res_partner
+msgid "Contact"
+msgstr "連絡先"
+
+#. module: payment_acquirer_partner_link
+#: model:ir.model.fields,field_description:payment_acquirer_partner_link.field_account_invoice__is_direct_debit
+#: model:ir.model.fields,field_description:payment_acquirer_partner_link.field_payment_acquirer__is_direct_debit
+msgid "Direct Debit"
+msgstr "口座振替"
+
+#. module: payment_acquirer_partner_link
+#: model:ir.model,name:payment_acquirer_partner_link.model_account_invoice
+msgid "Invoice"
+msgstr "請求書"
+
+#. module: payment_acquirer_partner_link
+#: model:ir.model.fields,field_description:payment_acquirer_partner_link.field_payment_acquirer__partner_ids
+msgid "Partners"
+msgstr "取引先"
+
+#. module: payment_acquirer_partner_link
+#: model:ir.model,name:payment_acquirer_partner_link.model_payment_acquirer
+msgid "Payment Acquirer"
+msgstr "決済サービス"
+
+#. module: payment_acquirer_partner_link
+#: model:ir.model.fields,help:payment_acquirer_partner_link.field_res_partner__acquirer_ids
+#: model:ir.model.fields,help:payment_acquirer_partner_link.field_res_users__acquirer_ids
+msgid "Select the direct debit acquirers as necessary."
+msgstr "支払が口座振替の場合は該当の決済サービスを選択してください。"
+
+#. module: payment_acquirer_partner_link
+#: model:ir.model.fields,help:payment_acquirer_partner_link.field_account_invoice__is_direct_debit
+#: model:ir.model.fields,help:payment_acquirer_partner_link.field_payment_acquirer__is_direct_debit
+msgid "Select this if the aquirer is for direct debit. This selection may eventually affect the presentation of the printed invoice."
+msgstr "口座振替の決済サービスの場合は選択してください。この選択は国内用請求書印刷の表示に影響しえます。"
+
+#. module: payment_acquirer_partner_link
+#: model:ir.model.fields,help:payment_acquirer_partner_link.field_account_invoice__acquirer_id
+msgid "The selection here may affect the presentation of the printed invoice (domestic)."
+msgstr "この選択は国内用請求書印刷の表示に影響しえます。"
+
