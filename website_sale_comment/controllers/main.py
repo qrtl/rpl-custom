@@ -29,5 +29,5 @@ class WebsiteSaleForm(WebsiteSaleForm):
                 0, (plaintext2html(request.env["sale.order"]._default_note()))
             )
         note = "<br>".join(note_list)
-        order.write({"note": html2plaintext(note), "note2": remarks})
+        order.write({"note": html2plaintext(note), "note1": remarks})
         return super(WebsiteSaleForm, self).website_form_saleorder(**kwargs)
