@@ -36,6 +36,7 @@
                     name="overseas"
                     domain="[('country_code', '!=', 'JP')]"
                 />
+                <separator />
             </xpath>
             <xpath expr="//filter[@name='customer']" position="after">
                 <filter
